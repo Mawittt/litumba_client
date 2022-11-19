@@ -25,6 +25,16 @@ a {
   }
 }
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .btn-blue {
+        @apply bg-blue-300 text-blue-800 p-3 rounded-lg m-5 hover:bg-blue-50 hover:text-pink-500 transition-all active:bg-pink-800 active:text-pink-50
+    }
+    .info-count{
+        @apply absolute right-[3px] top-[-5px] bg-red-500 px-[5px] text-white rounded-full aspect-square text-[10px] flex justify-center items-center;
+    }
+}
