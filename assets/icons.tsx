@@ -3,8 +3,8 @@ import { IconProps } from "../types/types"
 
 const primaryColor = "#3C82F6"
 
-export const HomeIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_28_79)" onClick={onClick}>
+export const HomeIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_28_79)" >
         <path d="M9 13H6L6.5 12.5L17 3L28 13H25V20.5H19.0769H15H9V13Z" fill={selected ? primaryColor : "white"} />
         <path d="M6 13L5.46967 12.4697C5.25517 12.6842 5.191 13.0068 5.30709 13.287C5.42318 13.5673 5.69665 13.75 6 13.75V13ZM9 13H9.75C9.75 12.5858 9.41421 12.25 9 12.25V13ZM9 20.5H8.25C8.25 20.9142 8.58579 21.25 9 21.25V20.5ZM25 20.5V21.25C25.4142 21.25 25.75 20.9142 25.75 20.5H25ZM25 13V12.25C24.5858 12.25 24.25 12.5858 24.25 13H25ZM28 13V13.75C28.3099 13.75 28.5878 13.5595 28.6995 13.2704C28.8113 12.9814 28.7338 12.6535 28.5045 12.445L28 13ZM17 3L17.5045 2.44504C17.2189 2.18544 16.783 2.18493 16.4968 2.44385L17 3ZM19 15L19.7499 14.9895C19.7442 14.5794 19.4101 14.25 19 14.25V15ZM15 15V14.25C14.5858 14.25 14.25 14.5858 14.25 15H15ZM6.5 12.5L5.99682 11.9438L5.98292 11.9564L5.96967 11.9697L6.5 12.5ZM6 13.75H9V12.25H6V13.75ZM8.25 13V20.5H9.75V13H8.25ZM25.75 20.5V13H24.25V20.5H25.75ZM25 13.75H28V12.25H25V13.75ZM28.5045 12.445L17.5045 2.44504L16.4955 3.55496L27.4955 13.555L28.5045 12.445ZM9 21.25H15V19.75H9V21.25ZM15 21.25H19.0769V19.75H15V21.25ZM19.0769 21.25H25V19.75H19.0769V21.25ZM19.8268 20.4895L19.7499 14.9895L18.2501 15.0105L18.327 20.5105L19.8268 20.4895ZM19 14.25H15V15.75H19V14.25ZM14.25 15V20.5H15.75V15H14.25ZM16.4968 2.44385L5.99682 11.9438L7.00319 13.0562L17.5032 3.55615L16.4968 2.44385ZM5.96967 11.9697L5.46967 12.4697L6.53033 13.5303L7.03033 13.0303L5.96967 11.9697Z" fill={primaryColor} />
     </g>
@@ -40,8 +40,8 @@ export const HomeIcon = ({ selected, onClick, className }: IconProps) => <svg cl
     </defs>
 </svg>
 
-export const JobsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="32" height="39" viewBox="0 0 32 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_28_81)" onClick={onClick}>
+export const JobsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="32" height="39" viewBox="0 0 32 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_28_81)" >
         <path d="M12 7H8C7.46957 7 6.96086 7.21071 6.58579 7.58579C6.21071 7.96086 6 8.46957 6 9V19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H24C24.5304 21 25.0391 20.7893 25.4142 20.4142C25.7893 20.0391 26 19.5304 26 19V9C26 8.46957 25.7893 7.96086 25.4142 7.58579C25.0391 7.21071 24.5304 7 24 7H20M12 7V3.6C12 3.44087 12.0632 3.28826 12.1757 3.17574C12.2883 3.06321 12.4409 3 12.6 3H19.4C19.5591 3 19.7117 3.06321 19.8243 3.17574C19.9368 3.28826 20 3.44087 20 3.6V7M12 7H20Z" fill={selected ? primaryColor : "white"} />
         <path d="M12 7H8C7.46957 7 6.96086 7.21071 6.58579 7.58579C6.21071 7.96086 6 8.46957 6 9V19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H24C24.5304 21 25.0391 20.7893 25.4142 20.4142C25.7893 20.0391 26 19.5304 26 19V9C26 8.46957 25.7893 7.96086 25.4142 7.58579C25.0391 7.21071 24.5304 7 24 7H20M12 7V3.6C12 3.44087 12.0632 3.28826 12.1757 3.17574C12.2883 3.06321 12.4409 3 12.6 3H19.4C19.5591 3 19.7117 3.06321 19.8243 3.17574C19.9368 3.28826 20 3.44087 20 3.6V7M12 7H20" stroke={primaryColor} strokeWidth="1.5" />
     </g>
@@ -77,8 +77,8 @@ export const JobsIcon = ({ selected, onClick, className }: IconProps) => <svg cl
     </defs>
 </svg>
 
-export const MarketPlaceIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="32" height="39" viewBox="0 0 32 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_28_82)" onClick={onClick}>
+export const MarketPlaceIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="32" height="39" viewBox="0 0 32 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_28_82)" >
         <path d="M11.125 9.7785H16V3.547H11.929L11.125 9.7785Z" fill={selected ? primaryColor : "white"} stroke={primaryColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M11.929 3.547H8.571C8.34758 3.54706 8.13062 3.62193 7.95472 3.75968C7.77882 3.89743 7.65412 4.09011 7.6005 4.307L6.25 9.7785H11.125M16 9.7785C16 10.425 15.7432 11.0449 15.2861 11.5021C14.829 11.9592 14.209 12.216 13.5625 12.216C12.916 12.216 12.296 11.9592 11.8389 11.5021C11.3818 11.0449 11.125 10.425 11.125 9.7785M11.125 9.7785C11.125 10.425 10.8682 11.0449 10.4111 11.5021C9.95395 11.9592 9.33397 12.216 8.6875 12.216C8.04103 12.216 7.42105 11.9592 6.96393 11.5021C6.50681 11.0449 6.25 10.425 6.25 9.7785M20.875 9.7785H16V3.547H20.071L20.875 9.7785ZM20.071 3.547H23.429C23.6524 3.54706 23.8694 3.62193 24.0453 3.75968C24.2212 3.89743 24.3459 4.09011 24.3995 4.307L25.75 9.7785H20.875M16 9.7785C16 10.425 16.2568 11.0449 16.7139 11.5021C17.171 11.9592 17.791 12.216 18.4375 12.216C19.084 12.216 19.704 11.9592 20.1611 11.5021C20.6182 11.0449 20.875 10.425 20.875 9.7785M20.875 9.7785C20.875 10.425 21.1318 11.0449 21.5889 11.5021C22.046 11.9592 22.666 12.216 23.3125 12.216C23.959 12.216 24.579 11.9592 25.0361 11.5021C25.4932 11.0449 25.75 10.425 25.75 9.7785" fill={selected ? primaryColor : "white"} />
         <path d="M11.929 3.547H8.571C8.34758 3.54706 8.13062 3.62193 7.95472 3.75968C7.77882 3.89743 7.65412 4.09011 7.6005 4.307L6.25 9.7785M6.25 9.7785H11.125M6.25 9.7785C6.25 10.425 6.50681 11.0449 6.96393 11.5021C7.42105 11.9592 8.04103 12.216 8.6875 12.216C9.33397 12.216 9.95395 11.9592 10.4111 11.5021C10.8682 11.0449 11.125 10.425 11.125 9.7785M11.125 9.7785C11.125 10.425 11.3818 11.0449 11.8389 11.5021C12.296 11.9592 12.916 12.216 13.5625 12.216C14.209 12.216 14.829 11.9592 15.2861 11.5021C15.7432 11.0449 16 10.425 16 9.7785M16 9.7785H20.875M16 9.7785V3.547H20.071M16 9.7785C16 10.425 16.2568 11.0449 16.7139 11.5021C17.171 11.9592 17.791 12.216 18.4375 12.216C19.084 12.216 19.704 11.9592 20.1611 11.5021C20.6182 11.0449 20.875 10.425 20.875 9.7785M20.875 9.7785L20.071 3.547M20.875 9.7785H25.75M20.875 9.7785C20.875 10.425 21.1318 11.0449 21.5889 11.5021C22.046 11.9592 22.666 12.216 23.3125 12.216C23.959 12.216 24.579 11.9592 25.0361 11.5021C25.4932 11.0449 25.75 10.425 25.75 9.7785M20.071 3.547H23.429C23.6524 3.54706 23.8694 3.62193 24.0453 3.75968C24.2212 3.89743 24.3459 4.09011 24.3995 4.307L25.75 9.7785" stroke={primaryColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -117,8 +117,8 @@ export const MarketPlaceIcon = ({ selected, onClick, className }: IconProps) => 
     </defs>
 </svg>
 
-export const BusinessesIcon = ({ selected, onClick , className}: IconProps) => <svg className={className} width="32" height="42" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_28_83)" onClick={onClick}>
+export const BusinessesIcon = ({ selected, onClick , className}: IconProps) => <svg className={className} onClick={onClick} width="32" height="42" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_28_83)" >
         <path d="M12.25 20.5V23.5V20.5ZM7.75 2.5H16.75C17.1478 2.5 17.5294 2.65804 17.8107 2.93934C18.092 3.22064 18.25 3.60218 18.25 4V23.3125C18.25 23.3622 18.2302 23.4099 18.1951 23.4451C18.1599 23.4802 18.1122 23.5 18.0625 23.5H6.25V4C6.25 3.60218 6.40804 3.22064 6.68934 2.93934C6.97064 2.65804 7.35218 2.5 7.75 2.5ZM19 10H24.25C24.6478 10 25.0294 10.158 25.3107 10.4393C25.592 10.7206 25.75 11.1022 25.75 11.5V23.5H18.25V10.75C18.25 10.5511 18.329 10.3603 18.4697 10.2197C18.6103 10.079 18.8011 10 19 10Z" fill={selected ? primaryColor : "white"} />
         <path d="M12.25 20.5V23.5M7.75 2.5H16.75C17.1478 2.5 17.5294 2.65804 17.8107 2.93934C18.092 3.22064 18.25 3.60218 18.25 4V23.3125C18.25 23.3622 18.2302 23.4099 18.1951 23.4451C18.1599 23.4802 18.1122 23.5 18.0625 23.5H6.25V4C6.25 3.60218 6.40804 3.22064 6.68934 2.93934C6.97064 2.65804 7.35218 2.5 7.75 2.5V2.5ZM19 10H24.25C24.6478 10 25.0294 10.158 25.3107 10.4393C25.592 10.7206 25.75 11.1022 25.75 11.5V23.5H18.25V10.75C18.25 10.5511 18.329 10.3603 18.4697 10.2197C18.6103 10.079 18.8011 10 19 10Z" stroke={primaryColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <mask id="path-3-inside-1_28_83" fill={selected ? primaryColor : "white"}>
@@ -168,8 +168,8 @@ export const BusinessesIcon = ({ selected, onClick , className}: IconProps) => <
     </defs>
 </svg>
 
-export const RealEstateIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="31" height="39" viewBox="0 0 31 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_28_84)" onClick={onClick}>
+export const RealEstateIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="31" height="39" viewBox="0 0 31 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_28_84)" >
         <path d="M6 21V3C6 3 6 2 7 2C8 2 8.5 3 8.5 3H22.5C22.5 3 24.5 3 24.5 4C24.5 5 22.5 5 22.5 5V17H8.5V21H6Z" fill={selected ? primaryColor : "white"} />
         <path d="M8.5 17V21H6V3C6 3 6 2 7 2C8 2 8.5 3 8.5 3H22.5C22.5 3 24.5 3 24.5 4C24.5 5 22.5 5 22.5 5M8.5 17V5H22.5M8.5 17H22.5V5M12.5 13V10L15.5 8L18.5 10V13H16.5V11H14.5V13H12.5Z" stroke={primaryColor} strokeWidth="1.5" strokeLinejoin="round" />
     </g>
@@ -205,8 +205,8 @@ export const RealEstateIcon = ({ selected, onClick, className }: IconProps) => <
     </defs>
 </svg>
 
-export const CulturalGroupsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_28_85)" onClick={onClick}>
+export const CulturalGroupsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_28_85)" >
         <path d="M6 20H11.585V17.3482C11.585 16.6379 11.689 15.9544 11.8811 15.3153C11.2852 14.8898 10.575 14.6429 9.81236 14.6429C7.70685 14.6429 6 16.5257 6 18.8482V20Z" fill={selected ? primaryColor : "white"} />
         <path d="M28 20V18.8482C28 16.5257 26.2931 14.6429 24.1876 14.6429C23.7193 14.6429 23.2706 14.736 22.8561 14.9065C23.1353 15.6597 23.2892 16.4841 23.2892 17.3482V20H28Z" fill={selected ? primaryColor : "white"} />
         <path d="M11.585 20H13.6247H20.521H23.2892V17.3482C23.2892 16.4841 23.1353 15.6597 22.8561 14.9065C21.9832 12.5519 19.8858 10.8929 17.4371 10.8929C14.849 10.8929 12.6533 12.7461 11.8811 15.3153C11.689 15.9544 11.585 16.6379 11.585 17.3482V20Z" fill={selected ? primaryColor : "white"} />
@@ -247,8 +247,8 @@ export const CulturalGroupsIcon = ({ selected, onClick, className }: IconProps) 
     </defs>
 </svg>
 
-export const LitumbaHubIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="26" height="34" viewBox="0 0 26 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_28_86)" onClick={onClick}>
+export const LitumbaHubIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="26" height="34" viewBox="0 0 26 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_28_86)" >
         <path d="M7.4 15.3929H11.95V16.75H7.4H5.25V4.25H7.15V15.1429V15.3929H7.4ZM15.15 10.8095V16.75H13.25V4.25H15.15V8.95238V9.20238H15.4H18.6H18.85V8.95238V4.25H20.75V16.75H18.85V10.8095V10.5595H18.6H15.4H15.15V10.8095Z" fill={selected ? primaryColor : "white"} stroke={primaryColor} strokeWidth="0.5" />
     </g>
     <defs>
@@ -325,8 +325,8 @@ export const MenuIcon = ({ selected, onClick, className }: IconProps) => <svg cl
     <path d="M11 20.5C11 21.3284 11.6716 22 12.5 22C13.3284 22 14 21.3284 14 20.5C14 19.6716 13.3284 19 12.5 19C11.6716 19 11 19.6716 11 20.5Z" fill={selected ? primaryColor : "white"} stroke={primaryColor} />
 </svg>
 
-export const LikeIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="29" height="39" viewBox="0 0 29 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_40_261)" onClick={onClick}>
+export const LikeIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="29" height="39" viewBox="0 0 29 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_40_261)" >
         <path d="M5.75 12.0336H8.03641L8.10424 20.5649H5.75V12.0336ZM9.60429 20.5649L9.53128 11.3824L11.5167 4.19423L11.5168 4.19372C11.7505 3.34543 12.5323 2.75002 13.4141 2.75002L13.4169 2.75001C13.656 2.74912 13.8928 2.79728 14.1125 2.89151C14.3323 2.98575 14.5304 3.12405 14.6947 3.29788L14.6958 3.29906C15.0331 3.6546 15.2052 4.11623 15.1821 4.60826C15.1821 4.60832 15.1821 4.60839 15.1821 4.60845L15.0415 7.48766L15.0031 8.27424H15.7906L21.4109 8.27424L21.4116 8.27424C21.5606 8.2741 21.7069 8.31376 21.8353 8.38911C22.5656 8.81747 23 9.57443 23 10.3461C23 10.8444 22.8364 11.3233 22.5402 11.7146L22.3105 12.0181L22.4199 12.3827C22.4823 12.5908 22.5154 12.8127 22.5195 13.0426C22.5182 13.5387 22.3548 14.0154 22.0598 14.4052L21.8301 14.7088L21.9394 15.0733C22.0026 15.2837 22.0344 15.5017 22.0344 15.725C22.0344 16.2233 21.8708 16.7022 21.5746 17.0935L21.3449 17.397L21.4543 17.7616C21.5174 17.972 21.5492 18.19 21.5492 18.4133C21.5492 19.3219 21.0093 20.1404 20.1698 20.4984L20.1698 20.4984L20.1656 20.5002C20.0695 20.5419 19.9606 20.5649 19.843 20.5649H9.60429Z" fill={selected ? primaryColor : "white"} stroke={primaryColor} strokeWidth="1.5" />
     </g>
     <defs>
@@ -361,8 +361,8 @@ export const LikeIcon = ({ selected, onClick, className }: IconProps) => <svg cl
     </defs>
 </svg>
 
-export const CommentsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="30" height="39" viewBox="0 0 30 39" fill="none" xmlns="http://www.w3.org/2000/svg" >
-    <g filter="url(#filter0_ddddd_40_275)" onClick={onClick}>
+export const CommentsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="30" height="39" viewBox="0 0 30 39" fill="none" xmlns="http://www.w3.org/2000/svg" >
+    <g filter="url(#filter0_ddddd_40_275)" >
         <path d="M10.333 17.25H10.083L9.88298 17.4L5.75 20.4999V4C5.75 3.31121 6.31121 2.75 7 2.75H23C23.6888 2.75 24.25 3.31121 24.25 4V16C24.25 16.6888 23.6888 17.25 23 17.25H10.333Z" fill={selected ? primaryColor : "white"} stroke={primaryColor} strokeWidth="1.5" />
     </g>
     <defs>
@@ -397,8 +397,8 @@ export const CommentsIcon = ({ selected, onClick, className }: IconProps) => <sv
     </defs>
 </svg>
 
-export const NotificationIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="32" height="42" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg" >
-    <g filter="url(#filter0_ddddd_61_510)" onClick={onClick}>
+export const NotificationIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="32" height="42" viewBox="0 0 32 42" fill="none" xmlns="http://www.w3.org/2000/svg" >
+    <g filter="url(#filter0_ddddd_61_510)" >
         <path d="M25.2803 15.7197L23.25 13.6895V11C23.2477 9.14138 22.5563 7.34964 21.3095 5.97124C20.0627 4.59284 18.3491 3.7257 16.5 3.5375V2H15V3.5375C13.1509 3.7257 11.4373 4.59284 10.1905 5.97124C8.94373 7.34964 8.25233 9.14138 8.25 11V13.6895L6.21975 15.7197C6.07909 15.8604 6.00004 16.0511 6 16.25V18.5C6 18.6989 6.07902 18.8897 6.21967 19.0303C6.36032 19.171 6.55109 19.25 6.75 19.25H12V19.8328C11.9837 20.7842 12.3191 21.7083 12.9418 22.4278C13.5646 23.1473 14.431 23.6117 15.375 23.732C15.8964 23.7837 16.4228 23.7257 16.9204 23.5617C17.4181 23.3978 17.8759 23.1315 18.2644 22.78C18.6529 22.4285 18.9636 21.9995 19.1764 21.5207C19.3892 21.042 19.4994 20.5239 19.5 20V19.25H24.75C24.9489 19.25 25.1397 19.171 25.2803 19.0303C25.421 18.8897 25.5 18.6989 25.5 18.5V16.25C25.5 16.0511 25.4209 15.8604 25.2803 15.7197Z" fill={selected ? primaryColor : "white"} />
         <path d="M12 19.25H6.75C6.55109 19.25 6.36032 19.171 6.21967 19.0303C6.07902 18.8897 6 18.6989 6 18.5V16.25C6.00004 16.0511 6.07909 15.8604 6.21975 15.7197L8.25 13.6895V11C8.25233 9.14138 8.94373 7.34964 10.1905 5.97124C11.4373 4.59284 13.1509 3.7257 15 3.5375V2H16.5V3.5375C18.3491 3.7257 20.0627 4.59284 21.3095 5.97124C22.5563 7.34964 23.2477 9.14138 23.25 11V13.6895L25.2803 15.7197C25.4209 15.8604 25.5 16.0511 25.5 16.25V18.5C25.5 18.6989 25.421 18.8897 25.2803 19.0303C25.1397 19.171 24.9489 19.25 24.75 19.25H19.5M12 19.25V19.8328C11.9837 20.7842 12.3191 21.7083 12.9418 22.4278C13.5646 23.1473 14.431 23.6117 15.375 23.732C15.8964 23.7837 16.4228 23.7257 16.9204 23.5617C17.4181 23.3978 17.8759 23.1315 18.2644 22.78C18.6529 22.4285 18.9636 21.9995 19.1764 21.5207C19.3892 21.042 19.4994 20.5239 19.5 20V19.25M12 19.25H19.5" stroke={primaryColor} strokeWidth="1.5" />
     </g>
@@ -434,8 +434,8 @@ export const NotificationIcon = ({ selected, onClick, className }: IconProps) =>
     </defs>
 </svg>
 
-export const MessagesIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_61_514)" onClick={onClick}>
+export const MessagesIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_61_514)" >
         <path d="M11.125 10.875L6.625 15.375V2.625H21.625V7.125" fill={selected ? primaryColor : "white"} />
         <path d="M11.125 10.875L6.625 15.375V2.625H21.625V7.125" stroke={primaryColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M25.375 21.375V7.875H11.125V16.875H20.125L25.375 21.375Z" fill={selected ? primaryColor : "white"} stroke={primaryColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -472,8 +472,8 @@ export const MessagesIcon = ({ selected, onClick, className }: IconProps) => <sv
     </defs>
 </svg>
 
-export const SettingsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clipPath="url(#clip0_61_526)" filter="url(#filter0_ddddd_61_526)" onClick={onClick}>
+export const SettingsIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clipPath="url(#clip0_61_526)" filter="url(#filter0_ddddd_61_526)" >
         <path d="M14.75 2.5V5.5L13.25 6.25L11 4L8 7L10.25 9.25L9.5 10.75H6.5V15.25H9.5L10.25 16.75L8 19L11 22L13.25 19.75L14.75 20.5V23.5H19.25V20.5L20.75 19.75L23 22L26 19L23.75 16.75L24.5 15.25H27.5V10.75H24.5L23.75 9.25L26 7L23 4L20.75 6.25L19.25 5.5V2.5H14.75Z" fill={selected ? primaryColor : "white"} stroke={primaryColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M17 16C18.6569 16 20 14.6569 20 13C20 11.3431 18.6569 10 17 10C15.3431 10 14 11.3431 14 13C14 14.6569 15.3431 16 17 16Z" stroke={primaryColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </g>
@@ -512,14 +512,14 @@ export const SettingsIcon = ({ selected, onClick, className }: IconProps) => <sv
     </defs>
 </svg>
 
-export const SearchIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+export const SearchIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick}  width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
 
     <path d="M22.023 16.977C21.5546 16.5284 21.0988 16.0669 20.656 15.593C20.284 15.215 20.06 14.94 20.06 14.94L17.26 13.603C18.381 12.3316 18.9997 10.695 19 9C19 5.141 15.86 2 12 2C8.14 2 5 5.141 5 9C5 12.859 8.14 16 12 16C13.763 16 15.37 15.34 16.603 14.261L17.94 17.061C17.94 17.061 18.215 17.285 18.593 17.657C18.98 18.02 19.489 18.511 19.977 19.024L21.335 20.416L21.939 21.062L24.06 18.941L23.414 18.337C23.035 17.965 22.529 17.471 22.023 16.977ZM12 14C9.243 14 7 11.757 7 9C7 6.243 9.243 4 12 4C14.757 4 17 6.243 17 9C17 11.757 14.757 14 12 14Z" fill={primaryColor} />
 
 </svg>
 
-export const FilterIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_85_1659)" onClick={onClick}>
+export const FilterIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_85_1659)" >
         <path fillRule="evenodd" clipRule="evenodd" d="M26.5 3V5.505L19 12.6435V21H13V12.6435L5.5 5.5035V3H26.5ZM14.5 12V19.5H17.5V12L25 4.86V4.5H7V4.86L14.5 12Z" fill={primaryColor} />
     </g>
     <defs>
@@ -554,8 +554,8 @@ export const FilterIcon = ({ selected, onClick, className }: IconProps) => <svg 
     </defs>
 </svg>
 
-export const CreateIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="28" height="38" viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_85_1662)" onClick={onClick}>
+export const CreateIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="28" height="38" viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_85_1662)" >
         <path d="M12 13H6C5.73478 13 5.48043 13.1054 5.29289 13.2929C5.10536 13.4804 5 13.7348 5 14V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H12C12.2652 21 12.5196 20.8946 12.7071 20.7071C12.8946 20.5196 13 20.2652 13 20V14C13 13.7348 12.8946 13.4804 12.7071 13.2929C12.5196 13.1054 12.2652 13 12 13ZM11 19H7V15H11V19ZM22 3H16C15.7348 3 15.4804 3.10536 15.2929 3.29289C15.1054 3.48043 15 3.73478 15 4V10C15 10.2652 15.1054 10.5196 15.2929 10.7071C15.4804 10.8946 15.7348 11 16 11H22C22.2652 11 22.5196 10.8946 22.7071 10.7071C22.8946 10.5196 23 10.2652 23 10V4C23 3.73478 22.8946 3.48043 22.7071 3.29289C22.5196 3.10536 22.2652 3 22 3ZM21 9H17V5H21V9ZM22 16H20V14C20 13.7348 19.8946 13.4804 19.7071 13.2929C19.5196 13.1054 19.2652 13 19 13C18.7348 13 18.4804 13.1054 18.2929 13.2929C18.1054 13.4804 18 13.7348 18 14V16H16C15.7348 16 15.4804 16.1054 15.2929 16.2929C15.1054 16.4804 15 16.7348 15 17C15 17.2652 15.1054 17.5196 15.2929 17.7071C15.4804 17.8946 15.7348 18 16 18H18V20C18 20.2652 18.1054 20.5196 18.2929 20.7071C18.4804 20.8946 18.7348 21 19 21C19.2652 21 19.5196 20.8946 19.7071 20.7071C19.8946 20.5196 20 20.2652 20 20V18H22C22.2652 18 22.5196 17.8946 22.7071 17.7071C22.8946 17.5196 23 17.2652 23 17C23 16.7348 22.8946 16.4804 22.7071 16.2929C22.5196 16.1054 22.2652 16 22 16ZM12 3H6C5.73478 3 5.48043 3.10536 5.29289 3.29289C5.10536 3.48043 5 3.73478 5 4V10C5 10.2652 5.10536 10.5196 5.29289 10.7071C5.48043 10.8946 5.73478 11 6 11H12C12.2652 11 12.5196 10.8946 12.7071 10.7071C12.8946 10.5196 13 10.2652 13 10V4C13 3.73478 12.8946 3.48043 12.7071 3.29289C12.5196 3.10536 12.2652 3 12 3ZM11 9H7V5H11V9Z" fill={primaryColor} />
     </g>
     <defs>
@@ -590,8 +590,8 @@ export const CreateIcon = ({ selected, onClick, className }: IconProps) => <svg 
     </defs>
 </svg>
 
-export const LocationIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_87_1686)" onClick={onClick}>
+export const LocationIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_87_1686)" >
         <path fillRule="evenodd" clipRule="evenodd" d="M16.248 4.032C15.1277 2.91138 13.6144 2.27205 12.03 2.25H11.97C10.3855 2.27173 8.87193 2.91085 7.75139 4.03139C6.63084 5.15193 5.99173 6.66546 5.97 8.25C5.9505 9.375 6.267 10.4805 6.879 11.4255L11.601 21H12.4005L17.121 11.4255C17.7345 10.4805 18.051 9.375 18.03 8.25C18.0079 6.66559 17.3686 5.15229 16.248 4.032ZM11.8875 3.75L12.0105 3.765L12.1215 3.75C13.2998 3.80132 14.4138 4.3021 15.2343 5.14939C16.0548 5.99668 16.5195 7.12611 16.533 8.3055C16.5445 9.14254 16.3001 9.96313 15.8325 10.6575L15.8025 10.7085L15.777 10.761L12 18.4185L8.2245 10.7685L8.199 10.71L8.169 10.659C7.70142 9.96463 7.45702 9.14404 7.4685 8.307C7.48129 7.12625 7.94658 5.99539 8.76848 5.14755C9.59037 4.2997 10.7062 3.79948 11.886 3.75H11.8875ZM12.8055 7.0035C12.6417 6.89398 12.4579 6.81779 12.2647 6.77928C12.0715 6.74078 11.8725 6.74071 11.6793 6.77908C11.486 6.81746 11.3022 6.89352 11.1383 7.00293C10.9745 7.11234 10.8338 7.25296 10.7242 7.41675C10.6147 7.58054 10.5385 7.7643 10.5 7.95754C10.4615 8.15077 10.4615 8.3497 10.4998 8.54296C10.5382 8.73622 10.6143 8.92004 10.7237 9.0839C10.8331 9.24777 10.9737 9.38848 11.1375 9.498C11.4683 9.71919 11.8734 9.79992 12.2637 9.72242C12.654 9.64492 12.9976 9.41554 13.2187 9.08475C13.4399 8.75396 13.5207 8.34885 13.4432 7.95854C13.3657 7.56823 13.1363 7.22469 12.8055 7.0035ZM10.305 5.7555C10.6323 5.52543 11.0023 5.36315 11.3932 5.2782C11.7842 5.19326 12.1881 5.18736 12.5814 5.26086C12.9746 5.33436 13.3492 5.48577 13.6831 5.70618C14.017 5.9266 14.3034 6.21156 14.5255 6.54431C14.7476 6.87706 14.9009 7.25087 14.9763 7.64374C15.0518 8.03662 15.048 8.44062 14.965 8.83198C14.882 9.22334 14.7216 9.59416 14.4932 9.92261C14.2648 10.2511 13.973 10.5305 13.635 10.7445C12.9733 11.1634 12.1741 11.307 11.408 11.1446C10.642 10.9822 9.96976 10.5266 9.535 9.87528C9.10025 9.22394 8.93742 8.42841 9.0813 7.65864C9.22517 6.88886 9.66434 6.20585 10.305 5.7555Z" fill={primaryColor} />
     </g>
     <defs>
@@ -626,8 +626,8 @@ export const LocationIcon = ({ selected, onClick, className }: IconProps) => <sv
     </defs>
 </svg>
 
-export const ContactIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="34" height="39" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_88_1721)" onClick={onClick}>
+export const ContactIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="34" height="39" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_88_1721)" >
         <path d="M28.0143 4.31719C28.2768 3.75938 28.1268 3.11719 27.6393 2.69063C27.1518 2.26407 26.4179 2.13282 25.7804 2.36251L6.92321 9.11251C6.1625 9.38438 5.73393 10.0875 5.88929 10.7906C6.04464 11.4938 6.75179 12 7.57143 12H17V20.25C17 20.9672 17.5786 21.5813 18.3821 21.7219C19.1857 21.8625 19.9893 21.4828 20.3 20.8172L28.0143 4.31719V4.31719Z" fill={primaryColor} />
     </g>
     <defs>
@@ -662,8 +662,8 @@ export const ContactIcon = ({ selected, onClick, className }: IconProps) => <svg
     </defs>
 </svg>
 
-export const StarIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="30" height="38" viewBox="0 0 30 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_102_2206)" onClick={onClick}>
+export const StarIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="30" height="38" viewBox="0 0 30 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_102_2206)" >
         <path d="M24.2836 8.27578L18.3328 7.41093L15.6727 2.01797C15.6 1.87031 15.4805 1.75078 15.3328 1.67812C14.9625 1.49531 14.5125 1.64765 14.3273 2.01797L11.6672 7.41093L5.7164 8.27578C5.55234 8.29922 5.40234 8.37656 5.2875 8.49375C5.14866 8.63645 5.07215 8.82844 5.07479 9.02752C5.07743 9.2266 5.15899 9.41649 5.30156 9.55547L9.60703 13.7531L8.58984 19.6805C8.56599 19.8184 8.58125 19.9602 8.63389 20.0898C8.68652 20.2195 8.77444 20.3318 8.88766 20.414C9.00088 20.4962 9.13487 20.5451 9.27445 20.555C9.41403 20.565 9.5536 20.5356 9.67734 20.4703L15 17.6719L20.3227 20.4703C20.468 20.5477 20.6367 20.5734 20.7984 20.5453C21.2063 20.475 21.4805 20.0883 21.4102 19.6805L20.393 13.7531L24.6984 9.55547C24.8156 9.44062 24.893 9.29062 24.9164 9.12656C24.9797 8.7164 24.6938 8.33672 24.2836 8.27578Z" fill={"#FFB514"} />
     </g>
     <defs>
@@ -698,8 +698,8 @@ export const StarIcon = ({ selected, onClick, className }: IconProps) => <svg cl
     </defs>
 </svg>
 
-export const AddImageIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} width="30" height="38" viewBox="0 0 30 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddd_114_2310)" onClick={onClick}>
+export const AddImageIcon = ({ selected, onClick, className }: IconProps) => <svg className={className} onClick={onClick} width="30" height="38" viewBox="0 0 30 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_ddddd_114_2310)" >
         <path d="M16 6.6C16 8.03217 15.4311 9.40568 14.4184 10.4184C13.4057 11.4311 12.0322 12 10.6 12C9.16783 12 7.79432 11.4311 6.78162 10.4184C5.76893 9.40568 5.2 8.03217 5.2 6.6C5.2 5.16783 5.76893 3.79432 6.78162 2.78162C7.79432 1.76892 9.16783 1.2 10.6 1.2C12.0322 1.2 13.4057 1.76892 14.4184 2.78162C15.4311 3.79432 16 5.16783 16 6.6V6.6ZM11.2 4.2C11.2 4.04087 11.1368 3.88825 11.0243 3.77573C10.9117 3.66321 10.7591 3.6 10.6 3.6C10.4409 3.6 10.2883 3.66321 10.1757 3.77573C10.0632 3.88825 10 4.04087 10 4.2V6H8.2C8.04087 6 7.88826 6.06321 7.77574 6.17573C7.66322 6.28826 7.6 6.44087 7.6 6.6C7.6 6.75913 7.66322 6.91174 7.77574 7.02426C7.88826 7.13678 8.04087 7.2 8.2 7.2H10V9C10 9.15913 10.0632 9.31174 10.1757 9.42426C10.2883 9.53678 10.4409 9.6 10.6 9.6C10.7591 9.6 10.9117 9.53678 11.0243 9.42426C11.1368 9.31174 11.2 9.15913 11.2 9V7.2H13C13.1591 7.2 13.3117 7.13678 13.4243 7.02426C13.5368 6.91174 13.6 6.75913 13.6 6.6C13.6 6.44087 13.5368 6.28826 13.4243 6.17573C13.3117 6.06321 13.1591 6 13 6H11.2V4.2ZM20.8 4.8H16.9516C16.8342 4.38548 16.6762 3.98354 16.48 3.6H20.8C21.7548 3.6 22.6705 3.97928 23.3456 4.65441C24.0207 5.32954 24.4 6.24522 24.4 7.2V16.8C24.4 17.7548 24.0207 18.6705 23.3456 19.3456C22.6705 20.0207 21.7548 20.4 20.8 20.4H11.2C10.2452 20.4 9.32955 20.0207 8.65442 19.3456C7.97929 18.6705 7.6 17.7548 7.6 16.8V12.48C7.9804 12.6744 8.3812 12.8328 8.8 12.9516V16.8C8.8 17.2476 8.9224 17.6664 9.136 18.024L14.7388 12.5184C15.0754 12.1879 15.5283 12.0027 16 12.0027C16.4717 12.0027 16.9246 12.1879 17.2612 12.5184L22.8652 18.024C23.0851 17.6537 23.2008 17.2307 23.2 16.8V7.2C23.2 6.56348 22.9471 5.95303 22.4971 5.50294C22.047 5.05285 21.4365 4.8 20.8 4.8V4.8ZM20.8 9C20.8 9.23638 20.7534 9.47044 20.663 9.68883C20.5725 9.90721 20.4399 10.1056 20.2728 10.2728C20.1056 10.4399 19.9072 10.5725 19.6888 10.663C19.4704 10.7534 19.2364 10.8 19 10.8C18.7636 10.8 18.5296 10.7534 18.3112 10.663C18.0928 10.5725 17.8944 10.4399 17.7272 10.2728C17.5601 10.1056 17.4275 9.90721 17.337 9.68883C17.2466 9.47044 17.2 9.23638 17.2 9C17.2 8.52261 17.3896 8.06477 17.7272 7.7272C18.0648 7.38964 18.5226 7.2 19 7.2C19.4774 7.2 19.9352 7.38964 20.2728 7.7272C20.6104 8.06477 20.8 8.52261 20.8 9V9ZM19.6 9C19.6 8.84087 19.5368 8.68826 19.4243 8.57573C19.3117 8.46321 19.1591 8.4 19 8.4C18.8409 8.4 18.6883 8.46321 18.5757 8.57573C18.4632 8.68826 18.4 8.84087 18.4 9C18.4 9.15913 18.4632 9.31174 18.5757 9.42426C18.6883 9.53678 18.8409 9.6 19 9.6C19.1591 9.6 19.3117 9.53678 19.4243 9.42426C19.5368 9.31174 19.6 9.15913 19.6 9ZM9.9856 18.8712C10.3537 19.0874 10.7731 19.2009 11.2 19.2H20.8C21.244 19.2 21.658 19.08 22.0144 18.8712L16.42 13.3752C16.3078 13.2653 16.1571 13.2037 16 13.2037C15.8429 13.2037 15.6922 13.2653 15.58 13.3752L9.9856 18.8712V18.8712Z" fill={primaryColor} />
     </g>
     <defs>
