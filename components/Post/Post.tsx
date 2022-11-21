@@ -12,7 +12,7 @@ export default function Post(props: PostProps) {
     const { avatar, time, name, description, image, likes, comments, openProfile,
         enlargeImage, togglePostLike, openCommentsSection } = usePost(props)
     return (
-        <div className=" flex flex-col gap-2 sm:shadow-comp_lg sm:py-[10px] sm:rounded-lg">
+        <div className=" flex flex-col gap-2 shadow-comp_lg py-[10px] rounded-lg">
             <div className="flex items-center gap-2 px-2" onClick={openProfile}>
                 <Image src={avatar} alt={' post author profile'} width="45" height={45} className="h-[45px]" />
                 <strong>{name}</strong>
