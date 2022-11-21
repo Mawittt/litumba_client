@@ -34,6 +34,7 @@ export default function Home() {
 					click on me to see your screen width
 				</button>
                 <Link href={"/about"}><button className="btn-blue">About</button></Link>
+                <Link href={"/test"}><button className="btn-blue">test</button></Link>
 
                 {authState ? "this is not a function"  : "there is no auth state"}
 

@@ -26,7 +26,7 @@ a {
 }
 
 
-@tailwind base;
+@tailwind base; 
 @tailwind components;
 @tailwind utilities;
 
@@ -36,5 +36,14 @@ a {
     }
     .info-count{
         @apply absolute right-[3px] top-[-5px] bg-red-500 px-[5px] text-white rounded-full aspect-square text-[10px] flex justify-center items-center;
+    }
+    .page-option{
+        @apply flex w-full rounded-lg items-center gap-2 
+    }
+    .page-option-selected{
+        @apply flex w-full rounded-lg bg-gradient-to-r from-gs h-[35px] to-[#2F8CE9] items-center gap-2
+    }
+    .post-option{
+        @apply flex items-center rounded-full border-solid border-border border-[1.5px] px-2 gap-2 max-[324px]:text-[0.7rem] max-[324px]:gap-[2px]
     }
 }

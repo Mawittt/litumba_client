@@ -12,7 +12,7 @@ export default function FooterNav (){
     
 
     return(
-        <div className="flex w-full bg-white h-[50px] relative justify-around items-center ">
+        <div className="flex w-full bg-white h-[50px] relative justify-around items-center pt-[10px]">
             <HomeIcon selected={isHome()} onClick={navigateToHome}/>
              <JobsIcon selected={isJobs()} onClick={navigateToJobs}/>
              <BusinessesIcon selected={isBusiness()} onClick={navigateToBusiness}/>
@@ -30,9 +30,9 @@ export default function FooterNav (){
              <LitumbaHubIcon selected={isLitumbaHub()} onClick={navigateToLitumbaHub}/>
              </div>
              <div id="more-icons" className={" sm:hidden rounded-[50px] transition-all duration-500 flex absolute w-[150px] top-[-50px] bg-white h-[50px] right-[-150px] items-center px-[5px] justify-around"}>
-                <RealEstateIcon />
-                <CulturalGroupsIcon />
-                <LitumbaHubIcon />
+                <RealEstateIcon selected={isRealEstate()} onClick={navigateToRealEstate}/>
+                <CulturalGroupsIcon selected={isCulturalGroups()} onClick={navigateToCulturalGroups}/>
+                <LitumbaHubIcon selected={isLitumbaHub()} onClick={navigateToLitumbaHub}/>
              </div>
         </div>
     )
