@@ -44,3 +44,24 @@ export interface PostProps{
     likes : number,
     comments : number
 }
+
+export interface JobProps{
+    avatar : string,
+    title? : string,
+    location? : string, 
+    time? : string,
+    description? : string,
+    tags? : string[],
+    brand : boolean,
+    _id : any
+}
+
+export interface BusinessProps{
+    avatar : string,
+    name : string,
+    email : string,
+    website: string,
+    description : string,
+    tags : string[]
+    _id : any
+}

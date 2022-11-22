@@ -10,12 +10,12 @@ import useHomeComponent from "./useHomeComponent";
 export default function HomeComponent() {
     const {posts} = useHomeComponent()
     return (
-        <div className="w-full gap-[30px] flex flex-col">
+        <div className="w-full gap-[30px] flex flex-col md:p-4 py-4 px-2">
             <div className="w-full shadow-comp_lg h-fit gap-[30px] flex flex-col items-center py-[20px] px-[10px] rounded-lg max-[324px]:px-[2px]">
                 <div className="flex gap-4 items-center w-full">
                     <Image src={avatar_1} width={35} height={35} alt={"profile image"} className="h-[35px]" />
                     <div className="flex w-full items-center gap-2">
-                        <input type="text" className="border-[1.5px] p-2 border-solid border-border h-[35px] w-full rounded-full box-border shadow-text_input_shadow" />
+                        <input type="text" className="text-input " />
                         <div className="translate-y-[8px]">
                             <ContactIcon />
                         </div>

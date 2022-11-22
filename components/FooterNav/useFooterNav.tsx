@@ -1,11 +1,12 @@
 import { Router } from "next/router"
 import { useState } from "react"
 import { ROUTES } from "../../assets/constant"
+import { usePage } from "../../utils/hooks"
 
 
 
 export default function useFooterNav(){
-    const [page, setPage]  = useState<String>(ROUTES.home)
+    const {page} = usePage()
 
     return {toggle_additional_icons,isHome , isJobs, isBusiness, isMarketPlace , isRealEstate, isCulturalGroups ,isLitumbaHub,
             navigateToHome,navigateToJobs, navigateToBusiness,navigateToMarketPlace,navigateToRealEstate,navigateToCulturalGroups,
@@ -37,24 +38,27 @@ export default function useFooterNav(){
         return page.includes(ROUTES.litumba_hub.index)
     }   
     function navigateToHome(){
-        setPage(ROUTES.home)
+        navigateTo(ROUTES.home)
     }
     function navigateToJobs(){
-        setPage(ROUTES.jobs.index)
+        navigateTo(ROUTES.jobs.index)
     }
     function navigateToBusiness(){
-        setPage(ROUTES.business.index)
+        navigateTo(ROUTES.business.index)
     }
     function navigateToMarketPlace(){
-        setPage(ROUTES.market_place.products.index)
+        navigateTo(ROUTES.market_place.products.index)
     }
     function navigateToRealEstate(){
-        setPage(ROUTES.real_estate.index)
+        navigateTo(ROUTES.real_estate.index)
     }
     function navigateToCulturalGroups(){
-        setPage(ROUTES.cultural_groups.index)
+        navigateTo(ROUTES.cultural_groups.index)
     }
     function navigateToLitumbaHub(){
-        setPage(ROUTES.litumba_hub.index)
+        navigateTo(ROUTES.litumba_hub.index)
+    }
+    function navigateTo(page : string){
+        console.log("navigating to " + page)
     }
 }

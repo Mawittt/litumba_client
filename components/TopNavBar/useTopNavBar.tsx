@@ -1,10 +1,11 @@
 import { avatar_1 } from "../../assets/avatars"
+import { usePage } from "../../utils/hooks"
 
 
 export default function useTopNavBar(){
 
     const image = avatar_1
-    const route = "Home"
+    const {page : route} = usePage()
 
     return {openProfile , openMenu , isBack , image , route , goBack}
 

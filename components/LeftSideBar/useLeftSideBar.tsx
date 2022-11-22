@@ -1,9 +1,12 @@
+import { set } from "immer/dist/internal"
+import { useEffect, useState } from "react"
 import { ROUTES } from "../../assets/constant"
+import { usePage } from "../../utils/hooks"
 
 
 
 export default function useLeftSideBar(){
-    const page = ROUTES.market_place.products.filters
+    const {page} = usePage()
     return { page , isHome , isJobs , isBusiness , isMarketPlace , isRealEstate , isCulturalGroups , isLitumbaHub}
 
     function isHome(){

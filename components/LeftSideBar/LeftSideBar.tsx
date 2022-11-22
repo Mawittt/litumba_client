@@ -16,43 +16,43 @@ export default function LeftSideBar() {
             <div className="flex flex-col">
                 <h3 className="font-bold">Pages</h3>
                 <div className={isHome()}>
-                    <div className="pt-[10px]">
+                    <div className="pt-[10px] w-[30px]">
                         <HomeIcon />
                     </div>
                     <span>Home</span>
                 </div>
                 <div className={isJobs()}>
-                    <div className="pt-[10px]">
+                    <div className="pt-[10px] w-[30px]">
                         <JobsIcon />
                     </div>
                     <span>Jobs</span>
                 </div>
                 <div className={isBusiness()}>
-                    <div className="pt-[10px]">
+                    <div className="pt-[10px] w-[30px]">
                         <BusinessesIcon />
                     </div>
                     <span>Businesses</span>
                 </div>
                 <div className={isMarketPlace()}>
-                    <div className="pt-[10px]">
+                    <div className="pt-[10px] w-[30px]">
                         <MarketPlaceIcon />
                     </div>
                     <span>Market place</span>
                 </div>
                 <div className={isRealEstate()}>
-                    <div className="pt-[10px]">
+                    <div className="pt-[10px] w-[30px]">
                         <RealEstateIcon />
                     </div>
                     <span>Real estate</span>
                 </div>
                 <div className={isCulturalGroups()}>
-                    <div className="pt-[10px]">
+                    <div className="pt-[10px] w-[30px]">
                         <CulturalGroupsIcon />
                     </div>
                     <span>Cultural groups</span>
                 </div>
                 <div className={isLitumbaHub()}>
-                    <div className="pt-[10px]">
+                    <div className="pt-[10px] w-[30px]">
                         <LitumbaHubIcon />
                     </div>
                     <span>Litumba hub</span>
