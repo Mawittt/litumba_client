@@ -6,7 +6,7 @@ import { selectAuthState, setAuthState } from "../store/slice";
 import useStore from "../store/useStore";
 import { LikeIcon } from "../assets/icons";
 
-export default function About(props: { data: { name: string } }) {
+export default function About(props: { data: string } ) {
 	const { authState, setAuthState } = useStore();
 	console.log("i doubt where this one will run");
 	return (
@@ -14,7 +14,7 @@ export default function About(props: { data: { name: string } }) {
 			<Link href={"/"}>
 				<button className="btn-blue">this is a button </button>
 			</Link>
-			<p>{props.data.name}</p>
+			<p>{props.data}</p>
 
 			{authState ? "there is an auth State" : "there is no auth state"}
 			<button className="btn-blue" onClick={() => setAuthState(!authState)}>
@@ -27,7 +27,7 @@ export default function About(props: { data: { name: string } }) {
 
 export async function getServerSideProps(context: any) {
 	console.log("should run on the server side");
-	const data = await axios.get("http://localhost:3000/api/hello");
+	const data = {data : "data"}
 
 	return {
 		props: {
