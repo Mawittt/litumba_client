@@ -1,10 +1,8 @@
+import { ProductProps } from "../../types/types";
 
 
 
-import React from 'react'
+export default function useProduct({avatar , name , location , website , image , description , price , _id , amount, brand} : ProductProps ){
 
-const useProduct = () => {
-  return {}
+    return {avatar , name , location , website , image , description , price , amount , brand}
 }
-
-export default useProduct

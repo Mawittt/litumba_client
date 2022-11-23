@@ -1,16 +1,18 @@
 import { ButtonProps } from "../../types/types"
+import { cn } from "../../utils/fn"
 import useButton from "./useButton"
 
-function cn(...classes : string[]){
-    return classes.filter(Boolean).join(' ')
-}
+
 
 export default function Button(props : ButtonProps){
-    const {label , className , onClick , icon , full} = useButton(props) 
+    const {label , className , onClick , icon , full , colored} = useButton(props) 
     return (
         <button 
         className={
-            cn("border-blue-500 border-solid  border-[1.5px] rounded-lg px-[10px] py-[5px] font-semibold text-blue-500",className,full ? " w-full" : " "
+            cn("border-blue-500 border-solid  border-[1.5px] rounded-lg px-[10px] py-[5px] font-semibold ",
+                className,
+                full ? " w-full" : " ",
+                colored ? " text-white bg-blue-500" : "text-blue-500 bg-white"
             )
         } 
         onClick={onClick}>

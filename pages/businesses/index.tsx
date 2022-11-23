@@ -7,7 +7,7 @@ import useBusinesses from "../../pageUtils/useBusiness";
 export default function Businesses() {
     const { businesses } = useBusinesses()
     return (
-        <div>
+        <div className="py-4 px-2">
             <AssetTopController />
             <div>
                 {

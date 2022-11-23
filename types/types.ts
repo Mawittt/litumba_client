@@ -26,7 +26,8 @@ export interface ButtonProps{
     icon? : ReactElement,
     onClick? : MouseEventHandler,
     className? : string ,
-    full? : boolean
+    full? : boolean,
+    colored? : boolean,
 }
 
 export interface MyProductProps{
@@ -62,6 +63,30 @@ export interface BusinessProps{
     email : string,
     website: string,
     description : string,
+    tags : string[]
+    _id : any
+}
+
+
+export interface ProductProps{
+    avatar : string,
+    name : string,
+    location : string,
+    website : string,
+    image : string,
+    description : string,
+    price : number,
+    amount : number,
+    brand : boolean,
+    _id : any
+}
+
+export interface ServiceProps{
+    avatar : string,
+    title : string,
+    location : string,
+    website : string,
+    description : string
     tags : string[]
     _id : any
 }
