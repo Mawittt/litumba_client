@@ -90,3 +90,11 @@ export interface ServiceProps{
     tags : string[]
     _id : any
 }
+
+export interface CulturalGroupsProps{
+    image : string,
+    name : string,
+    location : string ,
+    members : number,
+    _id : any
+}

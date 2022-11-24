@@ -1,12 +1,13 @@
 import { Router } from "next/router"
 import { useState } from "react"
 import { ROUTES } from "../../assets/constant"
-import { usePage } from "../../utils/hooks"
+import { useNavigate, usePage } from "../../utils/hooks"
 
 
 
 export default function useFooterNav(){
     const {page} = usePage()
+    const  {navigate} = useNavigate()
 
     return {toggle_additional_icons,isHome , isJobs, isBusiness, isMarketPlace , isRealEstate, isCulturalGroups ,isLitumbaHub,
             navigateToHome,navigateToJobs, navigateToBusiness,navigateToMarketPlace,navigateToRealEstate,navigateToCulturalGroups,
@@ -23,7 +24,7 @@ export default function useFooterNav(){
         return page.includes(ROUTES.jobs.index)
     }
     function isBusiness(){
-        return page.includes(ROUTES.business.index)
+        return page.includes(ROUTES.businesses.index)
     }
     function isMarketPlace(){
         return page.includes(ROUTES.market_place.products.index) || page.includes(ROUTES.market_place.services.index)
@@ -38,27 +39,24 @@ export default function useFooterNav(){
         return page.includes(ROUTES.litumba_hub.index)
     }   
     function navigateToHome(){
-        navigateTo(ROUTES.home)
+        navigate(ROUTES.home)
     }
     function navigateToJobs(){
-        navigateTo(ROUTES.jobs.index)
+        navigate(ROUTES.jobs.index)
     }
     function navigateToBusiness(){
-        navigateTo(ROUTES.business.index)
+        navigate(ROUTES.businesses.index)
     }
     function navigateToMarketPlace(){
-        navigateTo(ROUTES.market_place.products.index)
+        navigate(ROUTES.market_place.products.index)
     }
     function navigateToRealEstate(){
-        navigateTo(ROUTES.real_estate.index)
+        navigate(ROUTES.real_estate.index)
     }
     function navigateToCulturalGroups(){
-        navigateTo(ROUTES.cultural_groups.index)
+        navigate(ROUTES.cultural_groups.index)
     }
     function navigateToLitumbaHub(){
-        navigateTo(ROUTES.litumba_hub.index)
-    }
-    function navigateTo(page : string){
-        console.log("navigating to " + page)
+        navigate(ROUTES.litumba_hub.index)
     }
 }

@@ -1,3 +1,4 @@
+import Router, { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 
@@ -9,4 +10,13 @@ export function usePage(){
     })
 
     return {page}
+}
+
+export function useNavigate(){
+    const router = useRouter()
+    return {navigate}
+
+    function navigate(url : string){
+        Router.push(url)
+    }
 }

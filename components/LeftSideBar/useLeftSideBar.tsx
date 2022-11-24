@@ -1,13 +1,14 @@
 import { set } from "immer/dist/internal"
 import { useEffect, useState } from "react"
 import { ROUTES } from "../../assets/constant"
-import { usePage } from "../../utils/hooks"
+import { useNavigate, usePage } from "../../utils/hooks"
 
 
 
 export default function useLeftSideBar(){
     const {page} = usePage()
-    return { page , isHome , isJobs , isBusiness , isMarketPlace , isRealEstate , isCulturalGroups , isLitumbaHub}
+    const {navigate} = useNavigate()
+    return { page , isHome , isJobs , isBusiness , isMarketPlace , isRealEstate , isCulturalGroups , isLitumbaHub , navigate}
 
     function isHome(){
         const className : string = page.includes(ROUTES.home) ? "page-option-selected" : "page-option"
@@ -18,7 +19,7 @@ export default function useLeftSideBar(){
         return className
     }
     function isBusiness(){
-        const className : string = page.includes(ROUTES.business.index) ? "page-option-selected" : "page-option"
+        const className : string = page.includes(ROUTES.businesses.index) ? "page-option-selected" : "page-option"
         return className
     }
     function isMarketPlace(){
