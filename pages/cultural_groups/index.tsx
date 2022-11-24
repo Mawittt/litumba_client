@@ -6,7 +6,7 @@ import useCulturalGroups from "../../pageUtils/useCulturalGroups";
 
 
 
-export default function(){
+export default function CulturalGroups(){
     const {groups} = useCulturalGroups()
     return (
         <div className="flex flex-col gap-4 py-4 px-2">
