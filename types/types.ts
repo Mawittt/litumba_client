@@ -203,7 +203,7 @@ export interface UserProfileProps{
     phone : string,
     country : string,
     city : string,
-    available : boolean,
+    online : boolean,
     _id : any
 }
 

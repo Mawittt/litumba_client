@@ -19,7 +19,7 @@ export default function useUserProfile(){
         phone : "675228664",
         country : "USA",
         city : "los Angeles",
-        available : true,
+        online : true,
         _id : 1
 
     }
