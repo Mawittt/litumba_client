@@ -98,3 +98,120 @@ export interface CulturalGroupsProps{
     members : number,
     _id : any
 }
+
+export interface JobDetailsProps{
+    cover : string,
+    avatar : string , 
+    author : string,
+    email : string,
+    website : string,
+    time : string,
+    location : string,
+    title : string,
+    description : string,
+    price : string,
+    niche : string,
+    urgency : string,
+    type : string , 
+    level : string, 
+    schedule : string,
+    available : boolean,
+    _id : any
+}
+
+export interface BusinessDetailsProps{
+    cover : string,
+    avatar : string,
+    name : string,
+    email : string,
+    website : string,
+    location : string,
+    description : string,
+    phone : string,
+    niche : string,
+    available : boolean,
+    _id : any
+}
+
+export interface ProductDetailsProps{
+    selectedPreview : string,
+    previews : string[],
+    name : string,
+    description : string,
+    price : string,
+    location : string,
+    amount : string,
+    available : boolean,
+    _id : any
+}
+
+export interface OtherProductProps{
+    image : string,
+    name : string,
+    price : string,
+    _id : any
+}
+
+export interface ServiceDetailsProps{
+    cover : string,
+    avatar : string,
+    author : string,
+    email : string,
+    website : string,
+    title : string,
+    description : string,
+    price : string,
+    niche : string, 
+    available : boolean,
+    _id : any
+}
+
+export interface UseCaseProps{
+    image : string,
+    title : string , 
+    description : string,
+    _id : any
+}
+
+export interface ReviewProps{
+    avatar : string,
+    name : string,
+    time : string,
+    stars : number,
+    comment : string,
+    _id : any
+}
+
+export interface CulturalGroupDetails{
+    cover : string,
+    avatar : string ,
+    name : string ,
+    members : number,
+    description : string,
+    location : string,
+    _id : any,
+}
+
+export interface UserProfileProps{
+    cover : string,
+    avatar : string,
+    name : string,
+    email : string,
+    profession : string,
+    location : string,
+    description : string,
+    phone : string,
+    country : string,
+    city : string,
+    available : boolean,
+    _id : any
+}
+
+export interface ProductPreviewerProps{
+    selectedImage : string,
+    allImages : string[],
+}
+
+export interface StarsProps {
+    number : number
+}
