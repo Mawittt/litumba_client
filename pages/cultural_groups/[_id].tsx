@@ -1,14 +1,13 @@
 import Image from "next/image"
 import { ContactIcon, LocationIcon } from "../../assets/icons"
 import Button from "../../components/Button/Button"
-import useCulturalGroup from "../../components/CulturalGroup/useCulturalGroup"
 import useCulturalGroupDetails from "../../pageUtils/useCulturalGroupDetails"
 
 
 
 
 
-export default function culturalGroupDetails() {
+export default function CulturalGroupDetails() {
     const { details } = useCulturalGroupDetails()
 
     return (

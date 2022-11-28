@@ -9,7 +9,7 @@ export default function Home() {
 	return (
 		<div className="w-full h-screen flex flex-col justify-center items-center gap-4">
             <div className="font-bold text-2xl w-[95vw] max-w-[500px] text-center">
-                Welcome to Litumba, as of now the landing page isn't implemented yet, how ever you can get a view of the app through the entry points below
+                Welcome to Litumba, as of now the landing page isn&apos;t implemented yet, how ever you can get a view of the app through the entry points below
             </div>
             <Button label="Sign Up ui" onClick={openSignUp} />
             <Button label="Log In ui" onClick={openLogIn} />

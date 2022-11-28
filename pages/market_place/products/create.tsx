@@ -6,7 +6,7 @@ const Create = () => {
   return (
     <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
             <h3 className="font-bold text-2xl">Create a Product</h3>
-            <p>please fill the below form and click the "Create Job" button to create a new job.</p>
+            <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <div>
                 <Button label="add previews" icon={<AddImageIcon />} />
             </div>

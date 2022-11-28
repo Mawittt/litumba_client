@@ -4,7 +4,7 @@ import Comment from "../../components/Comment/Comment"
 import usePostDetails from "../../pageUtils/usePostDetails"
 
 
-export default function post_details(){
+export default function Post_details(){
     const {post , comments , openProfile ,enlargeImage} = usePostDetails()
     return (
         <div className=" flex flex-col gap-2 shadow-comp_lg py-[10px] rounded-lg">

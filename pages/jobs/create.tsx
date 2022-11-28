@@ -10,7 +10,7 @@ export default function JobCreation(){
     return(
         <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
             <h3 className="font-bold text-2xl">Create a job</h3>
-            <p>please fill the below form and click the "Create Job" button to create a new job.</p>
+            <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <div className="flex flex-col gap-2">
                 <div className="font-bold">Job title</div>
                 <input type="text" className="text-input" />
