@@ -1,5 +1,4 @@
 import React from 'react'
-import { AddImageIcon } from '../../../assets/icons'
 import Button from '../../../components/Button/Button'
 
 const Create = () => {
