@@ -8,7 +8,7 @@ import useCulturalGroupDetails from "../../pageUtils/useCulturalGroupDetails"
 
 
 export default function CulturalGroupDetails() {
-    const { details } = useCulturalGroupDetails()
+    const { details , goBack , gotoConversation} = useCulturalGroupDetails()
 
     return (
         <div >
@@ -24,7 +24,7 @@ export default function CulturalGroupDetails() {
                             <div>{details.members}</div>
                         </div>
                     </div>
-                    <div><ContactIcon /></div>
+                    <div><ContactIcon onClick={gotoConversation} /></div>
                 </div>
                 <div>{details.description}</div>
                 <div className='flex translate-x-[-5px]'>
@@ -33,7 +33,7 @@ export default function CulturalGroupDetails() {
                     </div>
                     <div>{details.location}</div>
                 </div>
-                <Button label="back" full />
+                <Button label="back" full onClick={goBack}/>
             </div>
         </div>
     )

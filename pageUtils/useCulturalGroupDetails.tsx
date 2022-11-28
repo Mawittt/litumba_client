@@ -1,6 +1,8 @@
 import { group_avatar } from "../assets/avatars";
+import { ROUTES } from "../assets/constant";
 import { group_image_1 } from "../assets/images";
 import { CulturalGroupDetails } from "../types/types";
+import { useNavigate } from "../utils/hooks";
 
 
 
@@ -16,5 +18,14 @@ export default function useCulturalGroupDetails(){
         _id : 1
     }
 
-    return {details}
+    const {navigate  , router} = useNavigate()
+
+    return {details , gotoConversation , goBack}
+
+    function gotoConversation(){
+        navigate(ROUTES.conversations + "/conversation_id")
+    }
+    function goBack(){  
+        router.back()
+    }
 }
