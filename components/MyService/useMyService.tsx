@@ -1,4 +1,6 @@
+import { ROUTES } from "../../assets/constant";
 import { MyServiceProps } from "../../types/types";
+import { useNavigate } from "../../utils/hooks";
 
 
 
@@ -8,5 +10,11 @@ export default function useMyService({title, interested , image} : MyServiceProp
     title = title || "Designer"
     interested = interested || 5
 
-    return {image , title , interested}
+    const {navigate} = useNavigate()
+ 
+    return {image , title , interested , openService}
+
+    function openService(){
+        navigate(ROUTES.market_place.services.index + "/service_id")
+    }
 }

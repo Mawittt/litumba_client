@@ -1,7 +1,9 @@
 import { title } from "process";
 import { avatar_1, avatar_2, brand_avatar_1 } from "../assets/avatars";
+import { ROUTES } from "../assets/constant";
 import { business_image_1, consulting_image_1, consulting_image_2, consulting_image_3 } from "../assets/images";
 import { ReviewProps, ServiceDetailsProps, UseCaseProps } from "../types/types";
+import { useNavigate } from "../utils/hooks";
 
 
 
@@ -65,5 +67,18 @@ export default function useServiceDetails(){
         }
     ]
 
-    return {details , useCases , reviews}
+    const {navigate , router} = useNavigate()
+
+    return {details , useCases , reviews , openBrand , openConversation , goBack}
+
+
+    function openBrand(){
+        navigate(ROUTES.businesses.index + "/business_id")
+    }
+    function openConversation(){
+        navigate(ROUTES.conversations + "/conversation_id")
+    }
+    function goBack(){
+        router.back()
+    }
 }

@@ -215,3 +215,60 @@ export interface ProductPreviewerProps{
 export interface StarsProps {
     number : number
 }
+
+export interface SignUpProps{
+    closeAuth : MouseEventHandler
+}
+export interface LogInProps{
+    closeAuth : MouseEventHandler
+}
+
+export interface AuthenticationSlideIndicatorProps{
+    slide : number
+}
+
+export interface FollowProps{
+    avatar : string,
+    name : string,
+    time : string,
+    _id : any
+}
+
+export interface ConversationProps{
+    avatar : string,
+    name : string,
+    lastMessage : string,
+    unread : number,
+    _id : any
+}
+
+export interface MessageProps{
+    text : string,
+    time : string,
+    self : boolean,
+    _id : any
+}
+
+export interface MessagesUserProps{
+    avatar : string,
+    name : string,
+    _id : any
+}
+
+export interface NotificationProps{
+    avatar : string,
+    action : "like" | "follow" | "system" | "review",
+    name: string,
+    time : string,
+    message? : string,
+    product? : string,
+    service? : string,
+    _id : any
+}
+
+export interface CommentProps{
+    avatar : string,
+    name : string,
+    text : string,
+    _id : any
+}

@@ -1,6 +1,8 @@
 import { avatar_1 } from "../../assets/avatars"
+import { ROUTES } from "../../assets/constant"
 import { image_1 } from "../../assets/images"
 import { PostProps } from "../../types/types"
+import { useNavigate } from "../../utils/hooks"
 
 
 
@@ -15,10 +17,12 @@ export default function usePost({avatar, name, time, description, image , likes 
     likes = likes || 35
     comments = likes || 20
 
+    const {navigate} = useNavigate()
+
     return { avatar , name , time , description , image , likes , comments , openProfile , enlargeImage , togglePostLike , openCommentsSection}
 
     function openProfile(){
-        console.log("opening profile of " + name )
+        navigate(ROUTES.profile)
     }
 
     function enlargeImage(){
@@ -29,6 +33,6 @@ export default function usePost({avatar, name, time, description, image , likes 
         console.log("toggling  post like")
     }
     function openCommentsSection(){
-        console.log("opening comment section")
+        navigate(ROUTES.post_details + "/post_id")
     }
 }

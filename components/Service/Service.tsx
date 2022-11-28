@@ -9,15 +9,15 @@ import useService from "./useService";
 
 export default function Service(props : ServiceProps){
 
-    const {avatar, title , location , website , description, tags} = useService(props)
+    const {avatar, title , location , website , description, tags , openService , openConversation} = useService(props)
 
     return (
         <div className=" flex flex-col gap-2 py-4 px-2 shadow-comp_lg rounded-lg">
              <div className='flex justify-between w-full'>
                 <div className="flex gap-2 items-center">
-                    <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px]"} /></div>
+                    <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] cursor-pointer"} onClick={openService}/></div>
                     <div >
-                        <h3 className="font-bold text-blue-500">{title}</h3>
+                        <h3 className="font-bold text-blue-500 cursor-pointer" onClick={openService}>{title}</h3>
                         <div className='flex translate-x-[-5px]'>
                             <div className='h-[24px]'>
                                 <LocationIcon />
@@ -27,8 +27,8 @@ export default function Service(props : ServiceProps){
                         <div>{website}</div>
                     </div>
                 </div>
-                <div>
-                    <ContactIcon />
+                <div className="cursor-pointer">
+                    <ContactIcon onClick={openConversation}/>
                 </div>
             </div>
             <div>

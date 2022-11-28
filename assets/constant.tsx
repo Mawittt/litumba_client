@@ -12,12 +12,12 @@ export const ROUTES = {
     },
     market_place: {
         products: {
-            index: "market_place/products",
+            index: "/market_place/products",
             create: "/products/create",
             filters: "/products/filters"
         },
         services: {
-            index: "market_place/services",
+            index: "/market_place/services",
             create: "/services/create",
             filters: "/services/filters"
         }
@@ -30,5 +30,22 @@ export const ROUTES = {
     },
     litumba_hub: {
         index: "/litumba_hub"
-    }
+    },
+    notification : "/notifications",
+    conversations : "/conversations",
+    followers : "/followers",
+    followed : "/following",
+    settings : "/settings",
+    profile : "/profile",
+    post_details : "/post_details"
+    
+
 }
+
+
+export const actions = {
+    like : "like",
+    follow : "follow",
+    system : "system",
+    review : "review",
+} 

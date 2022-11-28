@@ -14,24 +14,24 @@ import { cn } from "../../../utils/fn"
 
 export default function ProductDetail() {
 
-    const { details , otherProducts} = useProductDetails()
+    const { details , otherProducts , openBrand , openConversation , goBack} = useProductDetails()
 
     return (
         <div className="pb-6">
             <ProductPreviewer selectedImage={details.selectedPreview} allImages={details.previews} />
             <div className="gap-4 flex flex-col w-full py-4 px-2">
                 <div className="flex justify-between w-full items-center">
-                    <Button label="Contact" />
+                    <Button label="Contact" onClick={openConversation} className="cursor_pointer" />
                     <LikeIcon />
                 </div >
                 <div className="flex flex-col gap-2">
-                    <h3 className="font-bold text-blue-500">{details.name}</h3>
+                    <h3 className="font-bold">{details.name}</h3>
                     <p>{details.description}</p>
                 </div>
                 <h3 className="font-bold text-blue-500">{details.price}</h3>
                 <div className='flex translate-x-[-5px]'>
                     <div className='h-[24px]'>
-                        <LocationIcon />
+                        <LocationIcon  />
                     </div>
                     <div>{details.location}</div>
                 </div>
@@ -57,8 +57,8 @@ export default function ProductDetail() {
                 </div>
             </div>
             <div className="flex flex-col gap-2 px-2">
-                <Button label="Go to brand" full />
-                <Button label="Go back" full />
+                <Button label="Go to brand" full onClick={openBrand}/>
+                <Button label="Go back" full onClick={goBack}/>
             </div>
         </div>
     )

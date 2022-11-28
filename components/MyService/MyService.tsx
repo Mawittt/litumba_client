@@ -7,16 +7,16 @@ import useMyService from "./useMyService"
 
 
 export default function MyService(props: MyServiceProps) {
-    const { image, title, interested } = useMyService(props)
+    const { image, title, interested, openService } = useMyService(props)
     return (
         <div className="flex w-full gap-3 h-fit p-2">
-            <Image src={image} alt={"author image"} width={64} height={64} className="h-[64px] rounded-lg cursor-pointer" />
+            <Image src={image} alt={"author image"} width={64} height={64} className="h-[64px] rounded-lg cursor-pointer" onClick={openService}/>
             <div className="w-full flex items-center justify-between">
                 <div>
-                    <div className="font-bold cursor-pointer">{title}</div>
+                    <div className="font-bold cursor-pointer" onClick={openService}>{title}</div>
                     <div><span>interested: </span><strong>{interested}</strong></div>
                 </div>
-                <div className="cursor-pointer">
+                <div className="cursor-pointer" onClick={openService}>
                     <MenuIcon />
                 </div>
             </div>

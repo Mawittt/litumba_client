@@ -1,4 +1,6 @@
 import { avatar_1_md } from "../../assets/avatars"
+import { ROUTES } from "../../assets/constant"
+import { useNavigate } from "../../utils/hooks"
 
 
 
@@ -10,29 +12,36 @@ export default function useProfilePreview(){
     const messages = 3
     const followers = 5500
     const following = 3005
+    const {navigate} = useNavigate()
 
 
 
     return {image,name ,description, notifications , messages , followers , following,
-        openProfile, openNotifications, openMessages , openSettings , openFollowers , openFollowing
+        openProfile, openNotifications, openMessages , openSettings , openFollowers , openFollowing , closeMenu
         }
 
     function openProfile(){
-        console.log("opening profile")
+        navigate(ROUTES.profile)
     }
     function openNotifications(){
-        console.log("opening notifications")
+        navigate(ROUTES.notification)
     }
     function openMessages(){
-        console.log("open messages")
+        navigate(ROUTES.conversations)
     }
     function openSettings(){
-        console.log("open settings")
+        navigate(ROUTES.settings)
     }
     function openFollowers(){
-        console.log("opening followers")
+        navigate(ROUTES.followers)
     }
     function openFollowing(){
-        console.log("open following")
+        navigate(ROUTES.followed)
+    }
+    function closeMenu(){
+        const menu = document.getElementById("app_menu")
+        if(!menu) return
+        menu.style.position = "relative"
+        menu.style.display = "none"
     }
 }

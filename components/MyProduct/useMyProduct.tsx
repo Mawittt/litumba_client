@@ -1,3 +1,5 @@
+import { ROUTES } from "../../assets/constant"
+import { useNavigate } from "../../utils/hooks"
 
 
 
@@ -6,9 +8,11 @@ export default function useMyProduct(){
     const name = "Air-force Max"
     const interested = 6
 
+    const {navigate} = useNavigate()
+
     return {image, name , interested , openProduct}
 
     function openProduct(){
-         console.log("opening product")
+        navigate(ROUTES.market_place.products.index + "/product_id")
     }
 }

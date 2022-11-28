@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { useState } from "react";
 import useFooterNav from "./useFooterNav"
 import { BusinessesIcon, CulturalGroupsIcon, HomeIcon, JobsIcon, LitumbaHubIcon, MarketPlaceIcon, MoreIcon, RealEstateIcon } from "../../assets/icons";
 

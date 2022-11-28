@@ -1,4 +1,6 @@
+import { ROUTES } from "../../assets/constant"
 import { MyJobProps } from "../../types/types"
+import { useNavigate } from "../../utils/hooks"
 
 
 
@@ -8,9 +10,11 @@ export default function useMyJob({image, title , applicants} : MyJobProps){
     title = title || "Manager"
     applicants = applicants || 18
 
+    const {navigate} = useNavigate()
+
     return {image , title, applicants , openJob}
 
     function openJob(){
-        console.log("opening job")
+        navigate(ROUTES.jobs.index + "/job_id")
     }
 }

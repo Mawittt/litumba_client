@@ -11,6 +11,7 @@ import RightNavBar from '../components/RightNavBar/RightNavBar'
 import FooterNav from '../components/FooterNav/FooterNav'
 import { ReactElement, ReactNode, useEffect, useState } from 'react'
 import { NextPage } from 'next'
+import useApp from '../pageUtils/useApp'
 
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -22,17 +23,7 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   }
 
 function App({ Component, pageProps }: AppPropsWithLayout ) {
-    useEffect(()=>{
-        window.addEventListener("resize",updateHeight)
-        function updateHeight(){
-            const app = document.getElementById('app')
-            if(!app) return
-            app.style.height = window.innerHeight + "px"
-        }
-        updateHeight()
-        
-        return window.removeEventListener('resize',updateHeight)
-    },[])
+    const {} = useApp()
     
     if(Component.getLayout) return Component.getLayout(<Component {...pageProps}/>)
 
@@ -44,10 +35,10 @@ function App({ Component, pageProps }: AppPropsWithLayout ) {
                 <link rel="icon" href="/favicon.png" />
             </Head>
             <div id='app' className={`overflow-hidden grid  h-[100vh]  grid-rows-[64px_auto_50px] sm:grid-cols-2 md:grid-rows-[auto_auto] md:grid-cols-[minmax(0px,max-content)_auto_minmax(0px,max-content)] max-w-[2000px] m-auto border-solid border-border border-[1.5px]`}>
-                <div className=' hidden md:block md:row-span-2 md:h-full md:overflow-scroll '><LeftSideBar /></div>
+                <div className=' hidden md:block md:row-span-2 md:h-full md:overflow-auto '><LeftSideBar /></div>
                 <div className='sm:col-span-2 md:col-span-2'><TopNavBar /></div>
-                <div className=' h-full overflow-scroll overflow-x-hidden '><Component {...pageProps} /></div>
-                <div className='hidden sm:block sm:h-full sm:overflow-scroll max-w-sm p-2 '><RightNavBar /></div>
+                <div className=' h-full overflow-x-hidden overflow-y-auto' id='page-component'><Component {...pageProps} /></div>
+                <div id="app_menu" className='hidden top-0 left-0 z-10 bg-white h-screen overflow-scroll w-screen max-[640px]:max-w-fit sm:relative sm:block sm:h-full sm:overflow-scroll max-w-sm p-2 '><RightNavBar /></div>
                 <div className=' sm:col-span-2 md:hidden w-full self-end'><FooterNav /></div>
             </div>
         </Provider>

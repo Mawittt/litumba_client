@@ -14,7 +14,7 @@ import { cn } from "../../utils/fn"
 
 export default function BusinessDetails() {
 
-    const { services, products, jobs, details } = useBusinessDetails()
+    const { services, products, jobs, details , goBack , gotoConversation } = useBusinessDetails()
 
     return (
         <div className="w-full pb-4 px-4 flex flex-col gap-6">
@@ -23,15 +23,15 @@ export default function BusinessDetails() {
             </div>
             <div className='flex justify-between w-full'>
                 <div className="flex gap-2 items-center">
-                    <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px]"} /></div>
+                    <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] "} /></div>
                     <div >
-                        <h3 className="font-bold text-blue-500">{details.name}</h3>
+                        <h3 className="font-bold ">{details.name}</h3>
                         <div>{details.email}</div>
                         <div>{details.website}</div>
                     </div>
                 </div>
                 <div className="flex flex-col justify-between items-end">
-                    <div><ContactIcon /></div>
+                    <div className="cursor-pointer"><ContactIcon onClick={gotoConversation}/></div>
                     <div className='flex translate-x-[-5px]'>
                         <div className='h-[24px]'>
                             <LocationIcon />
@@ -91,7 +91,7 @@ export default function BusinessDetails() {
                     }
                 </div>
             </div>
-                <Button label="Go back" full />
+                <Button label="Go back" full onClick={goBack}/>
         </div>
     )
 }

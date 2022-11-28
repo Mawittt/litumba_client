@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import { brand_avatar_1 } from "../assets/avatars";
+import { ROUTES } from "../assets/constant";
 import { business_image_1 } from "../assets/images";
 import { JobDetailsProps } from "../types/types";
+import { useNavigate } from "../utils/hooks";
 
 
 
@@ -10,9 +12,6 @@ import { JobDetailsProps } from "../types/types";
 
 export default function useJobDetails(){
 
-    const router = useRouter()
-
-    const _id = router.query._id
     const details : JobDetailsProps  = {
         cover : business_image_1,
         avatar : brand_avatar_1,
@@ -33,7 +32,20 @@ export default function useJobDetails(){
         _id : 1
     }
 
+    const {navigate , router} = useNavigate()
 
-    return {details}
+    return {details , gotoBrand , openChat , goBack}
+
+    function gotoBrand(){
+        navigate(ROUTES.businesses.index + "/business_id")
+    }
+
+    function openChat(){
+        navigate(ROUTES.conversations + "/conversation_id")
+    }
+
+    function goBack(){
+        router.back()
+    }
 
 }

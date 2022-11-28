@@ -1,5 +1,7 @@
+import { ROUTES } from "../assets/constant";
 import { shoe_image, shoe_image_1, shoe_image_2, shoe_image_3 } from "../assets/images";
 import { OtherProductProps, ProductDetailsProps } from "../types/types";
+import { useNavigate } from "../utils/hooks";
 
 
 
@@ -38,5 +40,19 @@ export default function useProductDetails(){
         },
     ]
 
-    return {details , otherProducts}
+    const {navigate , router} = useNavigate()
+
+    return {details , otherProducts , openConversation , openBrand , goBack}
+
+    function openConversation(){
+        navigate(ROUTES.conversations + "/conversation_id")
+    }
+
+    function openBrand(){
+        navigate(ROUTES.businesses.index + "/business_id")
+    }
+
+    function goBack(){
+        router.back()
+    }
 }

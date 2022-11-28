@@ -13,7 +13,10 @@ export default function useTopNavBar(){
         console.log("opening profile")
     }
     function openMenu(){
-        console.log("opening menu")
+        const menu = document.getElementById("app_menu")
+        if(!menu) return
+        menu.style.position = "fixed"
+        menu.style.display = "block"
     }
     function isBack(){
         return false

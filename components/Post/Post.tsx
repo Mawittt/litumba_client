@@ -15,7 +15,7 @@ export default function Post(props: PostProps) {
         <div className=" flex flex-col gap-2 shadow-comp_lg py-[10px] rounded-lg">
             <div className="flex items-center gap-2 px-2" onClick={openProfile}>
                 <Image src={avatar} alt={' post author profile '} width="45" height={45} className="h-[45px] cursor-pointer" />
-                <strong className="cursor-pointer">{name}</strong>
+                <strong className="cursor-pointer text-blue-500">{name}</strong>
                 <p className="text-bc_5">{time}</p>
             </div>
             <div className="px-2">

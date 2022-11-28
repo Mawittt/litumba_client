@@ -18,25 +18,25 @@ export default function useFooterNav(){
         more_icons?.classList.toggle("open_additional_icons")
     }
     function isHome(){
-        return page.includes(ROUTES.home)
+        return page.includes(ROUTES.home.replace("/", ""))
     }
     function isJobs(){
-        return page.includes(ROUTES.jobs.index)
+        return page.includes(ROUTES.jobs.index.replace("/", ""))
     }
     function isBusiness(){
-        return page.includes(ROUTES.businesses.index)
+        return page.includes(ROUTES.businesses.index.replace("/", ""))
     }
     function isMarketPlace(){
-        return page.includes(ROUTES.market_place.products.index) || page.includes(ROUTES.market_place.services.index)
-    }
+        return page.includes(ROUTES.market_place.products.index.replace("/", "")) || page.includes(ROUTES.market_place.services.index.replace("/", ""))
+    }  
     function isRealEstate(){
-        return page.includes(ROUTES.real_estate.index)
+        return page.includes(ROUTES.real_estate.index.replace("/", ""))
     }
     function isCulturalGroups(){
-        return page.includes(ROUTES.cultural_groups.index)
+        return page.includes(ROUTES.cultural_groups.index.replace("/", ""))
     }
     function isLitumbaHub(){
-        return page.includes(ROUTES.litumba_hub.index)
+        return page.includes(ROUTES.litumba_hub.index.replace("/", ""))
     }   
     function navigateToHome(){
         navigate(ROUTES.home)

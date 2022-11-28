@@ -1,6 +1,8 @@
 import { brand_avatar_1} from "../assets/avatars"
+import { ROUTES } from "../assets/constant"
 import { business_image_1, shoe_image, shoe_image_1, shoe_image_2 } from "../assets/images"
 import { BusinessDetailsProps, JobProps, ProductProps, ServiceProps } from "../types/types"
+import { useNavigate } from "../utils/hooks"
 
 
 
@@ -103,5 +105,15 @@ export default function useBusinessDetails(){
         },
     ]
 
-    return {details  , services ,products , jobs}
+    const {navigate , router} = useNavigate()
+
+    return {details  , services ,products , jobs , gotoConversation , goBack}
+
+
+    function gotoConversation(){
+        navigate(ROUTES.conversations + "/conversation_id")
+    }
+    function goBack(){
+        router.back()
+    }
 }

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { ROUTES } from "../../assets/constant"
+import { useNavigate } from "../../utils/hooks"
 
 
 
@@ -12,12 +14,15 @@ export default function useProductServiceToggle(){
         setProducts(window.location.pathname.includes("products"))
         setServices(window.location.pathname.includes("services"))
     },[])
+
+    const {navigate} = useNavigate()
+
     return {isServices, isProducts , showProducts, showServices}
     function showProducts(){
-        console.log("showing products")
+        navigate(ROUTES.market_place.products.index)
     }
     function showServices(){
-        console.log("showing services")
+        navigate(ROUTES.market_place.services.index)
     }
 
 }

@@ -10,7 +10,7 @@ import { cn } from "../../../utils/fn";
 
 export default function ServiceDetails() {
 
-    const { details , useCases , reviews} = useServiceDetails()
+    const { details , useCases , reviews , goBack , openBrand , openConversation} = useServiceDetails()
 
     return (
         <div className="flex-col flex gap-4 pb-6">
@@ -20,15 +20,15 @@ export default function ServiceDetails() {
             <div className="flex flex-col px-2 gap-4">
                 <div className='flex justify-between w-full'>
                     <div className="flex gap-2 items-center">
-                        <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px]"} /></div>
+                        <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] cursor-pointer"} onClick={openBrand} /></div>
                         <div >
-                            <h3 className="font-bold text-blue-500">{details.author}</h3>
+                            <h3 className="font-bold text-blue-500 cursor-pointer" onClick={openBrand}>{details.author}</h3>
                             <div>{details.email}</div>
                             <div>{details.website}</div>
                         </div>
                     </div>
-                    <div>
-                        <ContactIcon />
+                    <div className="cursor-pointer">
+                        <ContactIcon onClick={openConversation}/>
                     </div>
                 </div>
                 <div>
@@ -71,8 +71,8 @@ export default function ServiceDetails() {
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                <Button label="Go to brand" full />
-                <Button label="Go back" full />
+                <Button label="Go to brand" full onClick={openBrand}/>
+                <Button label="Go back" full onClick={goBack}/>
             </div>
             </div>
         </div>
