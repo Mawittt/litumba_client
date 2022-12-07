@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ContactIcon, LocationIcon } from "../../../assets/icons";
+import { ContactIcon, EditIcon, LocationIcon } from "../../../assets/icons";
 import Button from "../../../components/Button/Button";
 import Review from "../../../components/Review/Review";
 import UseCase from "../../../components/UseCase/UseCase";
@@ -10,7 +10,7 @@ import { cn } from "../../../utils/fn";
 
 export default function ServiceDetails() {
 
-    const { details , useCases , reviews , goBack , openBrand , openConversation} = useServiceDetails()
+    const { details , useCases , reviews , self , goBack , openBrand , openConversation , openServiceEditor} = useServiceDetails()
 
     return (
         <div className="flex-col flex gap-4 pb-6">
@@ -19,7 +19,7 @@ export default function ServiceDetails() {
             </div>
             <div className="flex flex-col px-2 gap-4">
                 <div className='flex justify-between w-full'>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 items-center flex-wrap">
                         <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] cursor-pointer"} onClick={openBrand} /></div>
                         <div >
                             <h3 className="font-bold text-blue-500 cursor-pointer" onClick={openBrand}>{details.author}</h3>
@@ -28,10 +28,10 @@ export default function ServiceDetails() {
                         </div>
                     </div>
                     <div className="cursor-pointer">
-                        <ContactIcon onClick={openConversation}/>
+                        { self ? <EditIcon onClick={openServiceEditor} /> : <ContactIcon onClick={openConversation}/>}
                     </div>
                 </div>
-                <div>
+                <div className={cn(self ? "hidden" : "")}>
                     <Button label="Leave a review" />
                 </div>
                 <div className="flex flex-col gap-2">

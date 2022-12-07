@@ -13,10 +13,10 @@ export default function CulturalGroup(props : CulturalGroupsProps){
      return (
         <div className="py-4 px-2 shadow-comp_lg rounded-lg">
             <div className='flex justify-between w-full'>
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center flex-wrap">
                     <div><Image src={image} alt={"author avatar"} width={64} height={64} className={"h-[64px] object-cover rounded-md cursor-pointer"} onClick={gotoGroup}  /></div>
                     <div >
-                        <h3 className="font-bold text-blue-500 cursor-pointer" onClick={gotoGroup}>{name}</h3>
+                        <div className="font-bold text-blue-500 cursor-pointer" onClick={gotoGroup}>{name}</div>
                         <div className='flex translate-x-[-5px]'>
                             <div className='h-[24px]'>
                                 <LocationIcon />

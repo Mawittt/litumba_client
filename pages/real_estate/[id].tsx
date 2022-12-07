@@ -1,9 +1,10 @@
-import { EditIcon, LikeIcon, LocationIcon } from "../../../assets/icons"
-import Button from "../../../components/Button/Button"
-import OtherProduct from "../../../components/OtherProduct/OtherProduct"
-import ProductPreviewer from "../../../components/ProductPreviewer/ProductPreviewer"
-import useProductDetails from "../../../pageUtils/useProductDetails"
-import { cn } from "../../../utils/fn"
+import { EditIcon, LikeIcon, LocationIcon } from "../../assets/icons"
+import Button from "../../components/Button/Button"
+import OtherRealEstate from "../../components/OtherRealEstate/OtherRealEstate"
+import ProductPreviewer from "../../components/ProductPreviewer/ProductPreviewer"
+import useRealEstateDetails from "../../pageUtils/useRealEstateDetails"
+import { cn } from "../../utils/fn"
+
 
 
 
@@ -13,7 +14,7 @@ import { cn } from "../../../utils/fn"
 
 export default function ProductDetail() {
 
-    const { details, otherProducts, openBrand, openConversation, goBack , openBusinessEditor , self } = useProductDetails()
+    const { details, otherRealEstate, openBrand, openConversation, goBack ,openRealEstateEditor , self } = useRealEstateDetails()
 
     return (
         <div className="pb-6">
@@ -21,7 +22,7 @@ export default function ProductDetail() {
             <div className="gap-4 flex flex-col w-full py-4 px-2">
                 {self ?
                     <div className="flex justify-end">
-                        <EditIcon onClick={openBusinessEditor}/>
+                        <EditIcon onClick={openRealEstateEditor}/>
                     </div> :
                     <div className="flex justify-between w-full items-center">
                         <Button label="Contact" onClick={openConversation} className="cursor_pointer" />
@@ -57,7 +58,7 @@ export default function ProductDetail() {
             <div className="gap-4 flex flex-col w-full py-4 px-2">
                 <h3><strong>Other products from brand</strong></h3>
                 <div className="flex flex-col gap-2">
-                    {otherProducts.map(product => <OtherProduct key={product._id} {...product} />)}
+                    {otherRealEstate.map(product => <OtherRealEstate key={product._id} {...product} />)}
                 </div>
             </div>
             <div className="flex flex-col gap-2 px-2">

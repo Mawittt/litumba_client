@@ -3,7 +3,7 @@ import { avatar_1, avatar_2, brand_avatar_1 } from "../assets/avatars";
 import { ROUTES } from "../assets/constant";
 import { business_image_1, consulting_image_1, consulting_image_2, consulting_image_3 } from "../assets/images";
 import { ReviewProps, ServiceDetailsProps, UseCaseProps } from "../types/types";
-import { useNavigate } from "../utils/hooks";
+import { useNavigate, useOwner } from "../utils/hooks";
 
 
 
@@ -67,9 +67,11 @@ export default function useServiceDetails(){
         }
     ]
 
-    const {navigate , router} = useNavigate()
+    const {navigate , router} = useNavigate() 
 
-    return {details , useCases , reviews , openBrand , openConversation , goBack}
+    const self = useOwner()
+
+    return { self, details , useCases , reviews , openServiceEditor , openBrand , openConversation , goBack}
 
 
     function openBrand(){
@@ -80,5 +82,8 @@ export default function useServiceDetails(){
     }
     function goBack(){
         router.back()
+    }
+    function openServiceEditor(){
+        navigate(ROUTES.market_place.services.update)
     }
 }

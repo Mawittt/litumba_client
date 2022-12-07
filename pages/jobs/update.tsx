@@ -4,12 +4,12 @@ import Button from "../../components/Button/Button";
 
 
 
-export default function JobCreation(){
+export default function JobUpdating(){
 
 
     return(
         <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4 my-4">
-            <h3 className="font-bold text-2xl">Create a job</h3>
+            <h3 className="font-bold text-2xl">Update this job post</h3>
             <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <div className="flex flex-col gap-1">
                 <div className="font-bold">Job title</div>
@@ -55,7 +55,7 @@ export default function JobCreation(){
                     <option value="one">one</option>
                 </select>
             </div>
-            <Button label="Create Job" />
+            <Button label="Update Job" />
         </div>
     )
 }

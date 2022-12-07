@@ -6,11 +6,11 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useBusiness({avatar, name , email , website , description , tags , _id} : BusinessProps){
+export default function useBusiness({avatar, name , email , website , description , tags , _id , self} : BusinessProps){
 
     const {navigate} = useNavigate()
 
-    return {avatar, name , email , website , description , tags , gotoBusiness , gotoConversation }
+    return {avatar, name , email , website , description , tags , gotoBusiness , gotoConversation , self }
 
     function gotoBusiness(){
         navigate(ROUTES.businesses.index + "/business_id")

@@ -2,7 +2,7 @@ import { group_avatar } from "../assets/avatars";
 import { ROUTES } from "../assets/constant";
 import { group_image_1 } from "../assets/images";
 import { CulturalGroupDetails } from "../types/types";
-import { useNavigate } from "../utils/hooks";
+import { useNavigate, useOwner } from "../utils/hooks";
 
 
 
@@ -17,15 +17,18 @@ export default function useCulturalGroupDetails(){
         location : "Buea-Cameroon",
         _id : 1
     }
+    const {navigate  , router } = useNavigate()
+    const self = useOwner()
 
-    const {navigate  , router} = useNavigate()
-
-    return {details , gotoConversation , goBack}
+    return {details , self , gotoConversation , goBack , openGroupEditor}
 
     function gotoConversation(){
         navigate(ROUTES.conversations + "/conversation_id")
     }
     function goBack(){  
         router.back()
+    }
+    function openGroupEditor(){
+        navigate(ROUTES.cultural_groups.update)
     }
 }

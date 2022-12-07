@@ -2,7 +2,7 @@ import { brand_avatar_1} from "../assets/avatars"
 import { ROUTES } from "../assets/constant"
 import { business_image_1, shoe_image, shoe_image_1, shoe_image_2 } from "../assets/images"
 import { BusinessDetailsProps, JobProps, ProductProps, ServiceProps } from "../types/types"
-import { useNavigate } from "../utils/hooks"
+import { useNavigate, useOwner } from "../utils/hooks"
 
 
 
@@ -107,7 +107,10 @@ export default function useBusinessDetails(){
 
     const {navigate , router} = useNavigate()
 
-    return {details  , services ,products , jobs , gotoConversation , goBack}
+    const self = useOwner()
+
+
+    return {details , openBusinessEditor , services ,products , jobs , gotoConversation , goBack , self}
 
 
     function gotoConversation(){
@@ -115,5 +118,8 @@ export default function useBusinessDetails(){
     }
     function goBack(){
         router.back()
+    }
+    function openBusinessEditor(){
+        navigate(ROUTES.businesses.update)
     }
 }

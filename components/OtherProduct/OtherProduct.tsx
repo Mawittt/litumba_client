@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ContactIcon } from "../../assets/icons";
 import { OtherProductProps } from "../../types/types";
+import { cn } from "../../utils/fn";
 import useOtherProduct from "./useOtherProduct";
 
 
@@ -8,7 +9,7 @@ import useOtherProduct from "./useOtherProduct";
 
 
 export default function OtherProduct(props : OtherProductProps){
-    const {product , openConversation , openProduct} = useOtherProduct(props)
+    const {product , openProduct } = useOtherProduct(props)
     
     return (
         <div className=" py-4 px-2 shadow-comp_lg rounded-lg">
@@ -19,9 +20,6 @@ export default function OtherProduct(props : OtherProductProps){
                         <h3 className="font-bold text-blue-500 cursor-pointer" onClick={openProduct}>{product.name}</h3>
                         <div>{product.price}</div>
                     </div>
-                </div>
-                <div className="cursor-pointer">
-                    <ContactIcon  onClick={openConversation}/>
                 </div>
             </div>
         </div>

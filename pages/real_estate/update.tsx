@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { AddImageIcon } from "../../assets/icons";
 import Button from "../../components/Button/Button";
 
@@ -10,7 +9,6 @@ export default function CulturalGroupCreation() {
 
     return (
         <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
-            <h3 className="font-bold text-2xl">Create a Cultural group</h3>
             <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <div>
                 <Button label="add profile" icon={<AddImageIcon />} />
@@ -38,7 +36,7 @@ export default function CulturalGroupCreation() {
                 <div className="font-bold">Number of members</div>
                 <input type="text" className="text-input" />
             </div>
-            <Button label="Create group" />
+            <Button label="Update group" />
         </div>
     )
 }

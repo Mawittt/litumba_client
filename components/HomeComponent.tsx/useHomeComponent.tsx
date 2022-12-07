@@ -1,5 +1,6 @@
 import { avatar_1, avatar_2, avatar_3 } from "../../assets/avatars"
 import { image_1, image_3, image_31 } from "../../assets/images"
+import useStore from "../../store/useStore"
 import { PostProps } from "../../types/types"
 
 
@@ -7,6 +8,7 @@ import { PostProps } from "../../types/types"
 
 
 export default function useHomeComponent(){
+    
     const posts : PostProps[]= [
         {
             avatar : avatar_1,
@@ -36,6 +38,7 @@ export default function useHomeComponent(){
             comments : 4
         },
     ]
+
 
     return {posts}
 }

@@ -1,16 +1,16 @@
 import { ROUTES } from "../assets/constant";
-import { shoe_image, shoe_image_1, shoe_image_2, shoe_image_3 } from "../assets/images";
-import { OtherProductProps, ProductDetailsProps } from "../types/types";
+import { business_image_1, realEstate_1, realEstate_2, realEstate_3, shoe_image, shoe_image_1, shoe_image_2, shoe_image_3 } from "../assets/images";
+import { OtherRealEstateProps, RealEstateDetailsProps } from "../types/types";
 import { useNavigate, useOwner } from "../utils/hooks";
 
 
 
 
-export default function useProductDetails(){
-    const details : ProductDetailsProps ={
-        selectedPreview : shoe_image,
-        previews : [shoe_image, shoe_image_1 , shoe_image_2, shoe_image_3],
-        name : "Air-max shoes",
+export default function useRealEstateDetails(){
+    const details : RealEstateDetailsProps ={
+        selectedPreview : realEstate_1,
+        previews : [realEstate_1, realEstate_2 , realEstate_3, business_image_1],
+        name : "Duplex house",
         description : "start off your day with these footwears, comfortable and light weight for your convinience, these shoes starts at a price of only 6000frs . you can get them from our whole sales plateform online",
         price : "6,000 frs-cfa",
         location: "Douala-Cameroon",
@@ -19,22 +19,22 @@ export default function useProductDetails(){
         _id : 1
     }
 
-    const otherProducts : OtherProductProps[] = [
+    const otherRealEstate : OtherRealEstateProps[] = [
         {
-            image : shoe_image_1,
-            name : "jordan_10",
+            image : realEstate_1,
+            name : "villa 4 rooms",
             price : "3000 frs-cfa",
             _id : 1
         },
         {
-            image : shoe_image_2,
-            name : "jordan_10",
+            image : realEstate_2,
+            name : "duplex",
             price : "3000 frs-cfa",
             _id : 2
         },
         {
-            image : shoe_image_3,
-            name : "jordan_10",
+            image : realEstate_3,
+            name : "mansion",
             price : "3000 frs-cfa",
             _id : 3
         },
@@ -44,7 +44,7 @@ export default function useProductDetails(){
 
     const self = useOwner()
 
-    return {details , otherProducts , openBusinessEditor , openConversation , openBrand , goBack , self}
+    return {details , otherRealEstate , openRealEstateEditor , openConversation , openBrand , goBack , self}
 
     function openConversation(){
         navigate(ROUTES.conversations + "/conversation_id")
@@ -55,7 +55,7 @@ export default function useProductDetails(){
     function goBack(){
         router.back()
     }
-    function openBusinessEditor(){
-        navigate(ROUTES.market_place.products.update)
+    function openRealEstateEditor(){
+        navigate(ROUTES.real_estate.update)
     }
 }

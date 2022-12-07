@@ -41,12 +41,12 @@ a {
         @apply cursor-pointer flex w-full rounded-lg items-center gap-2 hover:opacity-75 hover:scale-105 transition-all
     }
     .page-option-selected{
-        @apply cursor-pointer flex w-full rounded-lg bg-gradient-to-r from-gs h-[35px] to-[#2F8CE9] items-center gap-2
+        @apply cursor-pointer flex w-full rounded-lg bg-gradient-to-r from-gs h-[35px] to-[#2F8CE9] items-center gap-2 pr-2
     }
     .post-option{
         @apply md:max-[918px]:gap-[2px] md:max-[918px]:text-[0.7rem] flex items-center rounded-full border-solid border-border border-[1.5px] px-2 gap-2 max-[324px]:text-[0.7rem] max-[324px]:gap-[2px]
     }
     .text-input{
-        @apply border-[1.5px] p-2 border-solid border-border h-[35px] w-full rounded-full box-border shadow-text_input_shadow
+        @apply border-[1.5px] p-2 border-solid border-border h-[35px] w-full rounded-lg box-border shadow-text_input_shadow
     }
 }

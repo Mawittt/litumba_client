@@ -4,11 +4,11 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useJob({avatar , title , location , time , description , tags , brand , _id } : JobProps) {
+export default function useJob({avatar , title , location , time , description , tags , brand , self , _id } : JobProps) {
 
     const {navigate} = useNavigate()
 
-    return {avatar , title , location ,time,description ,tags , brand , openJob , openChat }
+    return {avatar , title , location ,time,description ,tags , brand , self , openJob , openChat }
 
     function openJob(){
         navigate(ROUTES.jobs.index + "/job_id")

@@ -54,6 +54,7 @@ export interface JobProps{
     description? : string,
     tags? : string[],
     brand : boolean,
+    self? :  boolean,
     _id : any
 }
 
@@ -64,6 +65,7 @@ export interface BusinessProps{
     website: string,
     description : string,
     tags : string[]
+    self? : boolean
     _id : any
 }
 
@@ -78,6 +80,20 @@ export interface ProductProps{
     price : number,
     amount : number,
     brand : boolean,
+    self? : boolean,
+    _id : any
+}
+export interface RealEstateProps{
+    avatar : string,
+    name : string,
+    location : string,
+    website : string,
+    image : string,
+    description : string,
+    price : number,
+    amount : number,
+    brand : boolean,
+    self? : boolean,
     _id : any
 }
 
@@ -144,8 +160,26 @@ export interface ProductDetailsProps{
     available : boolean,
     _id : any
 }
+export interface RealEstateDetailsProps{
+    selectedPreview : string,
+    previews : string[],
+    name : string,
+    description : string,
+    price : string,
+    location : string,
+    amount : string,
+    available : boolean,
+    _id : any
+}
 
 export interface OtherProductProps{
+    image : string,
+    name : string,
+    price : string,
+    _id : any
+}
+
+export interface OtherRealEstateProps{
     image : string,
     name : string,
     price : string,

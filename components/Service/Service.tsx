@@ -14,7 +14,7 @@ export default function Service(props : ServiceProps){
     return (
         <div className=" flex flex-col gap-2 py-4 px-2 shadow-comp_lg rounded-lg">
              <div className='flex justify-between w-full'>
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center flex-wrap">
                     <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] cursor-pointer"} onClick={openService}/></div>
                     <div >
                         <h3 className="font-bold text-blue-500 cursor-pointer" onClick={openService}>{title}</h3>

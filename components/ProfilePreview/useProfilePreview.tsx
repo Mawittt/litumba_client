@@ -1,6 +1,6 @@
 import { avatar_1_md } from "../../assets/avatars"
 import { ROUTES } from "../../assets/constant"
-import { useNavigate } from "../../utils/hooks"
+import { useMenuToggle, useNavigate } from "../../utils/hooks"
 
 
 
@@ -13,7 +13,7 @@ export default function useProfilePreview(){
     const followers = 5500
     const following = 3005
     const {navigate} = useNavigate()
-
+    const {closeMenu} = useMenuToggle()
 
 
     return {image,name ,description, notifications , messages , followers , following,
@@ -22,26 +22,27 @@ export default function useProfilePreview(){
 
     function openProfile(){
         navigate(ROUTES.profile)
+        closeMenu()
     }
     function openNotifications(){
         navigate(ROUTES.notification)
+        closeMenu()
     }
     function openMessages(){
         navigate(ROUTES.conversations)
+        closeMenu()
     }
     function openSettings(){
         navigate(ROUTES.settings)
+        closeMenu()
     }
     function openFollowers(){
         navigate(ROUTES.followers)
+        closeMenu()
     }
     function openFollowing(){
-        navigate(ROUTES.followed)
+        navigate(ROUTES.following)
+        closeMenu()
     }
-    function closeMenu(){
-        const menu = document.getElementById("app_menu")
-        if(!menu) return
-        menu.style.position = "relative"
-        menu.style.display = "none"
-    }
+
 }

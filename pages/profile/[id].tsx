@@ -1,5 +1,10 @@
+
+
+
+
+
 import Image from "next/image"
-import { ContactIcon, EditIcon, LocationIcon } from "../../assets/icons"
+import { ContactIcon, LocationIcon } from "../../assets/icons"
 import Business from "../../components/Business/Business"
 import Button from "../../components/Button/Button"
 import Job from "../../components/Job/Job"
@@ -21,8 +26,8 @@ export default function Profile() {
                 <Image src={details.cover} fill alt="cover image" className="object-cover" />
             </div>
             <div className="flex flex-col gap-4 py-4 px-2 pb-6">
-                <div className='flex justify-between w-full flex-wrap'>
-                    <div className="flex gap-2 items-center flex-wrap">
+                <div className='flex justify-between w-full'>
+                    <div className="flex gap-2 items-center">
                         <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px]"} /></div>
                         <div >
                             <h3 className="font-bold text-blue-500">{details.name}</h3>
@@ -30,15 +35,18 @@ export default function Profile() {
                             <div>{details.profession}</div>
                         </div>
                     </div>
-                    <div className="flex flex-col justify-between items-end w-full flex-1">
-                        <EditIcon />
+                    <div className="flex flex-col h-full justify-between items-end">
+                        <Button label="follow" />
                         <div className='flex translate-x-[-5px]'>
                             <div className='h-[24px]'>
                                 <LocationIcon />
                             </div>
-                            <div className="w-[max-content]">{details.location}</div>
+                            <div>{details.location}</div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <Button label="send message" />
                 </div>
                 <div>{details.description}</div>
                 <div className="flex flex-col gap-4">
@@ -70,19 +78,19 @@ export default function Profile() {
                 <div>
                     <h2 className="font-bold text-2xl">Businesses</h2>
                     <div>
-                        {businesses.map(business=><Business key={business._id} {...business} self />)}
+                        {businesses.map(business=><Business key={business._id} {...business} />)}
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
                     <h2 className="font-bold text-2xl">Products</h2>
                     <div className="flex flex-col gap-4">
-                        {products.map(product=><Product key={product._id} {...product} self/>)}
+                        {products.map(product=><Product key={product._id} {...product} />)}
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
                     <h2 className="font-bold text-2xl">Jobs</h2>
                     <div className="flex flex-col gap-4">
-                        {jobs.map(job=><Job key={job._id} {...job} self />)}
+                        {jobs.map(job=><Job key={job._id} {...job} />)}
                     </div>
                 </div>
                 <Button label="Go back" />

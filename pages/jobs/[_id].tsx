@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { ContactIcon, LocationIcon } from "../../assets/icons"
+import { ContactIcon, EditIcon, LocationIcon } from "../../assets/icons"
 import Button from "../../components/Button/Button"
 import useJobDetails from "../../pageUtils/useJobDetails"
 import { cn } from "../../utils/fn"
@@ -10,15 +10,15 @@ import { cn } from "../../utils/fn"
 
 export default function JobDetails() {
 
-    const { details , gotoBrand , openChat , goBack} = useJobDetails()
+    const { details , gotoBrand , openChat , goBack , self , openJobEditor} = useJobDetails()
 
     return (
         <div className="w-full pb-4 px-4 flex flex-col gap-6">
             <div className="w-full h-[300px] relative">
-                <Image src={details.cover} fill alt="cover image" />
+                <Image src={details.cover} fill alt="cover image" className="object-cover"/>
             </div>
-            <div className='flex justify-between w-full'>
-                <div className="flex gap-2 items-center">
+            <div className='flex justify-between w-full flex-wrap'>
+                <div className="flex gap-2 items-center flex-wrap">
                     <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] cursor-pointer"} onClick={gotoBrand} /></div>
                     <div >
                         <h3 className="font-bold text-blue-500 cursor-pointer" onClick={gotoBrand}>{details.author}</h3>
@@ -26,12 +26,12 @@ export default function JobDetails() {
                         <div>{details.website}</div>
                     </div>
                 </div>
-                <div className="flex flex-col justify-between items-end">
-                    <div onClick={openChat}><ContactIcon /></div>
-                    <div>{details.time}</div>
+                <div className="flex flex-col justify-between items-end w-full flex-1">
+                    <div >{self ? <EditIcon onClick={openJobEditor}/> : <ContactIcon onClick={openChat}/>}</div>
+                    <div className="w-[max-content]">{details.time}</div>
                 </div>
             </div>
-            <div>
+            <div className={cn(self ? "hidden" : "")}>
                 <Button label="Apply" onClick={openChat} />
             </div>
             <div>

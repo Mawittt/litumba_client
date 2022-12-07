@@ -3,7 +3,7 @@ import { brand_avatar_1 } from "../assets/avatars";
 import { ROUTES } from "../assets/constant";
 import { business_image_1 } from "../assets/images";
 import { JobDetailsProps } from "../types/types";
-import { useNavigate } from "../utils/hooks";
+import { useNavigate, useOwner } from "../utils/hooks";
 
 
 
@@ -33,8 +33,8 @@ export default function useJobDetails(){
     }
 
     const {navigate , router} = useNavigate()
-
-    return {details , gotoBrand , openChat , goBack}
+    const self = useOwner()
+    return {details , gotoBrand , openChat , goBack , self , openJobEditor}
 
     function gotoBrand(){
         navigate(ROUTES.businesses.index + "/business_id")
@@ -46,6 +46,9 @@ export default function useJobDetails(){
 
     function goBack(){
         router.back()
+    }
+    function openJobEditor(){
+        navigate(ROUTES.jobs.update)
     }
 
 }

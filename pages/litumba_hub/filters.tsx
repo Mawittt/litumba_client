@@ -1,8 +1,6 @@
-import Button from "../../../components/Button/Button";
+import Button from "../../components/Button/Button";
 
-
-
-export default function ProductFilters() {
+export default function JobFilters() {
 
     return (
         <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
@@ -19,15 +17,6 @@ export default function ProductFilters() {
                     <option value="one">web marketing</option>
                 </select>
             </div>
-           <div className="flex flex-col gap-2">
-                 <div className="font-bold">quantity</div>
-                <input type="number" className="text-input" />
-            </div>
-           <div className="flex flex-col gap-2">
-                <div className="font-bold">brand</div>
-                <input type="text" className="text-input" />
-            </div>
-           
             <Button label="Search" />
         </div>
     )

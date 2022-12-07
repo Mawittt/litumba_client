@@ -1,5 +1,5 @@
 import {useSelector, useDispatch} from "react-redux"
-import { selectAuthState, setAuthState } from "./slice"
+import { selectAuthState, setAuthState , setUser , selectUser} from "./slice"
 
 
 export default function useStore(){
@@ -10,6 +10,10 @@ export default function useStore(){
         authState : useSelector(selectAuthState),
         setAuthState : (state : any) => { 
             dispatch(setAuthState(state))
+        },
+        user : useSelector(selectUser),
+        setUser: (state : any)=>{
+            dispatch(setUser(state))
         }
         // lets try something
     }

@@ -6,14 +6,14 @@ import Button from "../../components/Button/Button";
 
 
 
-export default function CulturalGroupCreation() {
+export default function BusinessCreation() {
 
     return (
         <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
-            <h3 className="font-bold text-2xl">Create a Cultural group</h3>
+            <h3 className="font-bold text-2xl">Update Business</h3>
             <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <div>
-                <Button label="add profile" icon={<AddImageIcon />} />
+                <Button label="add logo" icon={<AddImageIcon />} />
             </div>
             <div>
                 <Button label="add Cover" icon={<AddImageIcon />} />
@@ -35,10 +35,22 @@ export default function CulturalGroupCreation() {
                 <textarea className="text-input h-[100px] rounded-lg" />
             </div>
             <div className="flex flex-col gap-2">
-                <div className="font-bold">Number of members</div>
+                <div className="font-bold">Niche</div>
                 <input type="text" className="text-input" />
             </div>
-            <Button label="Create group" />
+            <div className="flex flex-col gap-2">
+                <div className="font-bold">Phone</div>
+                <input type="text" className="text-input" />
+            </div>
+            <div className="flex flex-col gap-2">
+                <div className="font-bold">Email</div>
+                <input type="text" className="text-input" />
+            </div>
+            <div className="flex flex-col gap-2">
+                <div className="font-bold">website</div>
+                <input type="text" className="text-input" />
+            </div>
+            <Button label="Update Businesses" />
         </div>
     )
 }

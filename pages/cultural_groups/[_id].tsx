@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { ContactIcon, LocationIcon } from "../../assets/icons"
+import { ContactIcon, EditIcon, LocationIcon } from "../../assets/icons"
 import Button from "../../components/Button/Button"
 import useCulturalGroupDetails from "../../pageUtils/useCulturalGroupDetails"
 
@@ -8,7 +8,7 @@ import useCulturalGroupDetails from "../../pageUtils/useCulturalGroupDetails"
 
 
 export default function CulturalGroupDetails() {
-    const { details , goBack , gotoConversation} = useCulturalGroupDetails()
+    const { details , self , goBack , gotoConversation , openGroupEditor} = useCulturalGroupDetails()
 
     return (
         <div >
@@ -24,7 +24,7 @@ export default function CulturalGroupDetails() {
                             <div>{details.members}</div>
                         </div>
                     </div>
-                    <div><ContactIcon onClick={gotoConversation} /></div>
+                    <div>{self ? <EditIcon onClick={openGroupEditor} /> : <ContactIcon onClick={gotoConversation} />}</div>
                 </div>
                 <div>{details.description}</div>
                 <div className='flex translate-x-[-5px]'>
