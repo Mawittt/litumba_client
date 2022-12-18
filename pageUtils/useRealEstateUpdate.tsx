@@ -22,7 +22,7 @@ export default function useRealEstateUpdate(){
         setInitialValues(getData())
     },[])
 
-    return { previewServerImages, deleteServerImage , register , handleSubmit, errors , updateRealEstate , deleteImage , previewImages , watch , previewServerImages }
+    return { previewServerImages, deleteServerImage , register , handleSubmit, errors , updateRealEstate , deleteImage , previewImages , watch , }
 
     function updateRealEstate(data : RealEstateUpdateFormProps){
         console.log(data)
