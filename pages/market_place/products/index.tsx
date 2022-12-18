@@ -7,10 +7,10 @@ import useProducts from "../../../pageUtils/useProducts";
 
 
 export default function Products(){
-    const {products} = useProducts()
+    const {products , searchProduct} = useProducts()
     return (
         <div className="py-4 px-2 flex flex-col gap-4" >
-            <AssetTopController />
+            <AssetTopController searchFunction={searchProduct} />
             <ProductServiceToggle />
             <div className=" flex flex-col gap-2 mt-4">
                 {products.map(product=><Product key={product._id} {...product}/>)}

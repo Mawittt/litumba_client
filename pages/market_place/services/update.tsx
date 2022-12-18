@@ -1,50 +1,53 @@
+import { ErrorMessage } from '@hookform/error-message'
 import React from 'react'
-import { AddImageIcon } from '../../../assets/icons'
+import { servicesFormOptions } from '../../../assets/constant'
 import Button from '../../../components/Button/Button'
+import useServiceUpdate from '../../../pageUtils/useServiceUpdate'
+
 
 const Create = () => {
-  return (
-    <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
-            <h3 className="font-bold text-2xl">Create a Product</h3>
-            <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
-            <div>
-                <Button label="add previews" icon={<AddImageIcon />} />
-            </div>
+    const { register, handleSubmit , errors , updateService , watch } = useServiceUpdate()
+
+    return (
+        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4 mt-4">
+            <h3 className="font-bold text-2xl">Update Service</h3>
+            <p>please fill the below form and click the &quot;Update Service&quot; button to create a new job.</p>
             <div className="flex flex-col gap-2">
                 <div className="font-bold">Name</div>
-                <input type="text" className="text-input" />
+                <input type="text" className="text-input" {...register("name",{required : "The name is required"})} value={watch("name")}/>
+                <ErrorMessage name='name' errors={errors} />
             </div>
             <div className="flex flex-col gap-2">
-                <div className="font-bold">Price</div>
-                <input type="text" className="text-input" />
-            </div>
-            <div className="flex flex-col gap-2">
-                <div className="font-bold">Quantity</div>
-                <input type="text" className="text-input" />
+                <div className="font-bold">Price (frs cfa)</div>
+                <input type="number" className="text-input" {...register("price",{required : "The price is required"})} value={watch("price")} />
+                <ErrorMessage name='price' errors={errors} />           
             </div>
             <div className="flex flex-col gap-2">
                 <div className="font-bold">Description</div>
-                <textarea className="text-input h-[100px] rounded-lg" />
+                <textarea className="text-input h-[100px] rounded-lg" {...register("description",{required : "The description is required"})} value={watch("description")} />
+                <ErrorMessage name='description' errors={errors} />
             </div>
             <div className="flex flex-col gap-2">
                 <div className="font-bold">Niche</div>
-                <select name="" id="" className='text-input p-0'></select>
-            </div>
-            <div className="flex flex-col gap-2">
-                <div className="font-bold">Brand</div>
-                <input type="text" className="text-input" />
+                <select id="" className='text-input p-0' {...register("niche",{required : "The niche is required"})} value={watch("niche")}>
+                    <option value=""></option>
+                    {servicesFormOptions.niches.map(niche=><option key={niche} value={niche}>{niche}</option>)}
+                </select>
+                <ErrorMessage name='niche' errors={errors} />
             </div>
             <div className="flex flex-col gap-2">
                 <div className="font-bold">Country</div>
-                <input type="text" className="text-input" />
+                <input type="text" className="text-input" {...register("country",{required: "The country is required"})} value={watch("country")} />
+                <ErrorMessage name='country' errors={errors} />
             </div>
             <div className="flex flex-col gap-2">
                 <div className="font-bold">City</div>
-                <input type="text" className="text-input" />
+                <input type="text" className="text-input" {...register("city",{required : "The city is required"})} value={watch("city")} />
+                <ErrorMessage name='city' errors={errors} />
             </div>
-            <Button label="Create Product" />
+            <Button label="Update service" onClick={handleSubmit(updateService)} />
         </div>
-  )
+    )
 }
 
 export default Create

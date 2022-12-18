@@ -1,5 +1,5 @@
 import { avatar_1, avatar_3, brand_avatar_1, brand_avatar_2 } from "../assets/avatars"
-import { JobProps } from "../types/types"
+import { JobProps, TopAssetsSearchFormProps } from "../types/types"
 
 
 export default function useJobs(){
@@ -46,5 +46,15 @@ export default function useJobs(){
         },
     ]
 
-    return {jobs}
+    return {jobs , searchJobs}
+
+    function searchJobs( searchData : TopAssetsSearchFormProps){
+        if(searchIsEmpty(searchData)) return
+        console.log(searchData)
+
+        function searchIsEmpty(searchData : TopAssetsSearchFormProps){
+            if(searchData.searchString) return false
+            return true
+        }
+    }
 }

@@ -52,6 +52,8 @@ export default function useTopNavBar(){
         else if(page === (ROUTES.market_place.services.filters.replace("/",""))) return "Services/Filters"
         else if(page === (ROUTES.market_place.services.create.replace("/",""))) return "Services/Create"
         else if(page === (ROUTES.market_place.services.update.replace("/",""))) return "Services/Update"
+        else if(page.includes(ROUTES.market_place.services.caseStudy.update.replace("/",""))) return "Case study/Update"
+        else if(page.includes(ROUTES.market_place.services.caseStudy.index.replace("/",""))) return "Case study"
         else if(page.includes(ROUTES.market_place.services.index.replace("/",""))) return "Services/Details"
         else if(page === (ROUTES.cultural_groups.index.replace("/",""))) return "Cultural Groups"
         else if(page === (ROUTES.cultural_groups.filters.replace("/",""))) return "Businesses/Filters"

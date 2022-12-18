@@ -1,5 +1,5 @@
 import { brand_avatar_1, brand_avatar_2, brand_avatar_3 } from "../assets/avatars"
-import { ServiceProps } from "../types/types"
+import { ServiceProps, ServicesSearchFormProps } from "../types/types"
 
 
 
@@ -63,5 +63,15 @@ export default function useServices(){
         },
     ]
 
-    return {services}
+    return {services , searchServices}
+
+    function searchServices(string : ServicesSearchFormProps){
+        if(stringIsEmpty(string)) return
+        console.log(string)
+
+        function stringIsEmpty(string : ServicesSearchFormProps){
+            if(string.searchString) return false
+            return true
+        }
+    }
 }

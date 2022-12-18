@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { ContactIcon, EditIcon, LocationIcon } from "../../../assets/icons";
 import Button from "../../../components/Button/Button";
+import CaseStudyCreate from "../../../components/CaseStudyCreate/CaseStudyCreate";
 import Review from "../../../components/Review/Review";
+import ReviewForm from "../../../components/ReviewForm/ReviewForm";
 import UseCase from "../../../components/UseCase/UseCase";
 import useServiceDetails from "../../../pageUtils/useServiceDetails";
 import { cn } from "../../../utils/fn";
@@ -10,7 +12,7 @@ import { cn } from "../../../utils/fn";
 
 export default function ServiceDetails() {
 
-    const { details , useCases , reviews , self , goBack , openBrand , openConversation , openServiceEditor} = useServiceDetails()
+    const { details, useCases, reviews, self, goBack, openBrand, openConversation, openServiceEditor } = useServiceDetails()
 
     return (
         <div className="flex-col flex gap-4 pb-6">
@@ -28,11 +30,11 @@ export default function ServiceDetails() {
                         </div>
                     </div>
                     <div className="cursor-pointer">
-                        { self ? <EditIcon onClick={openServiceEditor} /> : <ContactIcon onClick={openConversation}/>}
+                        {self ? <EditIcon onClick={openServiceEditor} /> : <ContactIcon onClick={openConversation} />}
                     </div>
                 </div>
                 <div className={cn(self ? "hidden" : "")}>
-                    <Button label="Leave a review" />
+                    <ReviewForm />
                 </div>
                 <div className="flex flex-col gap-2">
                     <h3 className="font-bold text-blue-500">{details.title}</h3>
@@ -60,20 +62,21 @@ export default function ServiceDetails() {
                 <div className="flex flex-col gap-4">
                     <h2 className="font-bold" >Use-cases</h2>
                     <div className="flex flex-col gap-4 text-sm">
-                        {useCases.map(useCase=> <UseCase key={useCase._id}  {...useCase}/>)}
+                        {self && <CaseStudyCreate />}
+                        {useCases.map(useCase => <UseCase key={useCase._id}  {...useCase} />)}
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
                     <h2 className="font-bold" >Reviews</h2>
                     <div className="flex flex-col gap-4 text-sm">
-                        {reviews.map(review=> <Review key={review._id}  {...review}/>)}
+                        {reviews.map(review => <Review key={review._id}  {...review} />)}
                         <Button label="more" full />
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                <Button label="Go to brand" full onClick={openBrand}/>
-                <Button label="Go back" full onClick={goBack}/>
-            </div>
+                    <Button label="Go to brand" full onClick={openBrand} />
+                    <Button label="Go back" full onClick={goBack} />
+                </div>
             </div>
         </div>
     )

@@ -21,7 +21,7 @@ export default function Post(props: PostProps) {
             <div className="px-2">
                 {description}
             </div>
-            <img src={image} alt={"post image "} className="cursor-pointer hover:opacity-75"  onClick={enlargeImage} />
+            <img src={image} alt={"post image "} className="cursor-pointer "  onClick={enlargeImage} />
             <div className="flex justify-center gap-10">
                 <div className="flex cursor-pointer" onClick={togglePostLike}>
                     <LikeIcon />

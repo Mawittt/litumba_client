@@ -1,6 +1,6 @@
 import { avatar_1, brand_avatar_2, brand_avatar_3 } from "../assets/avatars"
 import { realEstate_1, realEstate_2, realEstate_3 } from "../assets/images"
-import { ProductProps } from "../types/types"
+import { ProductProps, RealEstateDetailsProps, RealEstateSearchFormProps } from "../types/types"
 
 
 
@@ -81,5 +81,15 @@ export default function useRealEstate(){
             brand : true
         },
     ]
-    return {products}
+    return {products , searchRealEstate}
+
+    function searchRealEstate(data : RealEstateSearchFormProps){
+        if(dataIsEmpty(data)) return
+        console.log(data)
+
+        function dataIsEmpty(data : RealEstateSearchFormProps){
+            if(data.searchString) return false
+            return true
+        }
+    }
 }

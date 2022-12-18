@@ -12,7 +12,7 @@ import useLeftSideBar from "./useLeftSideBar";
 export default function LeftSideBar() {
     const {page , isHome , isJobs , isBusiness , isMarketPlace ,isCulturalGroups , isRealEstate , isLitumbaHub , navigate} = useLeftSideBar()
     return (
-        <div className="bg-bc_5 text-white w-full max-w-sm h-screen px-[20px] py-[10px] relative flex flex-col gap-[30px]">
+        <div className="bg-bc_5 text-white w-full max-w-sm  h-screen px-[20px] py-[10px] relative flex flex-col gap-[30px]">
             <Image src={logo_light} alt="litumba logo" />
             <div className="flex flex-col">
                 <h3 className="font-bold">Pages</h3>

@@ -1,35 +1,29 @@
+import { RealEstateFormOptions } from "../../assets/constant";
 import Button from "../../components/Button/Button";
+import useRealEstateFilters from "../../pageUtils/useRealEstateFilters";
 
 
-
-
-export default function ProductFilters() {
+export default function RealEstateFilters() {
+    const {register, handleSubmit , search} = useRealEstateFilters()
 
     return (
-        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
-           
+        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4 mt-4">
            <div className="flex flex-col gap-2">
-                <div className="font-bold">Pricing</div>
-                <select name="niche" id="" className="text-input p-0">
-                    <option value="one">1000frs - 10,000frs</option>
-                </select>
-            </div>
-            <div className="flex flex-col gap-2">
-                <div className="font-bold">Niche</div>
-                <select name="niche" id="" className="text-input p-0">
-                    <option value="one">web marketing</option>
+                <div className="font-bold">Price</div>
+                <select  id="" className="text-input p-0" {...register("pricing")}>
+                    <option value=""></option>
+                    {RealEstateFormOptions.prices.map(price=><option value={price} key={price} >{price}</option>)}
                 </select>
             </div>
            <div className="flex flex-col gap-2">
-                 <div className="font-bold">quantity</div>
-                <input type="number" className="text-input" />
+                <div className="font-bold">type</div>
+                <select  id="" className="text-input p-0" {...register("type")}>
+                    <option value=""></option>
+                    {RealEstateFormOptions.types.map(price=><option value={price} key={price} >{price}</option>)}
+                </select>
             </div>
-           <div className="flex flex-col gap-2">
-                <div className="font-bold">brand</div>
-                <input type="text" className="text-input" />
-            </div>
-           
-            <Button label="Search" />
+            <Button label="Search" onClick={handleSubmit(search)} />
         </div>
+
     )
 }

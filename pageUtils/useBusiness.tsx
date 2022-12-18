@@ -1,5 +1,5 @@
 import { avatar_3, brand_avatar_1, brand_avatar_2 } from "../assets/avatars"
-import { BusinessProps } from "../types/types"
+import { BusinessProps, BusinessSearchFormProps } from "../types/types"
 
 
 
@@ -61,5 +61,15 @@ export default function useBusinesses(){
             _id : 6
         },
     ]
-    return {businesses}
+    return {businesses , searchBusiness}
+
+    function searchBusiness(data : BusinessSearchFormProps){
+        if(dataIsEmpty(data)) return
+        console.log(data)
+
+        function dataIsEmpty(data : BusinessSearchFormProps){
+            if(data.searchString) return false
+            return true
+        }
+    }
 }

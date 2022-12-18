@@ -28,6 +28,7 @@ export interface ButtonProps{
     className? : string ,
     full? : boolean,
     colored? : boolean,
+    inputLabel? : string
 }
 
 export interface MyProductProps{
@@ -305,4 +306,253 @@ export interface CommentProps{
     name : string,
     text : string,
     _id : any
+}
+
+export interface AlertProps{
+    content : string,
+}
+
+export interface WarningProps{
+    content : string,
+    onOkay? : Function,
+    onCancel? : Function
+}
+
+export interface PromptProps{
+    content : string,
+    onOkay? : Function ,
+    onCancel? : Function 
+}
+
+export interface PostInputProps{
+    postImageInput : FileList | null,
+    postTextInput : string,
+    postVideoInput : FileList | null,
+}
+
+export interface CommentFormProps{
+    comment : string
+}
+
+export interface TopAssetsSearchFormProps{
+    searchString : string
+}
+
+export interface AssetTopControllerProps{
+    searchFunction : Function
+}
+
+export interface JobFilterFormProps{
+    pricing : string,
+    urgency : string,
+    niche : string ,
+    expertise : string,
+    schedule : string,
+}
+
+export interface JobCreationFormProps{
+    title : string,
+    price : string,
+    description : string,
+    niche : string,
+    urgency : string,
+    country : string,
+    city : string,
+    expertise : string,
+    schedule : string
+}
+export interface JobUpdateFormProps{
+    title : string,
+    price : string,
+    description : string,
+    niche : string,
+    urgency : string,
+    country : string,
+    city : string,
+    expertise : string,
+    schedule : string
+}
+
+export interface BusinessSearchFormProps{
+    searchString : string
+}
+
+export interface BusinessFiltersFormProps{
+    niche : string
+}
+
+export interface BusinessCreationFormProps{
+    logo : FileList | null,
+    cover : FileList | null,
+    name : string,
+    country : string,
+    city : string,
+    description : string,
+    niche : string,
+    phone : string,
+    email : string,
+    website : string,
+}
+
+export interface BusinessUpdateFormProps{
+    logo : FileList | null | string,
+    cover : FileList | null | string,
+    name : string,
+    country : string,
+    city : string,
+    description : string,
+    niche : string,
+    phone : string,
+    email : string,
+    website : string,
+}
+
+export interface ProductSearchFormProps{
+    searchString : string
+}
+
+export interface ProductFiltersFormProps{
+    pricing : string
+    niche : string
+    quantity : string
+    brand : string
+}
+
+export interface ProductCreateFormProps{
+    previews : FileList | null ,
+    name : string,
+    price : string,
+    quantity : string,
+    description : string,
+    niche : string,
+    brand : string,
+    country : string,
+    city : string,
+}
+
+export interface ProductUpdateInitialProps extends Omit<ProductCreateFormProps,"previews">{
+    previews : string[]
+}
+
+export interface ServicesSearchFormProps {
+    searchString : string
+}
+
+export interface ServiceFiltersFormProps{
+    price : string,
+    Niche : string,
+}
+
+export interface ServiceCreateFormProps{
+    name : string,
+    price : number,
+    description : string,
+    niche : string,
+    country : string,
+    city : string,
+}
+export interface ServiceUpdateFormProps{
+    name : string,
+    price : number,
+    description : string,
+    niche : string,
+    country : string,
+    city : string,
+}
+
+export interface RealEstateSearchFormProps{
+    searchString : string
+}
+
+export interface RealEstateFiltersFormProps{
+    pricing : string
+    type : string
+}
+
+export interface RealEstateCreateFormProps{
+    previews : FileList | null,
+    name : string,
+    type : string,
+    price : number,
+    description : string,
+    country : string,
+    city : string,
+}
+
+export interface RealEstateUpdateFormProps{
+    previews : FileList | null,
+    name : string,
+    type : string,
+    price : number,
+    description : string,
+    country : string,
+    city : string,
+}
+
+export interface RealEstateUpdateInitialValuesProps extends Omit<RealEstateUpdateFormProps, "previews">{
+    previews : string[]
+}
+
+export interface CulturalGroupSearchFormProps {
+    searchString : string
+}
+
+export interface CulturalGroupsCreateFormProps{
+    profile : FileList
+    cover : FileList
+    name : string
+    country : string
+    city : string
+    description : string
+    members : number
+}
+export interface CulturalGroupsUpdateFormProps{
+    profile : FileList
+    cover : FileList
+    name : string
+    country : string
+    city : string
+    description : string
+    members : number
+}
+export interface CulturalGroupsUpdateInitialValuesProps extends Omit<CulturalGroupsUpdateFormProps,"profile" | "cover">{
+    profile : string
+    cover : string
+}
+
+export interface LitumbaHubSearchFormProps{
+    searchString : string
+}
+
+export interface ServiceFiltersFormProps{
+    price : string,
+    Niche : string,
+}
+
+export interface LitumbaHubFiltersFormProps{
+    price : string,
+    Niche : string,
+}
+
+export interface CaseStudyProps{
+    preview : string,
+    title  : string,
+    description : string,
+    _id : any
+}
+
+export interface CaseStudyUpdateFormProps{
+    preview : FileList,
+    title  : string,
+    description : string,
+    _id : any
+}
+
+export interface CaseStudyUpdateInitialStateProps extends Omit<CaseStudyUpdateFormProps, "preview">{
+    preview : string
+}
+
+export interface ReviewCreateFormProps{
+    stars : 1 | 2 | 3 | 4 | 5 
+    description : string
 }

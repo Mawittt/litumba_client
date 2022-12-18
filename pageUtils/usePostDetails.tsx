@@ -1,10 +1,15 @@
 import { avatar_1, avatar_2, avatar_3 } from "../assets/avatars"
 import { image_1 } from "../assets/images"
-import { CommentProps } from "../types/types"
-
+import { CommentFormProps, CommentProps } from "../types/types"
+import {useForm} from "react-hook-form"
 
 
 export default function usePostDetails(){
+    const {register, handleSubmit, } = useForm({
+        defaultValues : {
+             comment : ""
+        }
+    })
     const post = {
         avatar : avatar_2,
         name : "John Miller",
@@ -34,12 +39,19 @@ export default function usePostDetails(){
         },
     ]
 
-    return {comments ,post , openProfile , enlargeImage}
+    return {comments ,post , openProfile , enlargeImage , sendComment , register , handleSubmit}
 
     function openProfile(){
-
     }
     function enlargeImage(){
+    }
+    function sendComment(data : any){
+        if(commentIsEmpty(data)) return
+        console.log(data)
 
+        function commentIsEmpty(data: CommentFormProps){
+            if(data.comment) return false
+            return true
+        }
     }
 }

@@ -1,11 +1,11 @@
+import { useForm } from "react-hook-form"
 import { brand_avatar_1, brand_avatar_2, brand_avatar_3 } from "../assets/avatars"
-import { ServiceProps } from "../types/types"
+import { LitumbaHubSearchFormProps, ServiceProps } from "../types/types"
 
 
 
 
 export default function useLitumbaHub(){
-
     const services : ServiceProps[] = [
         {
             avatar : brand_avatar_3,
@@ -64,5 +64,14 @@ export default function useLitumbaHub(){
         
     ]
 
-    return {services}
+    return {services , searchLitumbaHub }
+
+    function searchLitumbaHub(data : LitumbaHubSearchFormProps){
+        if(dataIsEmpty(data)) return
+        console.log(data)
+        function dataIsEmpty(data : LitumbaHubSearchFormProps){
+            if(data.searchString) return false
+            return true
+        }
+    }
 }

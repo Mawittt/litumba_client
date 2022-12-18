@@ -1,4 +1,5 @@
 import { group_image_1 } from "../assets/images"
+import { CulturalGroupSearchFormProps } from "../types/types"
 
 
 
@@ -52,5 +53,16 @@ export default function useCulturalGroups(){
     ]
 
 
-    return {groups}
+    return {groups , searchGroup}
+
+    function searchGroup(data : CulturalGroupSearchFormProps){
+        if(dataIsEmpty(data)) return
+        console.log(data)
+
+        function dataIsEmpty(data : CulturalGroupSearchFormProps){
+
+            if(data.searchString) return false
+            return true
+        }
+    }
 }

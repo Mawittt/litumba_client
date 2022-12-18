@@ -6,9 +6,9 @@ import useUseCase from "./useUseCase"
 
 
 export default function UseCase(props : UseCaseProps){
-    const {useCase} = useUseCase(props)
+    const {useCase , openCaseStudy} = useUseCase(props)
     return (
-        <div className="grid grid-cols-[minmax(0px,230px)_auto] shadow-comp_lg rounded-sm py-2 px-2">
+        <div className="grid grid-cols-[minmax(0px,230px)_auto] shadow-comp_lg rounded-sm py-2 px-2 cursor-pointer" onClick={openCaseStudy} >
             <div className="relative w-full min-w[150px] aspect-square box-border">
                 <Image src={useCase.image} fill alt="useCase image" className="object-cover" />
             </div>

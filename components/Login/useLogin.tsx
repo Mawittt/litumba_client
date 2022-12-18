@@ -13,3 +13,4 @@ export default function useLogin({closeAuth} : LogInProps){
         navigate(ROUTES.home)
     }
 }
+

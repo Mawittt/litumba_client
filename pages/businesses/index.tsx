@@ -5,10 +5,10 @@ import useBusinesses from "../../pageUtils/useBusiness";
 
 
 export default function Businesses() {
-    const { businesses } = useBusinesses()
+    const { businesses , searchBusiness } = useBusinesses()
     return (
         <div className="py-4 px-2">
-            <AssetTopController />
+            <AssetTopController searchFunction={searchBusiness} />
             <div>
                 {
                     businesses.map(business => <Business key={business._id} {...business} />)
