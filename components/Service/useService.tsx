@@ -5,16 +5,16 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useService({avatar, title , location , website , description, tags , _id} : ServiceProps){
+export default function useService({ avatar, title, location, website, description, tags, _id, authorId, isBrand }: ServiceProps) {
 
-    const {navigate} = useNavigate()
+    const { navigate } = useNavigate()
 
-    return {avatar, title , location , website , description, tags , openService , openConversation}
+    return { isBrand, avatar, title, location, website, description, tags, openService, openConversation }
 
-    function openService(){
-        navigate(ROUTES.market_place.services.index + "/service_id")
+    function openService() {
+        navigate(ROUTES.market_place.services.index + "/" + _id)
     }
-    function openConversation(){
-        navigate(ROUTES.conversations + "/conversation_id")
+    function openConversation() {
+        navigate(ROUTES.conversations + "/" + authorId)
     }
 }

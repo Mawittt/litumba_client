@@ -9,7 +9,7 @@ export default function Message(props: MessageProps) {
     const { message } = useMessage(props)
     return (
         <div className={cn(
-            "w-full flex  cursor-pointer" ,
+            "w-full flex  cursor-pointer my-2",
             message.self ? "justify-end" : "justify-start"
         )}>
             <div className={cn(

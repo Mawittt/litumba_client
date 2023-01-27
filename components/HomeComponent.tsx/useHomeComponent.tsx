@@ -1,44 +1,101 @@
+import axios from "axios"
+import React, { useEffect } from "react"
+import { useInfiniteQuery } from "react-query"
 import { avatar_1, avatar_2, avatar_3 } from "../../assets/avatars"
 import { image_1, image_3, image_31 } from "../../assets/images"
 import useStore from "../../store/useStore"
 import { PostProps } from "../../types/types"
+import { getElapsedTime, getTime } from "../../utils/fn"
 
 
+interface Post {
+    authorUser?: { firstName: string, profileImage: { url: string } },
+    authorBusiness?: { logo: { url: string }, name: string }
+    text?: string,
+    image?: { url: string },
+    video?: { url: string },
+    id: string,
+    createdAt: string,
+    _count: { comments: number, likes: number },
+    likes: {
+        postId: string
+        authorId: string
+    }[]
+}
+interface ServerData {
+    posts: Post[],
+    nextCursor: number,
+    isMore: boolean
+}
+
+export default function useHomeComponent() {
+    let posts: PostProps[] = []
+    let loaded = false
+    let isMore = true
+    const { user } = useStore()
+    const { data, isError, isLoading, isSuccess, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<{ data: ServerData }, Error>("posts", ({ pageParam = 0 }) => {
+        return axios.get(`/api/posts?cursor=${pageParam}&span=3`)
+    }, {
+        getNextPageParam: (lastPage: { data: ServerData }) => lastPage.data.nextCursor
+    })
 
 
+    if (data) handleData()
 
-export default function useHomeComponent(){
-    
-    const posts : PostProps[]= [
-        {
-            avatar : avatar_1,
-            name : "Stella price",
-            time : "2 Hours",
-            description : "Litumba. this is for the bakwerians , I love this platform so much for its simplicity",
-            image : image_1,
-            likes : 20,
-            comments : 5
-        },
-        {
-            avatar : avatar_2,
-            name : "John Miller",
-            time : "4 Hours",
-            description : "Litumba. this is for the bakwerians , I love this platform so much for its simplicity",
-            image : image_3,
-            likes : 51,
-            comments : 3
-        },
-        {
-            avatar : avatar_3,
-            name : "Rudulf anil",
-            time : "8 Hours",
-            description : "Litumba. this is for the bakwerians , I love this platform so much for its simplicity",
-            image : image_31,
-            likes : 32,
-            comments : 4
-        },
-    ]
+    return { isMore, posts, isLoading, isError, isSuccess, loadContent, isFetchingNextPage }
 
+    function handleData() {
+        const arrangedData: PostProps[] = []
+        data?.pages.forEach(page => {
+            page.data.posts.forEach(post => {
+                const arrangedPost: PostProps = {
+                    avatar: post.authorUser?.profileImage.url || post.authorBusiness?.logo.url || "",
+                    name: post.authorUser?.firstName || post.authorBusiness?.name || "",
+                    time: getElapsedTime(post.createdAt),
+                    description: post.text || "",
+                    image: post.image?.url || "",
+                    video: post.video?.url || "",
+                    id: post.id,
+                    comments: post._count.comments,
+                    likes: post._count.likes,
+                    liked: isLiked(),
+                    isBrand: Boolean(post.authorBusiness)
+                }
+                arrangedData.push(arrangedPost)
 
-    return {posts}
+                function isLiked() {
+
+                    return post.likes.some(like => {
+                        return (like.authorId === user.id) && (like.postId === post.id)
+                    })
+                }
+            })
+        })
+
+        posts = []
+        posts = arrangedData
+        isMore = data?.pages[data.pages.length - 1].data.isMore || false
+    }
+    function loadContent() {
+        const postsContainer = document.getElementById("postsContainer")
+        if (!postsContainer) return
+        const scrollHeight = postsContainer.scrollHeight
+        const clientHeight = postsContainer.clientHeight
+        const scrollTop = postsContainer.scrollTop
+
+        if (hasReachedBottom()) {
+            if (!loaded) {
+                if (isMore) {
+                    fetchNextPage()
+                }
+            }
+            loaded = true
+        } else {
+            loaded = false
+        }
+
+        function hasReachedBottom() {
+            return !Boolean(scrollHeight - (clientHeight + scrollTop) >= 40)
+        }
+    }
 }

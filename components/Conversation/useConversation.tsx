@@ -5,13 +5,13 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useConversation(conversation : ConversationProps){
+export default function useConversation(conversation: ConversationProps) {
 
-    const {navigate} = useNavigate()
+    const { navigate } = useNavigate()
 
-    return {conversation , gotoProfile}
+    return { conversation, gotoConversation }
 
-    function gotoProfile(){
-        navigate(ROUTES.profile)
+    function gotoConversation() {
+        navigate(ROUTES.conversations + "/" + conversation.peerId)
     }
 }

@@ -1,16 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import ClientSocket from "../socket.io/ClientSocket";
 import { AppState } from "./store";
 
-// Type for our state
+export interface User {
+	id: string;
+}
+
 export interface AuthState {
-	authState: boolean;
-    user : object
+	user: User;
+	socket: ClientSocket;
 }
 
 // Initial state
 const initialState: AuthState = {
-	authState: false,
-    user : {name : "jason bond"}
+	user: { id: "63b02f45ac99b1e63c12d5d4" },
+	socket: new ClientSocket(),
 };
 
 // Actual Slice
@@ -18,13 +22,9 @@ export const authSlice = createSlice({
 	name: "auth",
 	initialState,
 	reducers: {
-		// Action to set the authentication status
-		setAuthState(state, action) {
-			state.authState = action.payload;
+		setUser(state, action) {
+			state.user = action.payload;
 		},
-        setUser(state, action){
-            state.user = action.payload
-        }
 	},
 	// // Special reducer for hydrating the state. Special case for next-redux-wrapper
 	// extraReducers: {
@@ -37,9 +37,9 @@ export const authSlice = createSlice({
 	// },
 });
 
-export const { setAuthState , setUser } = authSlice.actions;
+export const { setUser } = authSlice.actions;
 
-export const selectAuthState = (state: AppState) => state.auth.authState;
-export const selectUser = (state : AppState) => state.auth.user
+export const selectUser = (state: AppState) => state.auth.user;
+export const selectSocket = (state: AppState) => state.auth.socket;
 
 export default authSlice.reducer;

@@ -1,6 +1,6 @@
 import Router, { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { AlertProps, PromptProps, WarningProps } from "../types/types"
+import { AlertProps, ConfirmationProps, PromptProps, WarningProps } from "../types/types"
 
 
 export function usePage() {
@@ -14,26 +14,27 @@ export function usePage() {
 }
 export function useNavigate() {
     const router = useRouter()
-    return { navigate, router ,getQueryString }
+    return { navigate, router, getQueryString }
 
-    function navigate(url: string) {
+    function navigate(url: string | number) {
+        if (typeof (url) === "number") return router.back()
         Router.push(url)
     }
 
     function getQueryString(obj: any) {
         obj = removeEmptyAttributes(obj)
-    
-        return  '?' +Object
-                        .keys(obj)
-                        .map(key => {return `${key}=${encodeURIComponent(obj[key])}`;})
-                        .join('&')
-        function removeEmptyAttributes(obj:any) {
+
+        return '?' + Object
+            .keys(obj)
+            .map(key => { return `${key}=${encodeURIComponent(obj[key])}`; })
+            .join('&')
+        function removeEmptyAttributes(obj: any) {
             return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== '' && v !== undefined));
-          }
+        }
     }
 }
 export function useOwner() {
-    const self = false
+    const self = true
     return self
 }
 export function useMenuToggle() {
@@ -56,9 +57,7 @@ export function useMenuToggle() {
     }
 }
 export function useNotifiers() {
-
-
-    return { setAlert, setWarning, setPrompt }
+    return { setAlert, setWarning, setPrompt, setConfirmation }
 
     function setAlert(data: AlertProps) {
         alert(data.content)
@@ -69,5 +68,7 @@ export function useNotifiers() {
     function setPrompt(prompt: PromptProps) {
         alert(prompt.content)
     }
-
+    function setConfirmation(confirmation: ConfirmationProps) {
+        alert(confirmation.content)
+    }
 }

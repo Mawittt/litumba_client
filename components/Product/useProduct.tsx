@@ -4,17 +4,17 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useProduct({avatar , name , location , website , image , description , price , _id , amount, brand , self} : ProductProps ){
+export default function useProduct({ avatar, name, location, website, image, description, price, _id, amount, isBrand, self, ownerId }: ProductProps) {
 
-    const {navigate} = useNavigate()
+    const { navigate } = useNavigate()
 
-    return {avatar , name , location , website , image , description , price , amount , brand , self , openProduct , openConversation}
+    return { avatar, name, location, website, image, description, price, amount, isBrand, self, openProduct, openConversation }
 
-    function openProduct(){
-        navigate(ROUTES.market_place.products.index + "/product_id")
+    function openProduct() {
+        navigate(ROUTES.market_place.products.index + "/" + _id)
     }
 
-    function openConversation(){
-        navigate(ROUTES.conversations + "/conversation_id")
+    function openConversation() {
+        navigate(ROUTES.conversations + "/" + ownerId)
     }
 }

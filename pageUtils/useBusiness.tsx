@@ -1,75 +1,88 @@
+import axios from "axios"
+import { useRef } from "react"
+import { useQuery } from "react-query"
 import { avatar_3, brand_avatar_1, brand_avatar_2 } from "../assets/avatars"
+import { ROUTES } from "../assets/constant"
 import { BusinessProps, BusinessSearchFormProps } from "../types/types"
+import { getElapsedTime } from "../utils/fn"
+import { useNavigate } from "../utils/hooks"
 
+interface ServerBusinessInterface {
+    logo: { url: string },
+    name: string,
+    country: string,
+    city: string,
+    description: string,
+    niche: string,
+    phone: string,
+    email: string,
+    website: string,
+    authorId: string
+    id: string
+}
 
+interface ServerData {
+    businesses: ServerBusinessInterface[]
+    isMore: boolean
+    count: number
+    span: number
+}
 
+export default function useBusinesses() {
+    let businesses: BusinessProps[] = []
+    const { navigate } = useNavigate()
+    const { router, getQueryString } = useNavigate()
+    const queryString = getQueryString(router.query)
+    const cursor = useRef(0)
+    const { data, isSuccess, isError, isLoading, isFetching, refetch } = useQuery<{ data: ServerData }, Error>(["jobs", queryString, cursor.current], () => {
+        return axios.get("/api/businesses/" + queryString + "&cursor=" + cursor.current)
+    }, { keepPreviousData: true })
 
-export default function useBusinesses(){
-    const businesses : BusinessProps[] = [
-        {
-            avatar : brand_avatar_1,
-            name : "Sign ventures",
-            email : "signventures@gmail.com",
-            website : "signventures.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food" , "textile" , "Douala-cameroon"],
-            _id : 1
-        },
-        {
-            avatar : brand_avatar_2,
-            name : "Crown Enterprise",
-            email : "crownenterprise@gmail.com",
-            website : "crownEnterprise.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food" , "textile" , "Douala"],
-            _id : 2
-        },
-        {
-            avatar : avatar_3,
-            name : "Aloa Price",
-            email : "aloaprice@gmail.com",
-            website : "aloaprice.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food", "textile" , "Douala-cameroon"],
-            _id : 3
-        },
-        {
-            avatar : brand_avatar_1,
-            name : "Sign ventures",
-            email : "signventures@gmail.com",
-            website : "signventures.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food" , "textile" , "Douala-cameroon"],
-            _id : 4
-        },
-        {
-            avatar : brand_avatar_2,
-            name : "Crown Enterprise",
-            email : "crownenterprise@gmail.com",
-            website : "crownEnterprise.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food" , "textile" , "Douala"],
-            _id : 5
-        },
-        {
-            avatar : avatar_3,
-            name : "Aloa Price",
-            email : "aloaprice@gmail.com",
-            website : "aloaprice.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food", "textile" , "Douala-cameroon"],
-            _id : 6
-        },
-    ]
-    return {businesses , searchBusiness}
+    if (isSuccess) handleData()
 
-    function searchBusiness(data : BusinessSearchFormProps){
-        if(dataIsEmpty(data)) return
-        console.log(data)
+    return { businesses, searchBusiness, openPrev, canPrev, openNext, canNext, isLoading, isFetching }
 
-        function dataIsEmpty(data : BusinessSearchFormProps){
-            if(data.searchString) return false
-            return true
-        }
+    function searchBusiness(data: BusinessSearchFormProps) {
+        navigate(ROUTES.businesses.index + "?search=" + data.searchString)
+    }
+    function handleData() {
+        const newBusinesses: BusinessProps[] = []
+        data?.data.businesses?.forEach(businesses => {
+            const newBusiness: BusinessProps = {
+                avatar: businesses.logo.url,
+                name: businesses.name,
+                email: businesses.email || "No email",
+                website: businesses.website || "No website",
+                description: businesses.description,
+                tags: getTags(),
+                _id: businesses.id,
+                authorId: businesses.authorId
+            }
+
+            function getTags() {
+                const tags: string[] = [businesses.niche, businesses.city, businesses.country]
+                return tags.filter(Boolean)
+            }
+
+            newBusinesses.push(newBusiness)
+        })
+
+        businesses = newBusinesses
+    }
+    function openNext() {
+        if (!data?.data.isMore) return
+        cursor.current++
+        refetch()
+    }
+    function openPrev() {
+        if (!cursor.current) return
+        cursor.current--
+        refetch()
+    }
+    function canPrev() {
+        return Boolean(cursor.current)
+    }
+    function canNext() {
+        return data?.data.isMore
     }
 }

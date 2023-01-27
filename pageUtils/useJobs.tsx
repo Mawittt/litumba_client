@@ -1,60 +1,103 @@
-import { avatar_1, avatar_3, brand_avatar_1, brand_avatar_2 } from "../assets/avatars"
+import axios from "axios"
+import { useRef, useState } from "react"
+import { useQuery } from "react-query"
+import { brand_avatar_1, } from "../assets/avatars"
+import { ROUTES } from "../assets/constant"
 import { JobProps, TopAssetsSearchFormProps } from "../types/types"
+import { getElapsedTime, scrollPageComponentToTop } from "../utils/fn"
+import { useNavigate } from "../utils/hooks"
+
+interface JobsInterface {
+    authorUser: {
+        profileImage: { url: string },
+        id: string
+    }
+    authorBusiness: {
+        logo: { url: string },
+        id: string
+    }
+    id: string,
+    title: string,
+    city: string,
+    country: string,
+    createdAt: string,
+    description: string,
+    expertise: string,
+    niche: string,
+    pricing: string,
+    schedule: string,
+    urgency: string
+}
+
+interface ServerData {
+    jobs: JobsInterface[],
+    count: number,
+    isMore: boolean,
+    span: number
+}
 
 
-export default function useJobs(){
-    const jobs : JobProps[]= [
-        {
-            avatar : brand_avatar_1,
-            title : "Web Marketer",
-            location : "Douala cameroon",
-            time : "2 hours",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["25k-50k" , "Web marketing" , "Beginner"],
-            brand : true,
-            _id : 1
-        },
-        {
-            avatar : avatar_1,
-            title : "Web Marketer",
-            location : "Douala cameroon",
-            time : "2 hours",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["25k-50k" , "Web marketing" , "Beginner"],
-            brand : false,
-            _id : 2
-        },
-        {
-            avatar : avatar_3,
-            title : "Web Marketer",
-            location : "Douala cameroon",
-            time : "2 hours",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["25k-50k" , "Web marketing" , "Beginner"],
-            brand : false,
-            _id : 3
-        },
-        {
-            avatar : brand_avatar_2,
-            title : "Web Marketer",
-            location : "Douala cameroon",
-            time : "2 hours",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["25k-50k" , "Web marketing" , "Beginner"],
-            brand : true,
-            _id : 4
-        },
-    ]
+export default function useJobs() {
+    const { router, getQueryString } = useNavigate()
+    const queryString = getQueryString(router.query)
+    const cursor = useRef(0)
+    const { data, isSuccess, isError, isLoading, isFetching, refetch } = useQuery<{ data: ServerData }, Error>(["jobs", queryString, cursor.current], () => {
+        return axios.get("/api/jobs/" + queryString + "&cursor=" + cursor.current)
+    }, { keepPreviousData: true })
+    let jobs: JobProps[] = []
+    const { navigate } = useNavigate()
 
-    return {jobs , searchJobs}
+    if (isSuccess) handleData()
 
-    function searchJobs( searchData : TopAssetsSearchFormProps){
-        if(searchIsEmpty(searchData)) return
-        console.log(searchData)
+    return { jobs, searchJobs, isError, isLoading, isFetching, openNext, openPrev, canPrev, canNext }
 
-        function searchIsEmpty(searchData : TopAssetsSearchFormProps){
-            if(searchData.searchString) return false
-            return true
-        }
+    function searchJobs(searchData: TopAssetsSearchFormProps) {
+        navigate(ROUTES.jobs.index + "?search=" + searchData.searchString)
+    }
+
+    function handleData() {
+        const newJobs: JobProps[] = []
+        data?.data.jobs?.forEach(job => {
+            const newJob: JobProps = {
+                avatar: job.authorUser?.profileImage.url || job.authorBusiness.logo.url,
+                title: job.title,
+                location: job.city + " " + job.country,
+                time: getElapsedTime(job.createdAt),
+                description: job.description,
+                tags: getTags(),
+                isBrand: isBrand(),
+                _id: job.id,
+                authorId: job.authorUser?.id || job.authorBusiness.id
+            }
+
+            function getTags() {
+                const tags: string[] = [job.pricing, job.niche, job.expertise, job.schedule, job.urgency]
+                return tags.filter(Boolean)
+            }
+            function isBrand() {
+                if (job.authorBusiness) return true
+                return false
+            }
+            newJobs.push(newJob)
+        })
+        jobs = newJobs
+    }
+    function openNext() {
+        if (!data?.data.isMore) return
+        cursor.current++
+        refetch()
+        scrollPageComponentToTop()
+    }
+    function openPrev() {
+        if (!cursor.current) return
+        cursor.current--
+        refetch()
+        scrollPageComponentToTop()
+    }
+    function canPrev() {
+        return Boolean(cursor.current)
+    }
+    function canNext() {
+        return data?.data.isMore
     }
 }

@@ -1,101 +1,141 @@
+import { Businesses, Follows, Jobs, Products, Users } from "@prisma/client";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+import { useMutation, useQuery } from "react-query";
 import { avatar_1, brand_avatar_1, brand_avatar_2, brand_avatar_3 } from "../assets/avatars";
 import { person_cover_image, shoe_image, shoe_image_1, shoe_image_2 } from "../assets/images";
+import useStore from "../store/useStore";
 import { BusinessProps, JobProps, ProductProps, UserProfileProps } from "../types/types";
+import { getElapsedTime } from "../utils/fn";
+import { useNavigate } from "../utils/hooks";
+
+
+type serverData = Users & { businesses: Businesses[], products: Products[], jobs: Jobs[], followers: Follows[] }
 
 
 
+export default function useUserProfile() {
+    const { user } = useStore()
+    const { router } = useNavigate()
+    const peerId = router.query.id
+    const { data, isSuccess, isLoading } = useQuery<{ data: serverData }, Error>(["user", peerId], () => {
+        return axios.get("/api/user/" + peerId)
+    }, { enabled: !!peerId })
+    const mutator = useMutation("follows", (follow: any) => {
+        return axios.post("/api/follows", follow)
+    }, { retry: 3 })
 
-
-export default function useUserProfile(){
-
-    const details : UserProfileProps = {
-        cover : person_cover_image,
-        avatar : avatar_1,
-        name : "Ana Price",
-        email : "anaprice@gmail.com",
-        profession : "Model",
-        location : "Douala-Cameroon",
-        description : "I am a bakwerian . living in san francisco. i love eating Eru and watafufu. i came from Buea to Los Angeles in 2017. and since then i have been working as a model",
-        phone : "675228664",
-        country : "USA",
-        city : "los Angeles",
-        online : true,
-        _id : 1
+    let details: UserProfileProps = {
+        cover: "",
+        avatar: "",
+        name: "",
+        email: "",
+        profession: "",
+        location: "",
+        description: "",
+        phone: "",
+        country: "",
+        city: "",
+        online: false,
+        _id: 1
 
     }
+    let businesses: BusinessProps[] = []
+    let products: ProductProps[] = []
+    let jobs: JobProps[] = []
+    const [hasFollowed, setHasFollowed] = useState(false)
 
-    const businesses : BusinessProps[] =  [
-        {
-            avatar : brand_avatar_1,
-            name : "Sign ventures",
-            email : "signventures@gmail.com",
-            website : "signventures.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food" , "textile" , "Douala-cameroon"],
-            _id : 1
-        },
-        {
-            avatar : brand_avatar_2,
-            name : "Crown Enterprise",
-            email : "crownenterprise@gmail.com",
-            website : "crownEnterprise.com",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["food" , "textile" , "Douala"],
-            _id : 2
-        },
-    ]
+    useEffect(() => {
+        if (isSuccess) setHasFollowedInitialValue()
+    }, [isSuccess])
 
-    const products : ProductProps[]=[
-        {
-            avatar : brand_avatar_2,
-            name : "air-max shoes",
-            location : "Douala-cameroon",
-            website : "crownenteprise.com",
-            image : shoe_image,
-            description : "start off your day on a good foot, with these foot wears hyper confort",
-            price : 6000,
-            amount : 2,
-            _id : 1,
-            brand : true
-        },
-        {
-            avatar : avatar_1,
-            name : "air-max-5 shoes",
-            location : "Douala-cameroon",
-            website : "crownenteprise.com",
-            image : shoe_image_1,
-            description : "start off your day on a good foot, with these foot wears hyper confort",
-            price : 2000,
-            amount : 5,
-            _id : 2,
-            brand : false
-        },
-        {
-            avatar : brand_avatar_3,
-            name : "balanciaga shoes",
-            location : "Douala-cameroon",
-            website : "crownenteprise.com",
-            image : shoe_image_2,
-            description : "start off your day on a good foot, with these foot wears hyper confort",
-            price : 2000,
-            amount : 7,
-            _id : 3,
-            brand : true
-        },
-    ]
+    useEffect(() => {
+        if (mutator.isSuccess) handleFollowToggleSuccess()
+    }, [mutator.isSuccess])
 
-    const jobs : JobProps[] = [
-        {
-            avatar : brand_avatar_1,
-            title : "Web Marketer",
-            location : "Douala cameroon",
-            time : "2 hours",
-            description : "We are a company that deals with food and leather, we need some sort of online presence and so we are looking for a qualified web marketer",
-            tags : ["25k-50k" , "Web marketing" , "Beginner"],
-            brand : true,
-            _id : 1
-        },
-    ] 
+    if (isSuccess) handleSuccess()
 
-    return {details , businesses ,products , jobs}
+
+    return { mutator, details, businesses, products, jobs, isLoading, isSuccess, hasFollowed, toggleFollow }
+
+    function handleSuccess() {
+        if (!data?.data) return
+        const user = data.data
+        const serverBusinesses = data.data.businesses
+        const serverProducts = data.data.products
+        const serverJobs = data.data.jobs
+        jobs = serverJobs.map(job => {
+            return {
+                avatar: user.profileImage.url,
+                title: job.title,
+                location: job.city + " " + job.country,
+                time: getElapsedTime(job.createdAt.toString()),
+                description: job.description,
+                tags: [job.pricing, job.niche, job.expertise].filter(job => Boolean(job)),
+                isBrand: Boolean(job.authorBusinessId),
+                _id: job.id,
+                authorId: user.id
+            }
+        })
+        details = {
+            cover: user.coverImage.url,
+            avatar: user.profileImage.url,
+            name: user.firstName + " " + user.lastName,
+            profession: user.profession,
+            location: user.city + " " + user.country,
+            description: user.description,
+            phone: user.phone,
+            country: user.country,
+            city: user.city,
+            online: user.online,
+            _id: user.id,
+            email: user.email
+        }
+        businesses = serverBusinesses.map(business => {
+            return {
+                avatar: business.logo.url,
+                name: business.name,
+                email: business.email,
+                website: business.website,
+                description: business.description,
+                tags: [business.niche, business.city, business.country,].filter(tag => Boolean(tag)),
+                _id: business.id,
+                authorId: user.id
+            }
+        })
+        products = serverProducts.map(product => {
+            return {
+                avatar: user.profileImage.url,
+                name: product.name,
+                location: product.city + " " + product.country,
+                website: "No website",
+                image: product.previews[0].url,
+                description: product.description,
+                price: product.price,
+                amount: product.quantity,
+                _id: product.id,
+                isBrand: Boolean(product.authorBusinessId),
+                ownerId: user.id
+            }
+        })
+    }
+    function setHasFollowedInitialValue() {
+        setHasFollowed(() => {
+            if (!data?.data) return false
+            return data?.data.followers.some(follower => {
+                return follower.followerId === user.id
+            })
+        })
+    }
+    function toggleFollow() {
+        if (mutator.isLoading) return
+        mutator.mutate({
+            followerId: user.id,
+            followeeId: peerId
+        })
+    }
+    function handleFollowToggleSuccess() {
+        mutator.reset()
+        setHasFollowed(mutator.data?.data)
+    }
 }

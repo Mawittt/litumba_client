@@ -5,14 +5,16 @@ import { useNavigate, useOwner } from "../../utils/hooks";
 
 
 
-export default function useOtherProduct({...product} : OtherProductProps){
+export default function useOtherProduct({ ...product }: OtherProductProps) {
 
-    const {navigate} = useNavigate()
-  
+    const { navigate } = useNavigate()
 
-    return {product , openProduct }
 
-    function openProduct(){
-        navigate(ROUTES.market_place.products.index + "/product_id2")
+    return { product, openProduct }
+
+    function openProduct() {
+        navigate(ROUTES.market_place.products.index + "/" + product._id)
+        const container = document.getElementById("page-component")
+        container?.scrollTo(0, 0)
     }
 }

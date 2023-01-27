@@ -5,16 +5,16 @@ import { useNavigate } from "../../utils/hooks"
 
 
 
-export default function useCulturalGroup( {image , name , location , members , _id} : CulturalGroupsProps){
+export default function useCulturalGroup({ image, name, location, members, id, authorId }: CulturalGroupsProps) {
 
-    const {navigate} = useNavigate()
+    const { navigate } = useNavigate()
 
-    return { image , name , location , members , gotoGroup , openConversation}
+    return { image, name, location, members, gotoGroup, openConversation }
 
-    function gotoGroup(){
-        navigate(ROUTES.cultural_groups.index + "/group_id")
+    function gotoGroup() {
+        navigate(ROUTES.cultural_groups.index + "/" + id)
     }
-    function openConversation(){
-        navigate(ROUTES.conversations + "/conversation_id")
+    function openConversation() {
+        navigate(ROUTES.conversations + "/" + authorId)
     }
 }

@@ -1,38 +1,71 @@
-import { avatar_1 } from "../../assets/avatars"
+import axios from "axios"
+import { useRef } from "react"
+import { useMutation } from "react-query"
 import { ROUTES } from "../../assets/constant"
-import { image_1 } from "../../assets/images"
+import useStore from "../../store/useStore"
 import { PostProps } from "../../types/types"
 import { useNavigate } from "../../utils/hooks"
 
 
+interface LikeInterface {
+    authorId: string
+    postId: string
+}
 
 
+export default function usePost({ avatar, name, time, description, image, likes, comments, video, isBrand, id, liked }: PostProps) {
+    const { user } = useStore()
+    const { navigate } = useNavigate()
+    const mutator = useMutation("like", (like: LikeInterface) => {
+        return axios.post("/api/likes", like)
+    })
+    const likeState = useRef(0)
+    const likeValue = useRef({ set: false, value: 0 })
+    const likedState = useRef(liked)
 
-export default function usePost({avatar, name, time, description, image , likes , comments} : PostProps){
-    avatar = avatar || avatar_1
-    name = name || "john miller"
-    time = time || "2 hours"
-    description = description || "Litumba. this is for the bakwerians , I love this platform so much for its simplicity"
-    image = image || image_1
-    likes = likes || 35
-    comments = likes || 20
+    if (mutator.isSuccess) handleSuccess()
+    if (likeState.current === 1) likes++
+    if (likeState.current === -1) likes--
+    if (likeValue.current.set) likes = likeValue.current.value
 
-    const {navigate} = useNavigate()
+    return { likedState, likeState, mutator, isBrand, video, avatar, name, time, description, image, likes, comments, openProfile, enlargeImage, togglePostLike, openCommentsSection }
 
-    return { avatar , name , time , description , image , likes , comments , openProfile , enlargeImage , togglePostLike , openCommentsSection}
-
-    function openProfile(){
+    function openProfile() {
         navigate(ROUTES.profile)
     }
 
-    function enlargeImage(){
-        console.log("enlarging image")
+    function enlargeImage() {
+        navigate(ROUTES.post_details + "/" + id)
     }
 
-    function togglePostLike(){
-        console.log("toggling  post like")
+    function togglePostLike() {
+        if (mutator.isLoading) return
+        mutator.mutate({
+            authorId: user.id,
+            postId: id
+        })
     }
-    function openCommentsSection(){
-        navigate(ROUTES.post_details + "/post_id")
+    function openCommentsSection() {
+        navigate(ROUTES.post_details + "/" + id)
+    }
+    function handleSuccess() {
+        if (mutator.data?.data) {
+            likedState.current = true
+            if (!likeValue.current.set) {
+                likeValue.current.set = true
+                likeValue.current.value = likes + 1
+            } else {
+                likeValue.current.value++
+            }
+        } else {
+            likedState.current = false
+            if (!likeValue.current.set) {
+                likeValue.current.set = true
+                likeValue.current.value = likes - 1
+            } else {
+                likeValue.current.value--
+            }
+        }
+        mutator.reset()
     }
 }

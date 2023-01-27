@@ -4,17 +4,17 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useRealEstate({avatar , name , location , website , image , description , price , _id , amount, brand , self} : RealEstateProps ){
+export default function useRealEstate({ avatar, name, location, website, image, description, price, _id, isBrand, self, authorId }: RealEstateProps) {
 
-    const {navigate} = useNavigate()
+    const { navigate } = useNavigate()
 
-    return {avatar , name , location , website , image , description , price , amount , brand , self , openRealEstate , openConversation}
+    return { avatar, name, location, website, image, description, price, isBrand, self, openRealEstate, openConversation }
 
-    function openRealEstate(){
-        navigate(ROUTES.real_estate.index + "/product_id")
+    function openRealEstate() {
+        navigate(ROUTES.real_estate.index + "/" + _id)
     }
 
-    function openConversation(){
-        navigate(ROUTES.conversations + "/conversation_id")
+    function openConversation() {
+        navigate(ROUTES.conversations + "/" + authorId)
     }
 }

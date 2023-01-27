@@ -1,11 +1,18 @@
 {
-  "cSpell.words": [
-    "Bakwerian",
-    "bakwerians",
-    "Litumba",
-    "reduxjs",
-    "tailwindcss"
-],
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+	"cSpell.words": [
+		"Bakwerian",
+		"bakwerians",
+		"Buea",
+		"Dorine",
+		"followee",
+		"followees",
+		"Litumba",
+		"Mawit",
+		"reduxjs",
+		"showwcase",
+		"tailwindcss"
+	],
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"editor.formatOnSave": true
 }

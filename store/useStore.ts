@@ -1,20 +1,14 @@
-import {useSelector, useDispatch} from "react-redux"
-import { selectAuthState, setAuthState , setUser , selectUser} from "./slice"
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, selectUser, selectSocket } from "./slice";
 
+export default function useStore() {
+	const dispatch = useDispatch();
 
-export default function useStore(){
-    const dispatch = useDispatch()
-
-
-    return {
-        authState : useSelector(selectAuthState),
-        setAuthState : (state : any) => { 
-            dispatch(setAuthState(state))
-        },
-        user : useSelector(selectUser),
-        setUser: (state : any)=>{
-            dispatch(setUser(state))
-        }
-        // lets try something
-    }
+	return {
+		user: useSelector(selectUser),
+		setUser: (state: any) => {
+			dispatch(setUser(state));
+		},
+		socket: useSelector(selectSocket),
+	};
 }

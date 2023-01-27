@@ -5,22 +5,22 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useNotification(notification : NotificationProps){
+export default function useNotification(notification: NotificationProps) {
 
-    const {navigate} = useNavigate()
+    const { navigate } = useNavigate()
 
-    return {notification , gotoProfile , gotoProduct , gotoService}
+    return { notification, gotoPost, gotoProfile, gotoService }
 
-    function gotoProfile(){
-        navigate(ROUTES.profile)
+    function gotoPost() {
+        navigate(ROUTES.post_details + "/" + notification.postId || "")
     }
 
-    function gotoProduct(){
-        navigate(ROUTES.market_place.products.index + "/product_id")
+    function gotoProfile() {
+        navigate(ROUTES.profile + "/" + notification.triggerId)
     }
 
-    function gotoService(){
-        navigate(ROUTES.market_place.services.index + "/service_id")
+    function gotoService() {
+        navigate(ROUTES.market_place.services.index + "/" + notification.serviceId)
     }
-    
+
 }

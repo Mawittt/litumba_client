@@ -1,0 +1,310 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+type Privacy {
+    phoneOnProfile Boolean @default(true)
+    emailOnProfile Boolean @default(true)
+}
+
+type Image {
+    url       String
+    createdAt DateTime @default(now())
+}
+
+type Video {
+    url       String
+    createdAt DateTime @default(now())
+}
+
+enum RealEstateTypes {
+    Hall
+    Room
+    Apartment
+    Studio
+    Villa
+    Duplex
+}
+
+enum ServicesHub {
+    Regular
+    Litumba
+}
+
+model Users {
+    id                     String           @id @default(auto()) @map("_id") @db.ObjectId
+    businesses             Businesses[]
+    culturalGroups         CulturalGroups[]
+    comments               Comments[]
+    likes                  Likes[]
+    notifications          Notifications[]  @relation("received")
+    notificationsTriggered Notifications[]  @relation("trigered")
+    followers              Follows[]        @relation("follower")
+    followees              Follows[]        @relation("followee")
+    posts                  Posts[]
+    jobs                   Jobs[]
+    products               Products[]
+    services               Services[]
+    realEstates            RealEstates[]
+    reviews                Reviews[]
+    receivedMessages       Messages[]       @relation("received")
+    sentMessages           Messages[]       @relation("sent")
+    conversations          Conversations[]  @relation(fields: [conversationsIds], references: [id])
+    conversationsIds       String[]         @db.ObjectId
+    firstName              String
+    lastName               String
+    profileImage           Image
+    coverImage             Image
+    country                String
+    city                   String
+    profession             String
+    description            String
+    phone                  String
+    email                  String
+    online                 Boolean
+    socketId               String           @default("")
+    privacy                Privacy
+    createdAt              DateTime         @default(now())
+    updatedAt              DateTime         @updatedAt
+}
+
+model Posts {
+    id               String          @id @default(auto()) @map("_id") @db.ObjectId
+    authorUser       Users?          @relation(fields: [authorUserId], references: [id])
+    authorUserId     String?         @db.ObjectId
+    authorBusiness   Businesses?     @relation(fields: [authorBusinessId], references: [id])
+    authorBusinessId String?         @db.ObjectId
+    comments         Comments[]
+    likes            Likes[]
+    notifications    Notifications[]
+    text             String
+    image            Image
+    video            Video
+    createdAt        DateTime        @default(now())
+    updatedAt        DateTime        @updatedAt
+}
+
+model Likes {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    author    Users    @relation(fields: [authorId], references: [id])
+    authorId  String   @db.ObjectId
+    post      Posts    @relation(fields: [postId], references: [id])
+    postId    String   @db.ObjectId
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Comments {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    author    Users    @relation(fields: [authorId], references: [id])
+    authorId  String   @db.ObjectId
+    post      Posts    @relation(fields: [postId], references: [id])
+    postId    String   @db.ObjectId
+    text      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Jobs {
+    id               String      @id @default(auto()) @map("_id") @db.ObjectId
+    authorUser       Users?      @relation(fields: [authorUserId], references: [id])
+    authorUserId     String?     @db.ObjectId
+    authorBusiness   Businesses? @relation(fields: [authorBusinessId], references: [id])
+    authorBusinessId String?     @db.ObjectId
+    title            String
+    description      String
+    pricing          String
+    urgency          String?
+    niche            String
+    expertise        String
+    schedule         String
+    country          String
+    city             String
+    createdAt        DateTime    @default(now())
+    updatedAt        DateTime    @updatedAt
+}
+
+model Businesses {
+    id          String        @id @default(auto()) @map("_id") @db.ObjectId
+    author      Users         @relation(fields: [authorId], references: [id])
+    authorId    String        @db.ObjectId
+    posts       Posts[]
+    jobs        Jobs[]
+    products    Products[]
+    services    Services[]
+    realEstates RealEstates[]
+    logo        Image
+    coverImage  Image
+    name        String
+    country     String
+    city        String
+    description String
+    niche       String
+    phone       String
+    email       String
+    website     String
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+}
+
+model Products {
+    id               String      @id @default(auto()) @map("_id") @db.ObjectId
+    authorUser       Users?      @relation(fields: [authorUserId], references: [id])
+    authorUserId     String?     @db.ObjectId
+    authorBusiness   Businesses? @relation(fields: [authorBusinessId], references: [id])
+    authorBusinessId String?     @db.ObjectId
+    previews         Image[]
+    name             String
+    price            Int
+    quantity         Int
+    description      String
+    niche            String
+    brand            String
+    country          String
+    city             String
+    createdAt        DateTime    @default(now())
+    updatedAt        DateTime    @updatedAt
+}
+
+model Services {
+    id               String          @id @default(auto()) @map("_id") @db.ObjectId
+    authorUser       Users?          @relation(fields: [authorUserId], references: [id])
+    authorUserId     String?         @db.ObjectId
+    authorBusiness   Businesses?     @relation(fields: [authorBusinessId], references: [id])
+    authorBusinessId String?         @db.ObjectId
+    caseStudies      CaseStudy[]
+    reviews          Reviews[]
+    notifications    Notifications[]
+    name             String
+    price            Int
+    description      String
+    niche            String
+    country          String
+    city             String
+    hub              ServicesHub
+    createdAt        DateTime        @default(now())
+    updatedAt        DateTime        @updatedAt
+}
+
+model RealEstates {
+    id               String          @id @default(auto()) @map("_id") @db.ObjectId
+    authorUser       Users?          @relation(fields: [authorUserId], references: [id])
+    authorUserId     String?         @db.ObjectId
+    authorBusiness   Businesses?     @relation(fields: [authorBusinessId], references: [id])
+    authorBusinessId String?         @db.ObjectId
+    previews         Image[]
+    name             String
+    type             RealEstateTypes
+    price            Int
+    description      String
+    country          String
+    city             String
+    createdAt        DateTime        @default(now())
+    updatedAt        DateTime        @updatedAt
+}
+
+model CulturalGroups {
+    // * the country field was removed though it is (as of the time of writing this comment) present 
+    // * in the UI, this is because it just didnt make sense to specify a country for a cultural group 
+    // * while Knowing that we are targeting a particular group of people originating from a specific region 
+    // * (the south west bakweri of cameroon to be specific )
+
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    author      Users    @relation(fields: [authorId], references: [id])
+    authorId    String   @db.ObjectId
+    cover       Image
+    logo        Image
+    name        String
+    city        String
+    description String
+    members     Int
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model CaseStudy {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    service     Services @relation(fields: [serviceId], references: [id])
+    serviceId   String   @db.ObjectId
+    title       String
+    description String
+    preview     Image
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model Reviews {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    service     Services @relation(fields: [serviceId], references: [id])
+    serviceId   String   @db.ObjectId
+    author      Users    @relation(fields: [authorId], references: [id])
+    authorId    String   @db.ObjectId
+    stars       Int
+    description String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model Conversations {
+    id        String     @id @default(auto()) @map("_id") @db.ObjectId
+    users     Users[]    @relation(fields: [usersIds], references: [id])
+    usersIds  String[]   @db.ObjectId
+    messages  Messages[]
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+}
+
+model Messages {
+    id             String        @id @default(auto()) @map("_id") @db.ObjectId
+    author         Users         @relation("sent", fields: [authorId], references: [id])
+    authorId       String        @db.ObjectId
+    receiver       Users         @relation("received", fields: [receiverId], references: [id])
+    receiverId     String        @db.ObjectId
+    conversation   Conversations @relation(fields: [conversationId], references: [id])
+    conversationId String        @db.ObjectId
+    seen           Boolean       @default(false)
+    text           String
+    createdAt      DateTime      @default(now())
+    updatedAt      DateTime      @updatedAt
+}
+
+model Follows {
+    id         String   @id @default(auto()) @map("_id") @db.ObjectId
+    follower   Users    @relation("follower", fields: [followerId], references: [id])
+    followerId String   @db.ObjectId
+    followee   Users    @relation("followee", fields: [followeeId], references: [id])
+    followeeId String   @db.ObjectId
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+}
+
+enum NotificationsTypes {
+    review
+    follow
+    like
+    comment
+}
+
+model Notifications {
+    id         String             @id @default(auto()) @map("_id") @db.ObjectId
+    receiver   Users              @relation("received", fields: [receiverId], references: [id])
+    receiverId String             @db.ObjectId
+    trigger    Users              @relation("trigered", fields: [triggerId], references: [id])
+    triggerId  String             @db.ObjectId
+    seen       Boolean
+    type       NotificationsTypes
+    service    Services?          @relation(fields: [serviceId], references: [id])
+    serviceId  String?            @db.ObjectId
+    post       Posts?             @relation(fields: [postId], references: [id])
+    postId     String?            @db.ObjectId
+    createdAt  DateTime           @default(now())
+    updatedAt  DateTime           @updatedAt
+}

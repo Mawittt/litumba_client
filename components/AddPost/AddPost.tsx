@@ -2,20 +2,23 @@ import Image from "next/image";
 import { avatar_1 } from "../../assets/avatars";
 import { ContactIcon } from "../../assets/icons";
 import { post_add_asset_icon, post_add_image_icon, post_add_video_icon } from "../../assets/images";
+import Loader from "../../assets/Loader";
 import Button from "../Button/Button";
 import useAddPost from "./useAddPost";
 
 
 export default function AddPost() {
-    const { register, handleSubmit, sendPost, image , video , setImageFlag , setVideoFlag , clearMedia} = useAddPost()
+    const { register, handleSubmit, sendPost, image, video, setImageFlag, setVideoFlag, clearMedia, mutator, openProfile } = useAddPost()
     return (
         <div className="w-full shadow-comp_lg h-fit gap-[30px] flex flex-col items-center py-[20px] px-[10px] rounded-lg max-[324px]:px-[2px]">
             <div className="flex gap-4 items-center w-full">
-                <Image src={avatar_1} width={35} height={35} alt={"profile image"} className="h-[35px]" />
+                <Image src={avatar_1} width={35} height={35} alt={"profile image"} className="h-[35px]" onClick={openProfile} />
                 <div className="flex w-full items-center gap-2">
                     <textarea className="border-[1.5px] p-2 border-solid border-border rounded-lg w-full " {...register("postTextInput")} />
                     <div className="translate-y-[8px]">
-                        <ContactIcon onClick={handleSubmit(sendPost)} />
+                        {
+                            !mutator.isLoading ? <ContactIcon onClick={handleSubmit(sendPost)} /> : <Loader />
+                        }
                     </div>
                 </div>
             </div>

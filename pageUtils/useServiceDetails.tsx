@@ -1,89 +1,166 @@
+import axios from "axios";
 import { title } from "process";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { avatar_1, avatar_2, brand_avatar_1 } from "../assets/avatars";
 import { ROUTES } from "../assets/constant";
 import { business_image_1, consulting_image_1, consulting_image_2, consulting_image_3 } from "../assets/images";
 import { ReviewProps, ServiceDetailsProps, UseCaseProps } from "../types/types";
+import { getElapsedTime } from "../utils/fn";
 import { useNavigate, useOwner } from "../utils/hooks";
 
+interface CaseStudy {
+    description: string
+    preview: { url: string }
+    title: string
+    id: string
+}
 
-
-
-
-
-
-export default function useServiceDetails(){
-
-    const details : ServiceDetailsProps = {
-        cover : business_image_1,
-        avatar : brand_avatar_1,
-        author : "Crown enterprise",
-        email : "crownenterprise@gmail.com",
-        website: "crownenterprise.com",
-        title : "Cunsulting",
-        description : "Start off your day with these footwears, comfortable and light weight for your convinience, these shoes starts at a price of only 6000frs . you can get them from our whole sales plateform online",
-        price : "50,000 frs-cfa",
-        niche : "nitch",
-        available : true,
-        _id : 1
+interface review {
+    author: {
+        id: string
+        profileImage: { url: string }
+        firstName: string
+        lastName: string
     }
+    createdAt: string
+    stars: string
+    description: string
+    id: string
+    authorId: string
+}
 
-    const useCases : UseCaseProps[] = [
-        {
-            image : consulting_image_1,
-            title : "benue project",
-            description : "in this project we worked hand in hand with the benue company to help them innovate thier resources and bring solutions to thies interprise-customer problems",
-            _id : 1
-        },
-        {
-            image : consulting_image_2,
-            title : "condiva project",
-            description : "n this project we worked hand in hand with the benue company to help them innovate thier resources and bring solutions to thies interprise-customer problems",
-            _id : 1
-        },
-        {
-            image : consulting_image_3,
-            title : "Mtn project",
-            description : "n this project we worked hand in hand with the benue company to help them innovate thier resources and bring solutions to thies interprise-customer problems",
-            _id : 1
+interface ServerService {
+    authorBusinessId?: string
+    authorBusiness?: {
+        logo: { url: string }
+        authorId: string
+        website: string
+        coverImage: { url: string }
+        name: string
+        email: string
+        author: {
+            online: boolean
         }
-    ]
+    }
+    authorUser?: {
+        profileImage: { url: string }
+        coverImage: { url: string }
+        id: string
+        firstName: string
+        lastName: string
+        email: string
+        online: boolean
+    },
+    authorUserId?: string,
+    city: string,
+    country: string,
+    createAt: string,
+    description: string,
+    hub: "Regular" | "Litumba",
+    id: string,
+    name: string,
+    niche: string,
+    price: number,
+    caseStudies: CaseStudy[]
+    reviews: review[]
+}
 
-    const reviews : ReviewProps[] = [
-        {
-            avatar : avatar_2,
-            name : "martinez rudof",
-            time : "5 days",
-            stars : 5,
-            comment : "this company gives the best services, i just cant recomend them enough. they just do great jobs and thats so cool",
-            _id : 1
-        },
-        {
-            avatar : avatar_1,
-            name : "Alex young",
-            time : "1 week",
-            stars : 4,
-            comment : "this company gives the best services, i just cant recomend them enough. they just do great jobs and thats so cool",
-            _id : 1
-        }
-    ]
+export default function useServiceDetails() {
+    const { navigate, router } = useNavigate()
+    const serviceId = router.query._id
+    const { data, isSuccess, isLoading } = useQuery<{ data: ServerService }, Error>(["services", serviceId], () => {
+        return axios.get("/api/services/" + serviceId)
+    }, { enabled: !!serviceId })
+    const [moreReviews, setMoreReviews] = useState(false)
 
-    const {navigate , router} = useNavigate() 
-
+    let useCases: UseCaseProps[] = []
+    let reviews: ReviewProps[] = []
     const self = useOwner()
 
-    return { self, details , useCases , reviews , openServiceEditor , openBrand , openConversation , goBack}
-
-
-    function openBrand(){
-        navigate(ROUTES.businesses.index + "/business_id")
+    let details: ServiceDetailsProps = {
+        cover: "",
+        avatar: "",
+        author: "",
+        email: "",
+        website: "",
+        title: "",
+        description: "",
+        price: "",
+        niche: "",
+        available: false,
+        _id: 1,
+        isBrand: false
     }
-    function openConversation(){
-        navigate(ROUTES.conversations + "/conversation_id")
+    if (isSuccess) handleSuccess()
+
+    return { moreReviews, toggleReviews, isSuccess, self, details, useCases, reviews, openServiceEditor, openBrand, openConversation, goBack }
+    function handleSuccess() {
+        if (!data?.data) return
+        details = {
+            cover: data.data.authorBusiness?.coverImage.url || data.data.authorUser?.coverImage.url || "",
+            avatar: data.data.authorBusiness?.logo.url || data.data.authorUser?.profileImage.url || "",
+            author: data.data.authorBusiness?.name || (data.data.authorUser?.firstName + " " + data.data.authorUser?.lastName),
+            email: data.data.authorBusiness?.email || data.data.authorBusiness?.email || "No Email",
+            website: data.data.authorBusiness?.website || "No website",
+            title: data.data.name,
+            description: data.data.description,
+            price: data.data.price + " frs",
+            niche: data.data.niche,
+            available: data.data.authorBusiness?.author.online || data.data.authorUser?.online || false,
+            _id: data.data.id,
+            isBrand: getIsBrand()
+        }
+        useCases = data.data.caseStudies.map(caseStudy => {
+            return {
+                title: caseStudy.title,
+                description: caseStudy.description,
+                image: caseStudy.preview.url,
+                _id: caseStudy.id
+            }
+        })
+        if (moreReviews) {
+            reviews = data.data.reviews.map(review => {
+                return {
+                    avatar: review.author.profileImage.url,
+                    name: review.author.firstName + " " + review.author.lastName,
+                    time: getElapsedTime(review.createdAt),
+                    stars: parseInt(review.stars),
+                    comment: review.description,
+                    _id: review.id
+                }
+            })
+        } else {
+
+            reviews = data.data.reviews.slice(0, 3).map(review => {
+                return {
+                    avatar: review.author.profileImage.url,
+                    name: review.author.firstName + " " + review.author.lastName,
+                    time: getElapsedTime(review.createdAt),
+                    stars: parseInt(review.stars),
+                    comment: review.description,
+                    _id: review.id
+                }
+            })
+        }
     }
-    function goBack(){
+    function openBrand() {
+        if (data?.data.authorBusinessId) navigate(ROUTES.businesses.index + "/" + data.data.authorBusinessId)
+        if (data?.data.authorUserId) navigate(ROUTES.profile + "/" + data?.data.authorUserId)
+    }
+    function openConversation() {
+        navigate(ROUTES.conversations + "/" + (data?.data.authorBusiness?.authorId || data?.data.authorUser?.id))
+    }
+    function goBack() {
         router.back()
     }
-    function openServiceEditor(){
-        navigate(ROUTES.market_place.services.update)
+    function openServiceEditor() {
+        navigate(ROUTES.market_place.services.update + "/" + data?.data.id)
+    }
+    function getIsBrand() {
+        return Boolean(data?.data.authorBusinessId)
+    }
+    function toggleReviews() {
+        setMoreReviews(state => !state)
     }
 }

@@ -1,48 +1,56 @@
+import axios from "axios"
+import { useQuery } from "react-query"
 import { avatar_1_md } from "../../assets/avatars"
 import { ROUTES } from "../../assets/constant"
+import useStore from "../../store/useStore"
+import { ProfilePreviewProps } from "../../types/types"
 import { useMenuToggle, useNavigate } from "../../utils/hooks"
 
 
 
-export default function useProfilePreview(){
-    const image = avatar_1_md
-    const name = "Ana Rose"
-    const description = "I am a bakwerian living in los Angeles. I love my people and culture and am willing to meet other bakwerians"
-    const notifications = 5
-    const messages = 3
-    const followers = 5500
-    const following = 3005
-    const {navigate} = useNavigate()
-    const {closeMenu} = useMenuToggle()
+export default function useProfilePreview({ image, name, description, notifications, followers, following }: ProfilePreviewProps) {
+    const { user } = useStore()
+    const { navigate } = useNavigate()
+    const { closeMenu } = useMenuToggle()
+    let newMessages = 0
 
+    const { data, isSuccess } = useQuery(["messages/newMessages", { userId: user.id }], () => {
+        return axios.get("/api/messages/newMessages/" + user.id)
+    }, { enabled: !!user.id })
 
-    return {image,name ,description, notifications , messages , followers , following,
-        openProfile, openNotifications, openMessages , openSettings , openFollowers , openFollowing , closeMenu
-        }
+    if (isSuccess) handleSuccess()
 
-    function openProfile(){
+    return {
+        image, name, description, notifications, newMessages, followers, following,
+        openProfile, openNotifications, openMessages, openSettings, openFollowers, openFollowing, closeMenu
+    }
+
+    function openProfile() {
         navigate(ROUTES.profile)
         closeMenu()
     }
-    function openNotifications(){
+    function openNotifications() {
         navigate(ROUTES.notification)
         closeMenu()
     }
-    function openMessages(){
+    function openMessages() {
         navigate(ROUTES.conversations)
         closeMenu()
     }
-    function openSettings(){
+    function openSettings() {
         navigate(ROUTES.settings)
         closeMenu()
     }
-    function openFollowers(){
+    function openFollowers() {
         navigate(ROUTES.followers)
         closeMenu()
     }
-    function openFollowing(){
+    function openFollowing() {
         navigate(ROUTES.following)
         closeMenu()
     }
-
+    function handleSuccess() {
+        if (data?.data)
+            newMessages = data.data
+    }
 }

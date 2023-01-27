@@ -1,39 +1,55 @@
+import { Notifications } from "@prisma/client";
+import axios from "axios";
+import { useQuery, useQueryClient } from "react-query";
 import { avatar_1, avatar_2, avatar_3 } from "../assets/avatars";
+import useStore from "../store/useStore";
 import { NotificationProps } from "../types/types";
+import { getElapsedTime } from "../utils/fn";
 
+type ServerNotification = Notifications & {
+    trigger: {
+        firstName: string,
+        lastName: string,
+        profileImage: { url: string }
+    }
+    service?: {
+        name: string
+    },
+    post?: {
+        text?: string
+    }
+}
 
+export default function useNotifications() {
+    const { user } = useStore()
+    const { data, isSuccess } = useQuery<{ data: ServerNotification[] }>(["notifications", user.id], () => {
+        return axios.get("/api/notifications/" + user.id)
+    }, { enabled: !!user.id })
+    let notifications: NotificationProps[] = []
+    const queryClient = useQueryClient()
 
-export default function useNotifications(){
-    const notifications : NotificationProps[] = [
-        {
-            avatar : avatar_2,
-            name : "james smith",
-            action : 'like',
-            time : "5 months",
-            product : 'air max pro',
-            _id : 1
-
-        },
-        {
-            avatar : avatar_3,
-            name : "james roden",
-            action : 'follow',
-            time : "5 hrs",
-            _id : 1
-
-        },
-        {
-            avatar : avatar_1,
-            name : "bob roden",
-            action : 'review',
-            time : "2 days",
-            service : "Crown sign",
-            _id : 1
-
-        },
-    ]
+    if (isSuccess) handleSuccess()
 
     const more = true
 
-    return {notifications, more}
+    return { notifications, more, isSuccess }
+
+    function handleSuccess() {
+        if (!data?.data) return
+        notifications = data.data.map(notification => {
+            return {
+                avatar: notification.trigger.profileImage.url,
+                name: notification.trigger.firstName + " " + notification.trigger.lastName,
+                action: notification.type,
+                time: getElapsedTime(notification.updatedAt.toString()),
+                _id: notification.id,
+                postText: notification.post?.text,
+                serviceName: notification.service?.name,
+                postId: notification.postId || undefined,
+                serviceId: notification.serviceId || undefined,
+                triggerId: notification.triggerId
+            }
+        })
+        queryClient.invalidateQueries("user")
+    }
 }
