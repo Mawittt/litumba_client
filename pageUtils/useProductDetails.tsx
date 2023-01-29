@@ -1,28 +1,10 @@
+import { Businesses, Products, Users } from "@prisma/client";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { ROUTES } from "../assets/constant";
-import { shoe_image, shoe_image_1, shoe_image_2, shoe_image_3 } from "../assets/images";
 import { OtherProductProps, ProductDetailsProps } from "../types/types";
 import { useNavigate, useOwner } from "../utils/hooks";
 
-interface ProductInterface {
-    authorUser: {
-        online: boolean
-    }
-    authorBusiness: {
-        author: { online: boolean }
-    }
-    authorBusinessId: string
-    authorUserId: string
-    previews: { url: string }[],
-    name: string,
-    description: string,
-    price: number,
-    city: string,
-    country: string,
-    quantity: number,
-    id: string
-}
 interface OtherProductInterface {
     previews: { url: string }[]
     id: string
@@ -32,7 +14,7 @@ interface OtherProductInterface {
 
 
 interface serverData {
-    product: ProductInterface,
+    product: Products & { authorUser: Users, authorBusiness: Businesses & { author: Users } },
     otherProducts: OtherProductInterface[]
 }
 
@@ -58,14 +40,14 @@ export default function useProductDetails() {
     const { data, isSuccess, isLoading } = useQuery<{ data: serverData }, Error>(["products", productId], () => {
         return axios.get("/api/products/" + productId)
     }, { enabled: !!productId })
-    const self = useOwner()
+    const self = useOwner(data?.data.product.authorUserId || data?.data.product.authorBusiness.authorId || "")
 
     if (isSuccess) handleSuccess()
 
     return { isLoading, details, otherProducts, openBusinessEditor, openConversation, openBrand, goBack, self }
 
     function openConversation() {
-        navigate(ROUTES.conversations + "/conversation_id")
+        navigate(ROUTES.conversations + "/" + (data?.data.product.authorUserId || data?.data.product.authorBusiness.authorId || ""))
     }
     function openBrand() {
         if (data?.data.product.authorBusinessId) navigate(ROUTES.businesses.index + "/" + data?.data.product.authorBusinessId)

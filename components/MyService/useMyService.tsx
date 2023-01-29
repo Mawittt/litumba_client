@@ -5,18 +5,17 @@ import { useMenuToggle, useNavigate } from "../../utils/hooks";
 
 
 
-export default function useMyService({title, interested , image} : MyServiceProps){
+export default function useMyService({ title, image, id }: MyServiceProps) {
     image = image || "/avatars/brand_avatar_1.jpg"
     title = title || "Designer"
-    interested = interested || 5
 
-    const {navigate} = useNavigate()
-    const {closeMenu} = useMenuToggle()
+    const { navigate } = useNavigate()
+    const { closeMenu } = useMenuToggle()
 
-    return {image , title , interested , openService}
+    return { image, title, openService }
 
-    function openService(){
+    function openService() {
         closeMenu()
-        navigate(ROUTES.market_place.services.index + "/service_id")
+        navigate(ROUTES.market_place.services.index + "/" + id)
     }
 }

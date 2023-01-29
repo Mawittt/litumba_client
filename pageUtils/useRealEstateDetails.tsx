@@ -1,3 +1,4 @@
+import { Businesses, RealEstates, Users } from "@prisma/client";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { ROUTES } from "../assets/constant";
@@ -5,31 +6,10 @@ import { business_image_1, realEstate_1, realEstate_2, realEstate_3, shoe_image,
 import { OtherRealEstateProps, RealEstateDetailsProps } from "../types/types";
 import { useNavigate, useOwner } from "../utils/hooks";
 
-interface realEstate {
-    authorBusinessId: string;
-    authorBusiness: {
-        author: {
-            online: boolean
-        }
-    }
-    authorUserId: string
-    authorUser: {
-        online: boolean
-    },
-    city: string,
-    country: string,
-    description: string,
-    id: string,
-    name: string,
-    previews: { url: string }[],
-    price: number,
-    type: string,
-    createdAt: string
-}
 
 interface serverData {
-    realEstate: realEstate
-    otherEstates: realEstate[]
+    realEstate: RealEstates & { authorUser: Users, authorBusiness: Businesses & { author: Users } }
+    otherEstates: RealEstates[]
 }
 
 
@@ -55,7 +35,7 @@ export default function useRealEstateDetails() {
 
     let otherRealEstate: OtherRealEstateProps[] = []
 
-    const self = useOwner()
+    const self = useOwner(data?.data.realEstate.authorUserId || data?.data.realEstate.authorBusiness.aut)
     if (isSuccess) handleSuccess()
 
     return { isLoading, isSuccess, details, otherRealEstate, openRealEstateEditor, openConversation, openBrand, goBack, self }

@@ -10,16 +10,17 @@ export interface MyBusinessProps {
 	image: string;
 	name: string;
 	assets: number;
+	id: string;
 }
 export interface MyJobProps {
 	image: string;
 	title: string;
-	applicants: number;
+	id: string;
 }
 export interface MyServiceProps {
 	image: string;
 	title: string;
-	interested: number;
+	id: string;
 }
 export interface ButtonProps {
 	label?: string;
@@ -32,9 +33,9 @@ export interface ButtonProps {
 }
 
 export interface MyProductProps {
-	image?: string;
-	name?: string;
-	interested?: number;
+	image: string;
+	name: string;
+	id: string;
 }
 
 export interface PostProps {
@@ -634,7 +635,6 @@ export interface ProfilePreviewProps {
 	name: string;
 	description: string;
 	notifications: number;
-	messages: number;
 	followers: number;
 	following: number;
 }

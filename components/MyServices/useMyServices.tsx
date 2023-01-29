@@ -4,25 +4,7 @@ import { MyServiceProps } from "../../types/types"
 
 
 
-export default function useMyServices(){
-    const services: MyServiceProps[] = [
-        {
-            image: brand_avatar_1,
-            title: "Designer",
-            interested: 5
-        },
-        {
-            image: brand_avatar_3,
-            title: "Web development",
-            interested: 1
-        },
-        {
-            image: brand_avatar_2,
-            title: "Mentorship",
-            interested: 3
-        },
-    ]
-
+export default function useMyServices({ services }: { services: MyServiceProps[] }) {
     const more = true
-    return { services , more }
+    return { services, more }
 }

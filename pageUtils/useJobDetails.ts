@@ -1,3 +1,4 @@
+import { Businesses, Jobs, Users } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
@@ -8,39 +9,7 @@ import { JobDetailsProps } from "../types/types";
 import { getElapsedTime } from "../utils/fn";
 import { useNavigate, useOwner } from "../utils/hooks";
 
-interface ServerJobInterface {
-	authorUser: {
-		profileImage: { url: string };
-		coverImage: { url: string };
-		id: string;
-		email: string;
-		firstName: string;
-		lastName: string;
-		online: boolean;
-	};
-	authorBusiness: {
-		logo: { url: string };
-		coverImage: { url: string };
-		id: string;
-		email: string;
-		name: string;
-		website: string;
-		author: {
-			online: boolean;
-		};
-	};
-	city: string;
-	country: string;
-	createdAt: string;
-	description: string;
-	expertise: string;
-	id: string;
-	niche: string;
-	pricing: string;
-	schedule: string;
-	title: string;
-	urgency: string;
-}
+type ServerJobInterface = Jobs & { authorUser: Users; authorBusiness: Businesses & { author: Users } };
 
 export default function useJobDetails() {
 	const { navigate, router } = useNavigate();
@@ -52,14 +21,15 @@ export default function useJobDetails() {
 
 	if (isSuccess) handleSuccess();
 
-	const self = useOwner();
+	const self = useOwner(data?.data.authorUserId || data?.data.authorBusiness.authorId || "");
 	return { isLoading, details, gotoBrand, openChat, goBack, self, openJobEditor };
 
 	function gotoBrand() {
-		navigate(ROUTES.businesses.index + "/business_id");
+		if (data?.data.authorUserId) navigate(ROUTES.profile + "/" + data.data.authorUserId);
+		if (data?.data.authorBusinessId) navigate(ROUTES.businesses.index + "/" + data.data.authorBusinessId);
 	}
 	function openChat() {
-		navigate(ROUTES.conversations + "/conversation_id");
+		navigate(ROUTES.conversations + "/" + data?.data.authorUserId || data?.data.authorBusiness.authorId || "");
 	}
 	function goBack() {
 		router.back();

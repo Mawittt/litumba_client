@@ -1,3 +1,4 @@
+import { Businesses, CaseStudy, Reviews, Services, Users } from "@prisma/client";
 import axios from "axios";
 import { title } from "process";
 import { useState } from "react";
@@ -9,62 +10,11 @@ import { ReviewProps, ServiceDetailsProps, UseCaseProps } from "../types/types";
 import { getElapsedTime } from "../utils/fn";
 import { useNavigate, useOwner } from "../utils/hooks";
 
-interface CaseStudy {
-    description: string
-    preview: { url: string }
-    title: string
-    id: string
-}
 
-interface review {
-    author: {
-        id: string
-        profileImage: { url: string }
-        firstName: string
-        lastName: string
-    }
-    createdAt: string
-    stars: string
-    description: string
-    id: string
-    authorId: string
-}
 
-interface ServerService {
-    authorBusinessId?: string
-    authorBusiness?: {
-        logo: { url: string }
-        authorId: string
-        website: string
-        coverImage: { url: string }
-        name: string
-        email: string
-        author: {
-            online: boolean
-        }
-    }
-    authorUser?: {
-        profileImage: { url: string }
-        coverImage: { url: string }
-        id: string
-        firstName: string
-        lastName: string
-        email: string
-        online: boolean
-    },
-    authorUserId?: string,
-    city: string,
-    country: string,
-    createAt: string,
-    description: string,
-    hub: "Regular" | "Litumba",
-    id: string,
-    name: string,
-    niche: string,
-    price: number,
-    caseStudies: CaseStudy[]
-    reviews: review[]
-}
+
+
+type ServerService = Services & { authorUser: Users, authorBusiness: Businesses & { author: Users }, caseStudies: CaseStudy[], reviews: (Reviews & { author: Users })[] }
 
 export default function useServiceDetails() {
     const { navigate, router } = useNavigate()
@@ -76,7 +26,7 @@ export default function useServiceDetails() {
 
     let useCases: UseCaseProps[] = []
     let reviews: ReviewProps[] = []
-    const self = useOwner()
+    const self = useOwner(data?.data.authorUserId || data?.data.authorBusiness.authorId || "")
 
     let details: ServiceDetailsProps = {
         cover: "",
@@ -124,8 +74,8 @@ export default function useServiceDetails() {
                 return {
                     avatar: review.author.profileImage.url,
                     name: review.author.firstName + " " + review.author.lastName,
-                    time: getElapsedTime(review.createdAt),
-                    stars: parseInt(review.stars),
+                    time: getElapsedTime(review.createdAt.toString()),
+                    stars: parseInt(review.stars.toString()),
                     comment: review.description,
                     _id: review.id
                 }
@@ -136,8 +86,8 @@ export default function useServiceDetails() {
                 return {
                     avatar: review.author.profileImage.url,
                     name: review.author.firstName + " " + review.author.lastName,
-                    time: getElapsedTime(review.createdAt),
-                    stars: parseInt(review.stars),
+                    time: getElapsedTime(review.createdAt.toString()),
+                    stars: parseInt(review.stars.toString()),
                     comment: review.description,
                     _id: review.id
                 }

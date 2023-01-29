@@ -1,19 +1,17 @@
 import { ROUTES } from "../../assets/constant"
+import { MyProductProps } from "../../types/types"
 import { useMenuToggle, useNavigate } from "../../utils/hooks"
 
 
 
-export default function useMyProduct(){
-    const image = "/avatars/brand_avatar_1.jpg"
-    const name = "Air-force Max"
-    const interested = 6
-    const {navigate} = useNavigate()
-    const {closeMenu} = useMenuToggle()
+export default function useMyProduct({ image, name, id }: MyProductProps) {
+    const { navigate } = useNavigate()
+    const { closeMenu } = useMenuToggle()
 
-    return {image, name , interested , openProduct}
+    return { image, name, openProduct }
 
-    function openProduct(){
+    function openProduct() {
         closeMenu()
-        navigate(ROUTES.market_place.products.index + "/product_id")
+        navigate(ROUTES.market_place.products.index + "/" + id)
     }
 }

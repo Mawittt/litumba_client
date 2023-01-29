@@ -1,7 +1,11 @@
-import { Businesses, Follows, Jobs, Notifications, Products, Users } from "@prisma/client";
+import { Businesses, Follows, Jobs, Notifications, Products, Services, Users } from "@prisma/client";
 import axios from "axios";
+import { title } from "process";
 import { useQuery } from "react-query";
+import { brand_avatar_1, brand_avatar_2, brand_avatar_3 } from "../../assets/avatars";
+import { shoe_image } from "../../assets/images";
 import useStore from "../../store/useStore";
+import { MyBusinessProps, MyJobProps, MyProductProps, MyServiceProps } from "../../types/types";
 
 interface Count {
 	businesses: number;
@@ -21,9 +25,10 @@ interface Count {
 }
 
 type serverData = Users & {
-	businesses: Businesses[];
+	businesses: (Businesses & { _count: { jobs: number; products: number; realEstates: number; services: number } })[];
 	products: Products[];
 	jobs: Jobs[];
+	services: Services[];
 	followers: Follows[];
 	notifications: Notifications[];
 	_count: Count;
@@ -54,13 +59,17 @@ export default function useRightNavBar() {
 		name: "",
 		description: "",
 		notifications: 0,
-		messages: 0,
 		followers: 0,
 		following: 0,
 	};
+	let businesses: MyBusinessProps[] = [];
+	let jobs: MyJobProps[] = [];
+	let services: MyServiceProps[] = [];
+	let products: MyProductProps[] = [];
+
 	if (isSuccess) handleSuccess();
 
-	return { profilePreview, isSuccess };
+	return { profilePreview, isSuccess, businesses, jobs, services, products };
 
 	function handleSuccess() {
 		if (!data?.data) return;
@@ -73,6 +82,39 @@ export default function useRightNavBar() {
 			followers: details._count.followers,
 			following: details._count.followees,
 		};
+
+		businesses = data.data.businesses.map((business) => {
+			return {
+				image: business.logo.url,
+				name: business.name,
+				assets: getAssetsCount(),
+				id: business.id,
+			};
+			function getAssetsCount() {
+				return business._count.jobs + business._count.products + business._count.realEstates + business._count.services;
+			}
+		});
+		jobs = data.data.jobs.map((job) => {
+			return {
+				image: data.data.profileImage.url,
+				title: job.title,
+				id: job.id,
+			};
+		});
+		services = data.data.services.map((service) => {
+			return {
+				image: data.data.profileImage.url,
+				title: service.name,
+				id: service.id,
+			};
+		});
+		products = data.data.products.map((product) => {
+			return {
+				image: product.previews[0].url,
+				name: product.name,
+				id: product.id,
+			};
+		});
 
 		function getNotifications() {
 			return details.notifications.reduce((accumulator, currentValue) => {

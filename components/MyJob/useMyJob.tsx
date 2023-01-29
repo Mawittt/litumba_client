@@ -5,18 +5,17 @@ import { useMenuToggle, useNavigate } from "../../utils/hooks"
 
 
 
-export default function useMyJob({image, title , applicants} : MyJobProps){
+export default function useMyJob({ image, title, id }: MyJobProps) {
     image = image || "/avatars/brand_avatar_1.jpg"
     title = title || "Manager"
-    applicants = applicants || 18
 
-    const {navigate} = useNavigate()
-    const {closeMenu} = useMenuToggle()
+    const { navigate } = useNavigate()
+    const { closeMenu } = useMenuToggle()
 
-    return {image , title, applicants , openJob}
+    return { image, title, openJob }
 
-    function openJob(){
+    function openJob() {
         closeMenu()
-        navigate(ROUTES.jobs.index + "/job_id")
+        navigate(ROUTES.jobs.index + "/" + id)
     }
 }

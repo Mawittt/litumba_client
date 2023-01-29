@@ -7,6 +7,7 @@ import { avatar_1 } from "../assets/avatars"
 import { person_cover_image, profile_image_for_background } from "../assets/images"
 import useStore from "../store/useStore"
 import { SettingsFormProps } from "../types/types"
+import { useNotifiers } from "../utils/hooks"
 
 
 export default function useSettings() {
@@ -15,25 +16,42 @@ export default function useSettings() {
     const [profile, setProfile] = useState<string>("")
     const imagesFromServer = useRef({ cover: "", profile: "" })
     const imagesForServer = useRef<{ cover: null | Blob, profile: null | Blob }>({ cover: null, profile: null })
-    const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm<SettingsFormProps>()
+    const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm<SettingsFormProps>({
+        defaultValues: {
+            "city": "",
+            "country": "",
+            "description": "",
+            "email": "",
+            "firstName": "",
+            "lastName": "",
+            "phone": "",
+            "profession": "",
+            "privacy": {
+                "emailOnProfile": false,
+                "phoneOnProfile": false,
+            }
+        }
+    })
     const { data, isSuccess } = useQuery<{ data: Users }, Error>(["user", { userId: user.id }], () => {
         return axios.get("/api/user/" + user.id)
     }, { enabled: !!user.id })
     const mutator = useMutation(["user", { userId: user.id }], (updates: any) => {
         return axios.post("/api/user/" + user.id, updates)
     })
+    const { setConfirmation, setWarning } = useNotifiers()
 
     useEffect(() => {
         if (isSuccess) handleSuccess()
     }, [isSuccess, data?.data])
 
     if (mutator.isSuccess) handleSettingsSaved()
+    if (mutator.isError) handleError()
 
-    return { cover, profile, register, handleSubmit, errors, watch, saveSettings, setCoverImage, setProfileImage }
+    return { mutator, cover, profile, register, handleSubmit, errors, watch, saveSettings, setCoverImage, setProfileImage }
 
     function saveSettings(data: SettingsFormProps) {
         const formData = new FormData()
-        formData.append("firsName", data.firstName)
+        formData.append("firstName", data.firstName)
         formData.append("lastName", data.lastName)
         formData.append("country", data.country)
         formData.append("city", data.city)
@@ -45,7 +63,7 @@ export default function useSettings() {
         formData.append("phoneOnProfile", data.privacy.phoneOnProfile.toString())
         formData.append("coverImage", getCoverImage())
         formData.append("profileImage", getProfileImage())
-        console.log(data)
+        mutator.mutate(formData)
 
         function getCoverImage() {
             if (imagesForServer.current.cover) return imagesForServer.current.cover
@@ -99,6 +117,11 @@ export default function useSettings() {
         fileReader.readAsDataURL(profileImage)
     }
     function handleSettingsSaved() {
-        console.log(mutator.data?.data)
+        mutator.reset()
+        setConfirmation({ content: "Saved successfully" })
+    }
+    function handleError() {
+        mutator.reset()
+        setWarning({ content: "Sorry there was an Error, please try again" })
     }
 }

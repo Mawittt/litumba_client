@@ -1,5 +1,6 @@
 import Router, { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import useStore from "../store/useStore"
 import { AlertProps, ConfirmationProps, PromptProps, WarningProps } from "../types/types"
 
 
@@ -33,9 +34,9 @@ export function useNavigate() {
         }
     }
 }
-export function useOwner() {
-    const self = true
-    return self
+export function useOwner(ownerId: string) {
+    const { user } = useStore()
+    return ownerId === user.id
 }
 export function useMenuToggle() {
 

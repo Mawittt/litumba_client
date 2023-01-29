@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { AddImageIcon } from "../../assets/icons";
+import Loader from "../../assets/Loader";
 import Button from "../../components/Button/Button";
 import ToggleButton from "../../components/ToggleButton/ToggleButton";
 import useSettings from "../../pageUtils/useSettings";
@@ -9,7 +10,7 @@ import useSettings from "../../pageUtils/useSettings";
 
 
 export default function Settings() {
-    const { profile, cover, register, handleSubmit, errors, watch, saveSettings, setCoverImage, setProfileImage } = useSettings()
+    const { mutator, profile, cover, register, handleSubmit, errors, watch, saveSettings, setCoverImage, setProfileImage } = useSettings()
     return (
         <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
             <div>
@@ -23,12 +24,12 @@ export default function Settings() {
                 </div>
             </div>
             <div>
-                <Button label="Set profile" icon={<AddImageIcon />} inputLabel='profile-image' />
-                <input onChange={setProfileImage} type="file" name="profile-image" id="profile-image" className="hidden" />
-            </div>
-            <div>
                 <Button label="Set Cover" icon={<AddImageIcon />} inputLabel="cover-image" />
                 <input onChange={setCoverImage} type="file" name="cover-image" id="cover-image" className="hidden" />
+            </div>
+            <div>
+                <Button label="Set profile" icon={<AddImageIcon />} inputLabel='profile-image' />
+                <input onChange={setProfileImage} type="file" name="profile-image" id="profile-image" className="hidden" />
             </div>
             <div className="flex flex-col gap-2">
                 <div className="font-bold">First name</div>
@@ -71,7 +72,7 @@ export default function Settings() {
                 <div>Display email on profile</div>
                 <ToggleButton attributes={{ ...register("privacy.emailOnProfile") }} value={watch("privacy.emailOnProfile")} />
             </div>
-            <Button label="Save changes" onClick={handleSubmit(saveSettings)} />
+            {mutator.isLoading ? <div className="flex justify-center"><Loader /></div> : <Button label="Save changes" onClick={handleSubmit(saveSettings)} />}
         </div>
     )
 }

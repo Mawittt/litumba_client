@@ -1,4 +1,4 @@
-import { getIncludeObject } from "./helpers"
+import { getIncludeObject, IncludesObjectParam } from "./helpers"
 import { prisma } from "./prismaClient"
 
 interface CreateInterface {
@@ -38,6 +38,8 @@ interface UpdateInterface {
     }
 }
 
+type IncludeStrings = "businesses" | "culturalGroups" | "comments" | "likes" | "notifications" | "notificationsTriggered" | "followers" | "followees" | "posts" | "jobs" | "products" | "services" | "realEstates" | "reviews";
+type IncludesType = (IncludeStrings | IncludesObjectParam)[];
 
 
 export default class UserModel {
@@ -55,7 +57,7 @@ export default class UserModel {
             data: data
         })
     }
-    async getOne(userId: string, includes?: ("businesses" | "culturalGroups" | "comments" | "likes" | "notifications" | "notificationsTriggered" | "followers" | "followees" | "posts" | "jobs" | "products" | "services" | "realEstates" | "reviews")[]) {
+    async getOne(userId: string, includes?: IncludesType) {
         const include = includes ? getIncludeObject(includes) : {}
         include._count = true
         return await prisma.users.findUnique({

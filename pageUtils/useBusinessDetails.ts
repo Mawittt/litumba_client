@@ -1,3 +1,4 @@
+import { Businesses, Jobs, Products, Services, Users } from "@prisma/client";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { brand_avatar_1 } from "../assets/avatars";
@@ -7,75 +8,7 @@ import { BusinessDetailsProps, JobProps, ProductProps, ServiceProps } from "../t
 import { getElapsedTime } from "../utils/fn";
 import { useNavigate, useOwner } from "../utils/hooks";
 
-interface ServiceFromServer {
-	authorBusinessId: string;
-	authorUserId: string;
-	city: string;
-	country: string;
-	createdAt: string;
-	description: string;
-	hub: string;
-	id: string;
-	name: string;
-	niche: string;
-	price: number;
-	updateAt: string;
-}
-
-interface productFromServer {
-	authorBusinessId: string;
-	authorUserId: string;
-	brand: string;
-	city: string;
-	country: string;
-	createdAt: string;
-	description: string;
-	id: string;
-	name: string;
-	niche: string;
-	previews: { url: string }[];
-	price: number;
-	quantity: number;
-	updatedAt: number;
-}
-
-interface JobFromServer {
-	authorBusinessId: string;
-	authorUserId: string;
-	city: string;
-	country: string;
-	createdAt: string;
-	description: string;
-	expertise: string;
-	id: string;
-	niche: string;
-	pricing: string;
-	schedule: string;
-	title: string;
-	updatedAt: string;
-	urgency: string;
-}
-
-interface ServerBusiness {
-	coverImage: { url: string };
-	logo: { url: string };
-	name: string;
-	email?: string;
-	website?: string;
-	city: string;
-	country: string;
-	description: string;
-	phone?: string;
-	niche: string;
-	author: {
-		online: boolean;
-	};
-	id: string;
-	authorId: string;
-	services: ServiceFromServer[];
-	products: productFromServer[];
-	jobs: JobFromServer[];
-}
+type ServerBusiness = Businesses & { services: Services[]; products: Products[]; jobs: Jobs[]; author: Users };
 
 export default function useBusinessDetails() {
 	let details: BusinessDetailsProps | null = {
@@ -96,7 +29,6 @@ export default function useBusinessDetails() {
 	let jobs: JobProps[] = [];
 	const { navigate, router } = useNavigate();
 	const userId = router.query._id;
-	console.log(userId);
 	const { data, isSuccess, isLoading, isError } = useQuery<{ data: ServerBusiness }, Error>(
 		["businesses", userId],
 		() => {
@@ -105,7 +37,7 @@ export default function useBusinessDetails() {
 		{ enabled: !!userId }
 	);
 
-	const self = useOwner();
+	const self = useOwner(data?.data.authorId || "");
 	if (isSuccess) handleSuccess();
 	if (isError) handleError();
 
@@ -171,7 +103,7 @@ export default function useBusinessDetails() {
 				avatar: data.data.logo.url,
 				title: job.title,
 				location: job.city + " " + job.country,
-				time: getElapsedTime(job.updatedAt),
+				time: getElapsedTime(job.updatedAt.toString()),
 				description: job.description,
 				tags: getJobTags(job),
 				isBrand: true,
@@ -180,12 +112,10 @@ export default function useBusinessDetails() {
 			};
 		});
 
-		console.log(data.data);
-
-		function getServiceTags(service: ServiceFromServer) {
+		function getServiceTags(service: Services) {
 			return [service.price + " frs", service.niche, service.hub];
 		}
-		function getJobTags(job: JobFromServer) {
+		function getJobTags(job: Jobs) {
 			return [job.pricing, job.niche, job.expertise];
 		}
 	}
