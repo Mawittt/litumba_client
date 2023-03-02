@@ -17,7 +17,7 @@ export default function ProductDetail() {
     const { details, isLoading, otherProducts, openBrand, openConversation, goBack, openBusinessEditor, self } = useProductDetails()
 
     return (
-        <div className="pb-6" key={details._id} id="product-container">
+        <div className="my-6 mx-4 rounded-lg overflow-hidden bg-white" key={details._id} id="product-container">
             {
                 isLoading ? <div className="flex flex-col items-center mt-6">
                     <Loader />
@@ -25,7 +25,7 @@ export default function ProductDetail() {
                 </div> :
                     <>
                         <ProductPreviewer selectedImage={details.selectedPreview} allImages={details.previews} />
-                        <div className="gap-4 flex flex-col w-full py-4 px-2">
+                        <div className="gap-4 flex flex-col w-full py-4 px-4">
                             {self ?
                                 <div className="flex justify-end">
                                     <EditIcon onClick={openBusinessEditor} />

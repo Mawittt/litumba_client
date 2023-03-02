@@ -10,7 +10,7 @@ const Create = () => {
     const { mutator, register, handleSubmit, errors, createService, setAuthor } = useServiceCreate()
 
     return (
-        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
+        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-4 flex flex-col gap-4 bg-white my-6">
             <h3 className="font-bold text-2xl">Create a Service</h3>
             <p>please fill the below form and click the &quot;Create Service&quot; button to create a new job.</p>
             <CreateAs setAuthor={setAuthor} />

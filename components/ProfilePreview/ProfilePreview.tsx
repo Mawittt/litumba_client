@@ -34,13 +34,13 @@ export default function ProfilePreview(props: ProfilePreviewProps) {
                 </div>
             </div>
             <div className="flex w-full justify-around border-solid border-y-[1.5px] border-border p-[10px] text-blue-500">
-                <div className="flex flex-col items-center justify-center">
-                    <div className=" font-bold cursor-pointer" onClick={openFollowers}>{followers}</div>
+                <div className="flex flex-col items-center justify-center cursor-pointer">
+                    <div className=" font-bold " onClick={openFollowers}>{followers}</div>
                     <div onClick={openFollowers}>Followers</div>
                 </div>
                 <div className="w-[2px] h-fill bg-border"></div>
-                <div className="flex flex-col items-center justify-center">
-                    <div className=" font-bold cursor-pointer" onClick={openFollowing}>{following}</div>
+                <div className="flex flex-col items-center justify-center cursor-pointer">
+                    <div className=" font-bold " onClick={openFollowing}>{following}</div>
                     <div onClick={openFollowing}>Following</div>
                 </div>
             </div>

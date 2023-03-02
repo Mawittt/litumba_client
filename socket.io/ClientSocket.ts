@@ -7,7 +7,9 @@ export default class ClientSocket {
 	queryClient: QueryClient | undefined;
 
 	constructor() {
+		// fetch("http://192.168.42.101:3000/api/socket");
 		fetch("http://localhost:3000/api/socket");
+
 		this.socket = io("/", { transports: ["websocket", "polling"], autoConnect: false });
 		this.userId = "";
 
@@ -36,6 +38,7 @@ export default class ClientSocket {
 	}
 
 	connect(userId: string, queryClient: QueryClient) {
+		if (this.socket.connected) this.socket.disconnect();
 		this.userId = userId;
 		this.queryClient = queryClient;
 		this.socket.connect();

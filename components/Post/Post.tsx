@@ -12,9 +12,9 @@ export default function Post(props: PostProps) {
         enlargeImage, togglePostLike, openCommentsSection, video, isBrand } = usePost(props)
 
     return (
-        <div className=" flex flex-col gap-2 shadow-comp_lg pt-[10px] rounded-lg">
+        <div className=" flex flex-col gap-2 shadow-comp_lg pt-[10px] rounded-lg bg-white">
             <div className="flex items-center gap-2 px-2" onClick={openProfile}>
-                <Image src={avatar} alt={' post author profile '} width="45" height={45} className={cn("h-[45px] cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} />
+                <Image src={avatar} alt={' post author profile '} width="45" height={45} className={cn("h-[45px] w-auto cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} />
                 <div className="flex items-baseline">
                     <strong className="cursor-pointer text-blue-500">{name}</strong>
                     <p className="text-bc_5 text-[0.7rem] font-bold ml-2">{time}</p>
@@ -25,13 +25,15 @@ export default function Post(props: PostProps) {
             </div>
             {image && <img src={image} alt={"post image "} className="cursor-pointer max-h-[70vh] aspect-auto max-w-full w-fit m-auto " onClick={enlargeImage} />}
             {video && <video src={video} controls className="max-h-[70vh] cursor-pointer" onClick={enlargeImage} />}
-            <div className="flex justify-center gap-x-10 pt-4 font-bold">
-                <div className="flex cursor-pointer" onClick={togglePostLike}>
-                    <LikeIcon className={cn(mutator.isLoading ? "opacity-60" : "")} selected={likedState.current} />
+            <div className="flex justify-center gap-x-10 border-y-[1px] border-t-solid mb-2 py-1">
+                <div className="flex cursor-pointer items-center" onClick={togglePostLike}>
+                    Like
+                    <LikeIcon className={cn(mutator.isLoading ? "opacity-60" : " mx-2")} selected={likedState.current} />
                     <span>{likes}</span>
                 </div>
-                <div className="flex cursor-pointer" onClick={openCommentsSection}>
-                    <CommentsIcon />
+                <div className="flex cursor-pointer items-center" onClick={openCommentsSection}>
+                    Comment
+                    <CommentsIcon className="mx-2" />
                     <span>{comments}</span>
                 </div>
             </div>

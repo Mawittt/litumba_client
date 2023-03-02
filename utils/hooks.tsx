@@ -61,15 +61,49 @@ export function useNotifiers() {
     return { setAlert, setWarning, setPrompt, setConfirmation }
 
     function setAlert(data: AlertProps) {
-        alert(data.content)
+        openNotifier(data.content, "notifier-alert")
     }
     function setWarning(warning: WarningProps) {
-        alert(warning.content)
+        openNotifier(warning.content, "notifier-warning")
     }
     function setPrompt(prompt: PromptProps) {
-        alert(prompt.content)
+        openNotifier(prompt.content, "notifier-alert")
     }
     function setConfirmation(confirmation: ConfirmationProps) {
-        alert(confirmation.content)
+        openNotifier(confirmation.content, "notifier-confirmation")
+    }
+    function openNotifier(message: string, elementId: string) {
+        const keyframes = [
+            { transform: "translateY(-120%)" },
+            { transform: "translateY(50px)" }
+        ]
+        const openOptions: KeyframeAnimationOptions = {
+            duration: 300,
+            easing: "cubic-bezier(0.220, 0.555, 0.470, 1.255)",
+            fill: "forwards"
+        }
+        const closeOptions: KeyframeAnimationOptions = {
+            duration: 300,
+            easing: "cubic-bezier(0.220, 0.555, 0.470, 1.255)",
+            fill: "forwards",
+            direction: "reverse"
+        }
+        const confirmation = document.getElementById(elementId)
+        if (!confirmation) return
+
+        setText()
+        confirmation.animate(keyframes, openOptions)
+        close_notifier_after_delay()
+
+
+        function setText() {
+            if (confirmation?.lastChild) confirmation.lastChild.textContent = message
+        }
+        function close_notifier_after_delay() {
+            setTimeout(() => {
+                confirmation?.animate(keyframes, closeOptions)
+            }, 6000);
+        }
+
     }
 }

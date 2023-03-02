@@ -12,7 +12,9 @@ interface CreateInterface {
     description: string
     phone: string
     email: string
-    online: boolean
+    online: boolean,
+    password?: string,
+    jwtToken: string[],
     privacy: {
         phoneOnProfile: boolean
         emailOnProfile: boolean
@@ -32,6 +34,7 @@ interface UpdateInterface {
     email?: string
     online?: boolean
     socketId?: string
+    jwtToken?: string[]
     privacy?: {
         phoneOnProfile?: boolean
         emailOnProfile?: boolean
@@ -68,6 +71,13 @@ export default class UserModel {
                 businesses: true,
                 ...include,
                 _count: true
+            }
+        })
+    }
+    async getOneByEmail(userEmail: string) {
+        return prisma.users.findFirst({
+            where: {
+                email: userEmail
             }
         })
     }

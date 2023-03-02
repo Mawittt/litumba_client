@@ -1,5 +1,5 @@
-import multer from "multer";
 import { localStorageEngine } from "./LocalStorage";
+import multer from "multer";
 import { s3Engine } from "./S3Storage";
 
 const imageValidator = function (req: any, file: any, cb: any) {
@@ -12,7 +12,7 @@ const imageValidator = function (req: any, file: any, cb: any) {
 };
 
 const upload = multer({
-	storage: localStorageEngine,
+	storage: s3Engine,
 	fileFilter: imageValidator,
 });
 

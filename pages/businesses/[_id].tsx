@@ -18,7 +18,7 @@ export default function BusinessDetails() {
     const { isLoading, services, products, jobs, details, goBack, gotoConversation, self, openBusinessEditor } = useBusinessDetails()
 
     return (
-        <div className="w-full pb-4 px-4 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 bg-white mx-4 my-6 rounded-lg overflow-hidden">
             {isLoading ? <div className="flex flex-col items-center mt-6">
                 <Loader />
                 <p className="mt-2">Loading business</p>
@@ -27,59 +27,61 @@ export default function BusinessDetails() {
                     <div className="w-full h-[300px] relative">
                         <Image src={details.cover} fill alt="cover image" />
                     </div>
-                    <div className='flex justify-between w-full flex-wrap'>
-                        <div className="flex gap-2 items-center flex-wrap">
-                            <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] "} /></div>
-                            <div >
-                                <h3 className="font-bold ">{details.name}</h3>
-                                <div>{details.email}</div>
-                                <div>{details.website}</div>
-                            </div>
-                        </div>
-                        <div className="flex flex-col justify-between items-end w-full flex-1">
-                            <div className="cursor-pointer">{self ? <EditIcon onClick={openBusinessEditor} /> : <ContactIcon onClick={gotoConversation} />}</div>
-                            <div className='flex translate-x-[-5px] w-[max-content]'>
-                                <div className='h-[24px]'>
-                                    <LocationIcon />
+                    <div className="flex flex-col gap-6 px-4">
+                        <div className='flex justify-between w-full flex-wrap'>
+                            <div className="flex gap-2 items-center flex-wrap">
+                                <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] "} /></div>
+                                <div >
+                                    <h3 className="font-bold ">{details.name}</h3>
+                                    <div>{details.email}</div>
+                                    <div>{details.website}</div>
                                 </div>
-                                <div>{details.location}</div>
+                            </div>
+                            <div className="flex flex-col justify-between items-end w-full flex-1">
+                                <div className="cursor-pointer">{self ? <EditIcon onClick={openBusinessEditor} /> : <ContactIcon onClick={gotoConversation} />}</div>
+                                <div className='flex translate-x-[-5px] w-[max-content]'>
+                                    <div className='h-[24px]'>
+                                        <LocationIcon />
+                                    </div>
+                                    <div>{details.location}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        {details.description}
-                    </div>
-                    <div className="flex flex-col gap-4">
                         <div>
-                            <div>Price</div>
-                            <div className="font-bold">{details.phone}</div>
+                            {details.description}
                         </div>
-                        <div>
-                            <div>Niche</div>
-                            <div className="font-bold">{details.niche}</div>
-                        </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-col gap-4">
                             <div>
-                                Available
+                                <div>Price</div>
+                                <div className="font-bold">{details.phone}</div>
                             </div>
-                            <div className={
-                                cn(
-                                    "w-4 h-4 rounded-full bg-red-500",
-                                    details.available ? "bg-green-500" : "bg-red-500"
-                                )
-                            }></div>
+                            <div>
+                                <div>Niche</div>
+                                <div className="font-bold">{details.niche}</div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div>
+                                    Available
+                                </div>
+                                <div className={
+                                    cn(
+                                        "w-4 h-4 rounded-full bg-red-500",
+                                        details.available ? "bg-green-500" : "bg-red-500"
+                                    )
+                                }></div>
+                            </div>
                         </div>
                     </div>
                 </>}
-                <div>
-                    <h2 className="font-bold mb-4">Services</h2>
+                <div className="px-4">
+                    <h2 className="font-bold mb-4 ">Services</h2>
                     <div className="flex flex-col gap-2">
                         {
                             services.map(service => <Service key={service._id} {...service} />)
                         }
                     </div>
                 </div>
-                <div>
+                <div className="px-4">
                     <h2 className="font-bold mb-4">Products</h2>
                     <div className="flex flex-col gap-2">
                         {
@@ -87,7 +89,7 @@ export default function BusinessDetails() {
                         }
                     </div>
                 </div>
-                <div>
+                <div className="px-4">
                     <h2 className="font-bold mb-4">Jobs</h2>
                     <div className="flex flex-col gap-2">
                         {

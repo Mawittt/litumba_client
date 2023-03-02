@@ -25,7 +25,7 @@ export default function useMessages() {
     const peerId = router.query.id
     const { data, isSuccess, isLoading } = useQuery<{ data: ServerData }>(["conversations", { peerId }], () => {
         return axios.get("/api/conversations/" + user.id + "?peerId=" + peerId)
-    }, { enabled: !!peerId })
+    }, { enabled: !!peerId && !!user.id })
     const { register, handleSubmit, reset } = useForm<MessagesFormProps>({
         defaultValues: {
             text: ""
@@ -57,7 +57,7 @@ export default function useMessages() {
     }, [messages])
 
 
-    return { messages, user: userProfile, gotoProfile, register, handleSubmit, sendMessage, mutator, isSuccess }
+    return { goBack, messages, user: userProfile, gotoProfile, register, handleSubmit, sendMessage, mutator, isSuccess }
 
 
     function gotoProfile() {
@@ -98,5 +98,8 @@ export default function useMessages() {
                 return Boolean(message.authorId === user.id)
             }
         })
+    }
+    function goBack() {
+        navigate(-1)
     }
 }

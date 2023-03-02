@@ -1,3 +1,4 @@
+import { Businesses, Jobs, Users } from "@prisma/client"
 import axios from "axios"
 import { useRef, useState } from "react"
 import { useQuery } from "react-query"
@@ -7,30 +8,10 @@ import { JobProps, TopAssetsSearchFormProps } from "../types/types"
 import { getElapsedTime, scrollPageComponentToTop } from "../utils/fn"
 import { useNavigate } from "../utils/hooks"
 
-interface JobsInterface {
-    authorUser: {
-        profileImage: { url: string },
-        id: string
-    }
-    authorBusiness: {
-        logo: { url: string },
-        id: string
-    }
-    id: string,
-    title: string,
-    city: string,
-    country: string,
-    createdAt: string,
-    description: string,
-    expertise: string,
-    niche: string,
-    pricing: string,
-    schedule: string,
-    urgency: string
-}
+
 
 interface ServerData {
-    jobs: JobsInterface[],
+    jobs: (Jobs & { authorUser: Users, authorBusiness: Businesses })[],
     count: number,
     isMore: boolean,
     span: number
@@ -62,16 +43,17 @@ export default function useJobs() {
                 avatar: job.authorUser?.profileImage.url || job.authorBusiness.logo.url,
                 title: job.title,
                 location: job.city + " " + job.country,
-                time: getElapsedTime(job.createdAt),
+                time: getElapsedTime(job.createdAt.toString()),
                 description: job.description,
                 tags: getTags(),
                 isBrand: isBrand(),
                 _id: job.id,
-                authorId: job.authorUser?.id || job.authorBusiness.id
+                authorId: job.authorUser?.id || job.authorBusiness.id,
+                owner: job.authorUser?.id || job.authorBusiness.authorId
             }
 
             function getTags() {
-                const tags: string[] = [job.pricing, job.niche, job.expertise, job.schedule, job.urgency]
+                const tags: string[] = [job.pricing, job.niche, job.expertise, job.schedule, job.urgency || ""]
                 return tags.filter(Boolean)
             }
             function isBrand() {

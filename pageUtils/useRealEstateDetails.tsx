@@ -35,7 +35,7 @@ export default function useRealEstateDetails() {
 
     let otherRealEstate: OtherRealEstateProps[] = []
 
-    const self = useOwner(data?.data.realEstate.authorUserId || data?.data.realEstate.authorBusiness.aut)
+    const self = useOwner(data?.data.realEstate.authorUserId || data?.data.realEstate.authorBusiness.authorId || "")
     if (isSuccess) handleSuccess()
 
     return { isLoading, isSuccess, details, otherRealEstate, openRealEstateEditor, openConversation, openBrand, goBack, self }

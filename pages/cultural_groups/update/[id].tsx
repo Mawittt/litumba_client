@@ -11,7 +11,7 @@ import useCulturalGroupsUpdate from "../../../pageUtils/useCulturalGroupsUpdate"
 export default function CulturalGroupCreation() {
     const { register, handleSubmit, updateCulturalGroup, errors, cover, profile, watch } = useCulturalGroupsUpdate()
     return (
-        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
+        <div className="shadow-comp_lg rounded-lg py-4 px-4 mx-4 my-6 bg-white flex flex-col gap-4">
             <h3 className="font-bold text-2xl">Update the cultural group</h3>
             <p>please fill the below form and click the &quot;Update Group&quot; button to create a new job.</p>
             <div>

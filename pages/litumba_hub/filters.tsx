@@ -7,7 +7,7 @@ import useLitumbaHubFilters from "../../pageUtils/useLitumbaHubFilters";
 export default function LitumbaHubFilters() {
     const { register, handleSubmit, search } = useLitumbaHubFilters()
     return (
-        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4 mt-4" >
+        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-4 flex flex-col gap-4 my-6 bg-white" >
             <div className="flex flex-col gap-2">
                 <div className="font-bold">Pricing(frs cfa)</div>
                 <select id="" className="text-input p-0" {...register("price")}>

@@ -1,3 +1,4 @@
+import { CulturalGroups } from "@prisma/client";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { group_avatar } from "../assets/avatars";
@@ -6,28 +7,18 @@ import { group_image_1 } from "../assets/images";
 import { CulturalGroupDetails } from "../types/types";
 import { useNavigate, useOwner } from "../utils/hooks";
 
-interface ServerData {
-    authorId: string,
-    city: string,
-    cover: { url: string },
-    createdAt: string,
-    description: string,
-    id: string,
-    logo: { url: string },
-    members: number,
-    name: string,
-}
+
 
 export default function useCulturalGroupDetails() {
 
 
     const { navigate, router } = useNavigate()
-    const self = useOwner()
     const groupId = router.query._id
-    const { data, isSuccess, isLoading } = useQuery<{ data: ServerData }, Error>(["culturalGroups", groupId], () => {
+    const { data, isSuccess, isLoading } = useQuery<{ data: CulturalGroups }, Error>(["culturalGroups", groupId], () => {
         return axios.get("/api/culturalGroups/" + groupId)
     }, { enabled: !!groupId })
 
+    const self = useOwner(data?.data.authorId || "")
     let details: CulturalGroupDetails = {
         cover: "",
         avatar: "",

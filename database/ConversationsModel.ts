@@ -55,6 +55,7 @@ export default class ConversationsModel {
 				messages: {
 					where: {
 						seen: false,
+						receiverId: userId,
 					},
 				},
 				users: true,

@@ -12,7 +12,7 @@ import useSettings from "../../pageUtils/useSettings";
 export default function Settings() {
     const { mutator, profile, cover, register, handleSubmit, errors, watch, saveSettings, setCoverImage, setProfileImage } = useSettings()
     return (
-        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
+        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-4 flex flex-col gap-4 my-6 bg-white">
             <div>
                 <div className="relative w-full h-[300px]">
                     {!!cover && <Image src={cover} alt="cover image" fill className="object-cover" />}

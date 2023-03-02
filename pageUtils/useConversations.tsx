@@ -22,7 +22,7 @@ export default function useConversations() {
 
     if (isSuccess) handleSuccess()
 
-    return { conversations }
+    return { conversations, isSuccess }
 
     function handleSuccess() {
         if (!data?.data) return

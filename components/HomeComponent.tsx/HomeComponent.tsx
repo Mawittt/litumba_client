@@ -9,7 +9,7 @@ import useHomeComponent from "./useHomeComponent";
 export default function HomeComponent() {
     const { posts, isLoading, isError, isSuccess, loadContent, isFetchingNextPage, isMore } = useHomeComponent()
     return (
-        <div className="w-full gap-[30px] flex flex-col md:p-4 py-4 px-2 overflow-scroll h-full" id="postsContainer" onScroll={loadContent} >
+        <div className="w-full gap-[30px] flex flex-col px-4 py-6 px-2 overflow-scroll h-full" id="postsContainer" onScroll={loadContent} >
             <AddPost />
             {
                 isSuccess && posts.map((post, index) => <Post key={index} {...post} />)
@@ -28,7 +28,7 @@ export default function HomeComponent() {
             }
             {
                 !isMore && isSuccess && !isFetchingNextPage && <div className="flex flex-col items-center">
-                    <p>No more content</p>
+                    <p className="bg-pink-200 w-full p-4 flex justify-center items-center rounded-lg text-red-500 font-bold">No more content</p>
                 </div>
             }
             {

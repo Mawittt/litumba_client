@@ -2,18 +2,19 @@ import { useForm } from "react-hook-form"
 import { useEffect, useRef, useState } from "react"
 import { useNavigate, useNotifiers } from "../../utils/hooks"
 import { PostInputProps } from "../../types/types"
-import { useMutation } from "react-query"
+import { useMutation, useQuery } from "react-query"
 import axios from "axios"
 import useStore from "../../store/useStore"
-import { convertToObject } from "typescript"
 import { ROUTES } from "../../assets/constant"
+import { Users } from "@prisma/client"
 
 export default function useAddPost() {
+    let userAvatar = ""
     const { user } = useStore()
     const [image, setImage] = useState("")
     const [video, setVideo] = useState("")
     const mediaFlag = useRef<"none" | "image" | "video">("none")
-    const { setAlert, setWarning } = useNotifiers()
+    const { setConfirmation, setWarning } = useNotifiers()
     const { register, handleSubmit, watch, setValue, reset } = useForm({
         defaultValues: {
             postImageInput: null,
@@ -25,21 +26,22 @@ export default function useAddPost() {
         return axios.post("/api/posts", newPost)
     }, { retry: 3 })
     const { navigate } = useNavigate()
-
+    const { data, isLoading } = useQuery<{ data: Users }, Error>(["user", { userId: user.id }], () => {
+        return axios.get("api/user/" + user.id)
+    }, { enabled: !!user.id })
     useEffect(() => {
         if (mutator.isSuccess) handleMutationSuccess()
         if (mutator.isError) handleMutationError()
     }, [mutator.isSuccess, mutator.isError])
-
-
     useEffect(() => {
         watchImage(watch("postImageInput"))
         watchVideo(watch("postVideoInput"))
     }, [watch("postImageInput"), watch("postVideoInput")])
 
+    if (data?.data) userAvatar = data.data.profileImage.url
 
 
-    return { openProfile, register, handleSubmit, sendPost, image, video, setImageFlag, setVideoFlag, clearMedia, mutator }
+    return { userAvatar, isLoading, openProfile, register, handleSubmit, sendPost, image, video, setImageFlag, setVideoFlag, clearMedia, mutator }
 
     function watchImage(data: FileList | null) {
         if (!data) return
@@ -116,7 +118,7 @@ export default function useAddPost() {
         mediaFlag.current = "none"
         mutator.reset()
         clearMedia()
-        setAlert({ content: "post saved" })
+        setConfirmation({ content: "post saved" })
     }
     function handleMutationError() {
         setWarning({ content: "please try again" })

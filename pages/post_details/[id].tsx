@@ -10,14 +10,14 @@ export default function Post_details() {
     const { mutator, isLoading, isSuccess, isError, post, comments, openProfile, enlargeImage, sendComment, handleSubmit, register } = usePostDetails()
     return (
         <>
-            {isLoading && <div className="flex flex-col items-center mt-[50px]">
+            {isLoading && <div className="flex flex-col items-center mt-6">
                 <Loader />
                 <p>loading post Comments</p>
             </div>}
             {
                 isError && <div className="text-center mt-[50px] px-4 ">sorry there was an error please reload the page</div>
             }
-            {isSuccess && <div className=" flex flex-col gap-2 shadow-comp_lg py-[10px] rounded-lg mt-4">
+            {isSuccess && <div className=" flex flex-col gap-2 shadow-comp_lg py-[10px] rounded-lg my-6 mx-4 bg-white">
                 <div className="flex items-center gap-2 px-2" onClick={openProfile}>
                     <Image
                         src={post.avatar || ""}

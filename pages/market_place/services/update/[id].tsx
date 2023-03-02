@@ -12,7 +12,7 @@ const Update = () => {
     const { mutator, register, handleSubmit, errors, updateService } = useServiceUpdate()
 
     return (
-        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4">
+        <div className="shadow-comp_lg rounded-lg py-4 px-4 mx-2 flex flex-col gap-4 my-6 mx-4 bg-white">
             <h3 className="font-bold text-2xl">Update this Service</h3>
             <p>please fill the below form and click the &quot;Update Service&quot; button to create a new job.</p>
             <div className="flex flex-col gap-2">

@@ -2,8 +2,7 @@ import { Businesses, Follows, Jobs, Products, Users } from "@prisma/client";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { avatar_1, brand_avatar_1, brand_avatar_2, brand_avatar_3 } from "../assets/avatars";
-import { person_cover_image, shoe_image, shoe_image_1, shoe_image_2 } from "../assets/images";
+import { ROUTES } from "../assets/constant";
 import useStore from "../store/useStore";
 import { BusinessProps, JobProps, ProductProps, UserProfileProps } from "../types/types";
 import { getElapsedTime } from "../utils/fn";
@@ -16,11 +15,11 @@ type serverData = Users & { businesses: Businesses[], products: Products[], jobs
 
 export default function useUserProfile() {
     const { user } = useStore()
-    const { router } = useNavigate()
-    const peerId = router.query.id
-    const { data, isSuccess, isLoading } = useQuery<{ data: serverData }, Error>(["user", peerId], () => {
-        return axios.get("/api/user/" + peerId)
-    }, { enabled: !!peerId })
+    const { router, navigate } = useNavigate()
+    const userToBeDisplayed = router.query.id || user.id
+    const { data, isSuccess, isLoading } = useQuery<{ data: serverData }, Error>(["user", { userId: userToBeDisplayed }], () => {
+        return axios.get("/api/user/" + userToBeDisplayed)
+    }, { enabled: !!userToBeDisplayed })
     const mutator = useMutation("follows", (follow: any) => {
         return axios.post("/api/follows", follow)
     }, { retry: 3 })
@@ -56,7 +55,7 @@ export default function useUserProfile() {
     if (isSuccess) handleSuccess()
 
 
-    return { mutator, details, businesses, products, jobs, isLoading, isSuccess, hasFollowed, toggleFollow }
+    return { mutator, details, businesses, products, jobs, isLoading, isSuccess, hasFollowed, toggleFollow, openUpdateUi, openConversation }
 
     function handleSuccess() {
         if (!data?.data) return
@@ -131,11 +130,17 @@ export default function useUserProfile() {
         if (mutator.isLoading) return
         mutator.mutate({
             followerId: user.id,
-            followeeId: peerId
+            followeeId: userToBeDisplayed
         })
     }
     function handleFollowToggleSuccess() {
         mutator.reset()
         setHasFollowed(mutator.data?.data)
+    }
+    function openUpdateUi() {
+        navigate(ROUTES)
+    }
+    function openConversation() {
+        navigate(ROUTES.conversations + "/" + userToBeDisplayed)
     }
 }

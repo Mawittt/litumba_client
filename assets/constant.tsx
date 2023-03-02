@@ -1,5 +1,6 @@
 
 export const ROUTES = {
+    landingPage: "/",
     home: "/home",
     jobs: {
         index: "/jobs",

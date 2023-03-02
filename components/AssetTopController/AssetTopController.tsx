@@ -11,7 +11,7 @@ import useAssetTopController from "./useAssetTopController"
 export default function AssetTopController(props: AssetTopControllerProps) {
     const { openCreate, openFilters, isGroups, isLitumbaHub, register, handleSubmit, search } = useAssetTopController(props)
     return (
-        <div className="py-4 px-2 flex flex-col items-center gap-6 shadow-comp_lg rounded-lg">
+        <div className="py-4 px-2 flex flex-col items-center gap-6 shadow-comp_lg rounded-lg bg-white">
             <form className="flex gap-4 items-center w-full" onSubmit={handleSubmit(search)}>
                 <input type="text" className="text-input" {...register("searchString")} />
                 <SearchIcon onClick={handleSubmit(search)} />

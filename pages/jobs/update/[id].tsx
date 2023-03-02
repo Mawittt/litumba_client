@@ -12,7 +12,7 @@ export default function JobUpdating() {
     const { register, handleSubmit, updateJob, watch, isSaving } = useJobUpdate()
 
     return (
-        <form className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4 my-4">
+        <form className="shadow-comp_lg rounded-lg py-4 px-2 mx-4 flex flex-col gap-4 my-6 bg-white">
             <h3 className="font-bold text-2xl">Update this job post</h3>
             <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <div className="flex flex-col gap-1">

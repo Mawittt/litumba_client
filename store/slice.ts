@@ -13,7 +13,7 @@ export interface AuthState {
 
 // Initial state
 const initialState: AuthState = {
-	user: { id: "63b02f45ac99b1e63c12d5d4" },
+	user: { id: "" },
 	socket: new ClientSocket(),
 };
 

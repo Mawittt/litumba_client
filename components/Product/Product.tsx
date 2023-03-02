@@ -11,7 +11,7 @@ import useProduct from './useProduct'
 const Product = (props: ProductProps) => {
     const { avatar, name, location, website, image, description, price, amount, isBrand, self, openConversation, openProduct } = useProduct(props)
     return (
-        <div className=' py-4 px-2 shadow-comp_lg rounded-lg'>
+        <div className=' py-4 px-2 shadow-comp_lg rounded-lg bg-white my-2'>
             <div className='flex justify-between w-full'>
                 <div className="flex gap-2 items-center flex-wrap">
                     <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} onClick={openProduct} /></div>

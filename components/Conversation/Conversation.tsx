@@ -8,7 +8,7 @@ import useConversation from "./useConversation"
 export default function Conversation(props: ConversationProps) {
     const { conversation, gotoConversation } = useConversation(props)
     return (
-        <div className="shadow-comp rounded-lg py-4 px-2 flex justify-between items-center cursor-pointer" onClick={gotoConversation}>
+        <div className="shadow-comp rounded-lg py-4 px-2 flex justify-between items-center cursor-pointer bg-white" onClick={gotoConversation}>
             <div className="flex gap-2 items-center">
                 <Image src={conversation.avatar} width={64} height={64} alt="conversation avatar" className="rounded-full h-[60px] cursor-pointer" />
                 <div>

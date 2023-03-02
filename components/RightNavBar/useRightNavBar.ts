@@ -79,8 +79,8 @@ export default function useRightNavBar() {
 			name: details.firstName + " " + details.lastName,
 			description: details.description,
 			notifications: getNotifications(),
-			followers: details._count.followers,
-			following: details._count.followees,
+			followers: details._count.followees,
+			following: details._count.followers,
 		};
 
 		businesses = data.data.businesses.map((business) => {

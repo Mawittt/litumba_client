@@ -10,16 +10,16 @@ import useRightNavBar from "./useRightNavBar";
 export default function RightNavBar() {
     const { profilePreview, isSuccess, businesses, jobs, services, products } = useRightNavBar()
     return (
-        <div className="flex bg-white flex-col gap-[30px] pt-2 w-full">
+        <div className="flex flex-col gap-[30px] my-6">
             {!isSuccess ? <div className="flex flex-col items-center mt-6 w-[300px]">
                 <Loader />
                 <p className="mt-2">Loading information</p>
             </div> : <>
                 <ProfilePreview  {...profilePreview} />
-                <MyBusinesses businesses={businesses} />
-                <MyJobs jobs={jobs} />
-                <MyServices services={services} />
-                <MyProducts products={products} />
+                {!!businesses.length && <MyBusinesses businesses={businesses} />}
+                {!!jobs.length && <MyJobs jobs={jobs} />}
+                {!!services.length && <MyServices services={services} />}
+                {!!products.length && <MyProducts products={products} />}
             </>}
         </div>
     )

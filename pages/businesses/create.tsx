@@ -13,7 +13,7 @@ import useBusinessCreation from "../../pageUtils/useBusinessCreation";
 export default function BusinessCreation() {
     const { mutator, cover, logo, register, handleSubmit, errors, createBusiness } = useBusinessCreation()
     return (
-        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4 mt-4">
+        <div className="shadow-comp_lg rounded-lg py-4 px-2 mx-4 flex flex-col gap-4 my-6 bg-white">
             <h3 className="font-bold text-2xl">Create a Business</h3>
             <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <div>

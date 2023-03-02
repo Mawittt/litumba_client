@@ -7,10 +7,10 @@ import useBusiness from "./useBusiness"
 
 
 
-export default function Business(props : BusinessProps){
-    const {avatar, name , email , website , description , tags ,gotoBusiness , gotoConversation , self } = useBusiness(props)
+export default function Business(props: BusinessProps) {
+    const { avatar, name, email, website, description, tags, gotoBusiness, gotoConversation, self } = useBusiness(props)
     return (
-        <div className="py-4 px-2 gap-2 flex flex-col shadow-comp_lg rounded-lg my-4">
+        <div className="py-4 px-2 gap-2 flex flex-col shadow-comp_lg rounded-lg my-4 bg-white">
             <div className="flex justify-between flex-wrap">
                 <div className="flex gap-2 items-center flex-wrap flex-1">
                     <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] cursor-pointer"} onClick={gotoBusiness} /></div>

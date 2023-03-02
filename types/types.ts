@@ -50,6 +50,7 @@ export interface PostProps {
 	isBrand: boolean;
 	id: any;
 	liked: boolean;
+	authorId: string;
 }
 
 export interface JobProps {
@@ -63,6 +64,7 @@ export interface JobProps {
 	self?: boolean;
 	_id: any;
 	authorId: string;
+	owner: string;
 }
 
 export interface BusinessProps {
@@ -619,6 +621,7 @@ export interface culturalGoupsProps {
 	location: string;
 	members: number;
 	id: string;
+	authorId: string;
 }
 
 export interface CreateAsProps {
@@ -643,4 +646,21 @@ export interface MessagesFormProps {
 	userId?: string;
 	peerId?: string;
 	text: string;
+}
+
+export interface SignUpFormProps {
+	firstName: string;
+	lastName: string;
+	profileImage: Blob | null;
+	coverImage: Blob | null;
+	country: string;
+	city: string;
+	profession: string;
+	description: string;
+	phone: string;
+}
+
+export interface authApiReturn {
+	token: string;
+	userId: string;
 }

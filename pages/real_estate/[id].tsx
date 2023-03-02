@@ -18,7 +18,7 @@ export default function ProductDetail() {
     const { isLoading, details, otherRealEstate, openBrand, openConversation, goBack, openRealEstateEditor, self } = useRealEstateDetails()
 
     return (
-        <div className="pb-6">
+        <div className="pb-6 my-6 mx-4 rounded-lg overflow-hidden bg-white">
             {
                 isLoading ? <div className="flex flex-col items-center mt-6">
                     <Loader />

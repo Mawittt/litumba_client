@@ -21,7 +21,7 @@ export default function useFollowers() {
 
 	if (isSuccess) handleSuccess();
 
-	return { followers };
+	return { followers, isSuccess };
 
 	function handleSuccess() {
 		if (!data?.data) return;

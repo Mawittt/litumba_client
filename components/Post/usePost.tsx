@@ -13,7 +13,7 @@ interface LikeInterface {
 }
 
 
-export default function usePost({ avatar, name, time, description, image, likes, comments, video, isBrand, id, liked }: PostProps) {
+export default function usePost({ authorId, avatar, name, time, description, image, likes, comments, video, isBrand, id, liked }: PostProps) {
     const { user } = useStore()
     const { navigate } = useNavigate()
     const mutator = useMutation("like", (like: LikeInterface) => {
@@ -31,7 +31,8 @@ export default function usePost({ avatar, name, time, description, image, likes,
     return { likedState, likeState, mutator, isBrand, video, avatar, name, time, description, image, likes, comments, openProfile, enlargeImage, togglePostLike, openCommentsSection }
 
     function openProfile() {
-        navigate(ROUTES.profile)
+        if (!isBrand) navigate(ROUTES.profile + "/" + authorId)
+        if (isBrand) navigate(ROUTES.businesses.index + "/" + authorId)
     }
 
     function enlargeImage() {

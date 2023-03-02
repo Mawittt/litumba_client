@@ -11,6 +11,8 @@ import { getElapsedTime, getTime } from "../../utils/fn"
 interface Post {
     authorUser?: { firstName: string, profileImage: { url: string } },
     authorBusiness?: { logo: { url: string }, name: string }
+    authorUserId: string,
+    authorBusinessId: string,
     text?: string,
     image?: { url: string },
     video?: { url: string },
@@ -34,7 +36,7 @@ export default function useHomeComponent() {
     let isMore = true
     const { user } = useStore()
     const { data, isError, isLoading, isSuccess, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<{ data: ServerData }, Error>("posts", ({ pageParam = 0 }) => {
-        return axios.get(`/api/posts?cursor=${pageParam}&span=3`)
+        return axios.get(`/api/posts?cursor=${pageParam}&span=8`)
     }, {
         getNextPageParam: (lastPage: { data: ServerData }) => lastPage.data.nextCursor
     })
@@ -51,6 +53,7 @@ export default function useHomeComponent() {
                 const arrangedPost: PostProps = {
                     avatar: post.authorUser?.profileImage.url || post.authorBusiness?.logo.url || "",
                     name: post.authorUser?.firstName || post.authorBusiness?.name || "",
+                    authorId: post.authorUserId || post.authorBusinessId || "",
                     time: getElapsedTime(post.createdAt),
                     description: post.text || "",
                     image: post.image?.url || "",

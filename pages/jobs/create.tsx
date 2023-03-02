@@ -13,7 +13,7 @@ export default function JobCreation() {
     const { register, handleSubmit, errors, createJob, mutator, setAuthor } = useJobCreation()
 
     return (
-        <form className="shadow-comp_lg rounded-lg py-4 px-2 mx-2 flex flex-col gap-4 my-4" onSubmit={handleSubmit(createJob)}>
+        <form className="shadow-comp_lg rounded-lg py-4 px-2 mx-6 flex flex-col gap-4 my-6 bg-white" onSubmit={handleSubmit(createJob)}>
             <h3 className="font-bold text-2xl">Create a job</h3>
             <p>please fill the below form and click the &quot;Create Job&quot; button to create a new job.</p>
             <CreateAs setAuthor={setAuthor} />

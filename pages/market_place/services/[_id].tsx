@@ -16,7 +16,7 @@ export default function ServiceDetails() {
     const { moreReviews, isSuccess, details, useCases, reviews, self, goBack, openBrand, openConversation, openServiceEditor, toggleReviews } = useServiceDetails()
 
     return (
-        <div className="flex-col flex gap-4 pb-6">
+        <div className="flex-col flex gap-4 pb-6 my-6 mx-4 overflow-hidden rounded-lg bg-white">
             {!isSuccess ? <div className="flex flex-col items-center mt-6">
                 <Loader />
                 <p className="mt-2">Loading Service</p>
@@ -24,7 +24,7 @@ export default function ServiceDetails() {
                 <div className="relative w-full h-[300px] ">
                     <Image src={details.cover} fill alt="cover image" className="object-cover" />
                 </div>
-                <div className="flex flex-col px-2 gap-4">
+                <div className="flex flex-col px-4 gap-4">
                     <div className='flex justify-between w-full'>
                         <div className="flex gap-2 items-center flex-wrap">
                             <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", details.isBrand ? "rounded-lg" : "rounded-full")} onClick={openBrand} /></div>

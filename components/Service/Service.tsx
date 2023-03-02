@@ -13,7 +13,7 @@ export default function Service(props: ServiceProps) {
     const { avatar, title, location, website, description, tags, openService, openConversation, isBrand } = useService(props)
 
     return (
-        <div className=" flex flex-col gap-2 py-4 px-2 shadow-comp_lg rounded-lg">
+        <div className=" flex flex-col gap-2 py-4 px-2 shadow-comp_lg rounded-lg bg-white">
             <div className='flex justify-between w-full'>
                 <div className="flex gap-2 items-center flex-wrap">
                     <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} onClick={openService} /></div>

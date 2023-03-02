@@ -19,10 +19,10 @@ import { cn } from "../../utils/fn"
 
 export default function Profile() {
 
-    const { mutator, details, businesses, products, jobs, isLoading, isSuccess, hasFollowed, toggleFollow } = useUserProfile()
+    const { mutator, details, businesses, products, jobs, isLoading, isSuccess, hasFollowed, toggleFollow, openConversation } = useUserProfile()
 
     return (
-        <div >
+        <div className="my-6 mx-4 overflow-hidden rounded-lg bg-white">
             {!isSuccess ? <div className="flex flex-col items-center mt-6">
                 <Loader />
                 <p className="mt-2">Loading user</p>
@@ -41,7 +41,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className="flex flex-col h-full justify-between items-end">
-                            <ContactIcon />
+                            <ContactIcon onClick={openConversation} />
                             <div className='flex translate-x-[-5px]'>
                                 <div className='h-[24px]'>
                                     <LocationIcon />

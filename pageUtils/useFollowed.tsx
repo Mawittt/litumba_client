@@ -19,7 +19,7 @@ export default function useFollowed() {
 
     if (isSuccess) handleSuccess()
 
-    return { followers }
+    return { followers, isSuccess }
     function handleSuccess() {
         if (!data?.data) return
 

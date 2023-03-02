@@ -8,7 +8,14 @@ import axios from "axios"
 
 export default function useCaseStudyCreate({ serviceId }: CreateCaseStudyProps) {
     const [preview, setPreview] = useState<string>()
-    const { register, handleSubmit, formState: { errors }, watch, reset, setValue } = useForm<CaseStudyUpdateFormProps>()
+    const { register, handleSubmit, formState: { errors }, watch, reset, setValue } = useForm<CaseStudyUpdateFormProps>({
+        defaultValues: {
+            preview: "",
+            title: "",
+            description: '',
+            _id: ""
+        }
+    })
     const mutator = useMutation("caseStudies", (caseStudy: any) => {
         return axios.post("/api/caseStudies", caseStudy)
     })

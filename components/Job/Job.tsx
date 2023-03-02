@@ -10,7 +10,7 @@ import useJob from "./useJob"
 export default function Job(props: JobProps) {
     const { avatar, title, location, time, description, tags, isBrand, self, openJob, openChat } = useJob(props)
     return (
-        <div className="py-4 px-2 gap-2 flex flex-col shadow-comp_lg rounded-lg my-4">
+        <div className="py-4 px-2 gap-2 flex flex-col shadow-comp_lg rounded-lg my-4 bg-white">
             <div className="flex justify-between">
                 <div className="flex gap-2 items-center flex-wrap">
                     <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} onClick={openJob} /></div>

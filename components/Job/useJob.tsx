@@ -4,7 +4,7 @@ import { useNavigate } from "../../utils/hooks";
 
 
 
-export default function useJob({ avatar, title, location, time, description, tags, isBrand, self, _id }: JobProps) {
+export default function useJob({ avatar, title, location, time, description, tags, isBrand, self, _id, owner }: JobProps) {
 
     const { navigate } = useNavigate()
 
@@ -14,6 +14,6 @@ export default function useJob({ avatar, title, location, time, description, tag
         navigate(ROUTES.jobs.index + "/" + _id)
     }
     function openChat() {
-        navigate(ROUTES.conversations + "/conversation_id")
+        navigate(ROUTES.conversations + "/" + owner)
     }
 }

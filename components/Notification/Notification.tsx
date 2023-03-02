@@ -10,7 +10,7 @@ export default function Notification(props: NotificationProps) {
     const { notification, gotoProfile, gotoPost, gotoService } = useNotification(props)
 
     return (
-        <div className="shadow-comp rounded-lg flex items-end justify-between py-2 px-2">
+        <div className="shadow-comp rounded-lg flex items-end justify-between py-2 px-2 bg-white">
             <div className="flex gap-2 ">
                 <Image src={notification.avatar} alt="notification avatar" width={64} height={64} className={'h-[64px] cursor-pointer rounded-full'} onClick={gotoProfile} />
                 <div className="flex flex-col justify-center" >
