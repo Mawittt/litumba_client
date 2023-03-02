@@ -43,7 +43,7 @@ apiRoute.post(async (req: NextApiRequest, res: NextApiResponseWithSocket) => {
 		return true;
 	}
 	async function deleteNotification() {
-		notificationModel.deleteLikeNotification(post?.authorBusiness?.author || post?.authorUserId || "", req.body.authorId, req.body.postId);
+		notificationModel.deleteLikeNotification(post?.authorBusiness?.authorId || post?.authorUserId || "", req.body.authorId, req.body.postId);
 	}
 	async function createNotification() {
 		notificationModel.createLikeNotification({
