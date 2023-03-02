@@ -14,7 +14,7 @@ export default function useAddPost() {
     const [image, setImage] = useState("")
     const [video, setVideo] = useState("")
     const mediaFlag = useRef<"none" | "image" | "video">("none")
-    const { setConfirmation, setWarning } = useNotifiers()
+    const { setConfirmation, setWarning, setAlert } = useNotifiers()
     const { register, handleSubmit, watch, setValue, reset } = useForm({
         defaultValues: {
             postImageInput: null,
