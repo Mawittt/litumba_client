@@ -8,7 +8,12 @@ import { BusinessDetailsProps, JobProps, ProductProps, ServiceProps } from "../t
 import { getElapsedTime } from "../utils/fn";
 import { useNavigate, useOwner } from "../utils/hooks";
 
-type ServerBusiness = Businesses & { services: Services[]; products: Products[]; jobs: Jobs[]; author: Users };
+type ServerBusiness = Businesses & {
+	services: Services[];
+	products: Products[];
+	jobs: (Jobs & { authorBusiness: { authorId: string } })[];
+	author: Users;
+};
 
 export default function useBusinessDetails() {
 	let details: BusinessDetailsProps | null = {
@@ -109,6 +114,7 @@ export default function useBusinessDetails() {
 				isBrand: true,
 				_id: job.id,
 				authorId: job.id,
+				owner: job.authorUserId || job.authorBusiness?.authorId,
 			};
 		});
 
