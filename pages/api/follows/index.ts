@@ -5,7 +5,7 @@ import NotificationsModel from "../../../database/NotificationsModel";
 import ServerSocket, { NextApiResponseWithSocket } from "../../../socket.io/ServerSocket";
 
 const apiRoutes = nextConnect({
-	onNoMatch(req: NextApiRequest, res: NextApiResponsewi) {
+	onNoMatch(req: NextApiRequest, res: NextApiResponse) {
 		res.status(405).send(`Method ${req.method} is not allowed`);
 	},
 });
