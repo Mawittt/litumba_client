@@ -74,6 +74,7 @@ export default function () {
         }
         function setMissionsObserver() {
             const missionSection = document.getElementById("mission")
+            if (!missionSection) return
             let ranCallback = false
             const options: IntersectionObserverInit = {
                 rootMargin: "0% 0% -40% 0%",
