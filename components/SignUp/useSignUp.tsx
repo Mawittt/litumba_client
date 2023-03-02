@@ -26,7 +26,6 @@ export default function useSignUP({ closeAuth }: SignUpProps) {
             profession: "",
             description: "",
             phone: "",
-            email: ""
         }
     })
     const [profile, setProfile] = useState("")
