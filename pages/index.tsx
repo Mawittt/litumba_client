@@ -95,7 +95,7 @@ export default function Home() {
             </div>
             <div className={`relative w-full min-h-[30vw] h-fit bg-[] flex justify-center items-center `}>
                 <Image src={section} fill alt="mission background" className="object-cover brightness-50 bg-fixed " />
-                <p className="max-w-[90%] max-sm:text-[1rem] w-[800px] text-[2rem] text-white text-center relative">Let's get connected to each other,lets join as a family and grow beyond boundaries.</p>
+                <p className="max-w-[90%] max-sm:text-[1rem] w-[800px] text-[2rem] text-white text-center relative">Let&apos;s get connected to each other,lets join as a family and grow beyond boundaries.</p>
             </div>
             <div id="mission" className="py-8 px-4">
                 <h3 className="text-[2.5rem] text-blue-500 text-center mb-6">Our mission</h3>

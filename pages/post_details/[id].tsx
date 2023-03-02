@@ -37,7 +37,7 @@ export default function Post_details() {
                 <div className="px-2">
                     {post.text}
                 </div>
-                {post.image && <img src={post.image} alt={"post image "} className=" max-h-[70vh] aspect-auto max-w-full w-fit m-auto " onClick={enlargeImage} />}
+                {post.image && <Image src={post.image} alt={"post image "} className=" max-h-[70vh] aspect-auto max-w-full w-fit m-auto " onClick={enlargeImage} />}
                 {post.video && <video src={post.video} className="max-h-[70vh] " controls />}
                 <form className="flex justify-center gap-10 px-2" onSubmit={handleSubmit(sendComment)}>
                     <input type="text" className="text-input" {...register("comment")} />
