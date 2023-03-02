@@ -18,23 +18,7 @@ apiRoute.post((req: NextApiRequest & { files: object; images: object }, res: Nex
 });
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
 	const userModel = new UserModel();
-	await userModel.create({
-		firstName: "Dorine",
-		lastName: "Dozy",
-		profileImage: { url: "https://profile-assets.showwcase.com/160x/1658752874812.jpg" },
-		coverImage: { url: "image" },
-		country: "Cameroon",
-		city: "Buea",
-		profession: "software Engineer",
-		description: "I am a person that loves software engineering and loves to do great things",
-		phone: "672205985",
-		email: "mawitgad@gmail.com",
-		online: true,
-		privacy: {
-			phoneOnProfile: true,
-			emailOnProfile: true,
-		},
-	});
+
 	res.status(200).send("done");
 });
 
