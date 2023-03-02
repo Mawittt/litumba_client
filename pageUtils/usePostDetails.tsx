@@ -93,7 +93,7 @@ export default function usePostDetails() {
         post = {
             avatar: data?.data.authorUser?.profileImage.url || data?.data.authorBusiness?.logo.url || "",
             name: data?.data.authorUser?.firstName || data?.data.authorBusiness?.name || "",
-            time: getElapsedTime(data?.data.createdAt),
+            time: getElapsedTime(data?.data.createdAt.toString()),
             text: data.data.text,
             image: data.data.image.url,
             video: data.data.video.url,

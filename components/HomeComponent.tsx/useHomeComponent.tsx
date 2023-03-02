@@ -54,7 +54,7 @@ export default function useHomeComponent() {
                     avatar: post.authorUser?.profileImage.url || post.authorBusiness?.logo.url || "",
                     name: post.authorUser?.firstName || post.authorBusiness?.name || "",
                     authorId: post.authorUserId || post.authorBusinessId || "",
-                    time: getElapsedTime(post.createdAt),
+                    time: getElapsedTime(post.createdAt.toString()),
                     description: post.text || "",
                     image: post.image?.url || "",
                     video: post.video?.url || "",
