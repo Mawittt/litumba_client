@@ -9,7 +9,7 @@ import { getElapsedTime } from "../utils/fn";
 import { useNavigate } from "../utils/hooks";
 
 
-type serverData = Users & { businesses: Businesses[], products: Products[], jobs: Jobs[], followers: Follows[] }
+type serverData = Users & { businesses: Businesses[], products: Products[], jobs: (Jobs & { authorBusiness: { authorId: string } })[], followers: Follows[] }
 
 
 
@@ -73,7 +73,8 @@ export default function useUserProfile() {
                 tags: [job.pricing, job.niche, job.expertise].filter(job => Boolean(job)),
                 isBrand: Boolean(job.authorBusinessId),
                 _id: job.id,
-                authorId: user.id
+                authorId: user.id,
+                owner: job.authorUserId || job.authorBusiness?.authorId
             }
         })
         details = {
@@ -138,7 +139,7 @@ export default function useUserProfile() {
         setHasFollowed(mutator.data?.data)
     }
     function openUpdateUi() {
-        navigate(ROUTES)
+        navigate(ROUTES.settings)
     }
     function openConversation() {
         navigate(ROUTES.conversations + "/" + userToBeDisplayed)

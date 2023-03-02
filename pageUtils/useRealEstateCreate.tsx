@@ -66,7 +66,7 @@ export default function useRealEstateCreate() {
     function handlePreviews(previews: FileList | null | string) {
         if (!previews) return setPreviewImages([])
         if ((previewsForServer?.current?.length + previews?.length) > maxImages) return setWarning({ content: "please select a total of less than four Images." })
-        for (const key in previews) {
+        for (let key = 0; key < previews.length; key++) {
             if (Object.prototype.hasOwnProperty.call(previews, key)) {
                 const image = previews[key];
                 const fileReader = new FileReader()
@@ -77,6 +77,7 @@ export default function useRealEstateCreate() {
                         return images
                     })
                 }
+                if (typeof (image) === "string") return
                 fileReader.readAsDataURL(image)
                 previewsForServer.current.push(image)
 
