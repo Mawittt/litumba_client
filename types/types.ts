@@ -64,7 +64,6 @@ export interface JobProps {
 	self?: boolean;
 	_id: any;
 	authorId: string;
-	owner: string;
 }
 
 export interface BusinessProps {
