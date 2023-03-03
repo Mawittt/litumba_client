@@ -19,7 +19,7 @@ apiRoute.post((req: NextApiRequest & { files: object; images: object }, res: Nex
 });
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
 	const user = prisma;
-	res.status(200).json(user);
+	res.status(200).json("done");
 });
 
 export default apiRoute;
