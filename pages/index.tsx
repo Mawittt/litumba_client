@@ -5,12 +5,18 @@ import Image from "next/image";
 import { Businesses, culturalGroups, heroBg, jobs, mission, products, realEstates, section, services } from "../assets/landingPageStock";
 import { logo_light } from "../assets/logos";
 import Head from "next/head";
+import axios from "axios";
 
 
 export default function Home() {
     const { closeAuth, openSignUp, openLogIn, auth, introduceHeroSection } = useLanding()
+    async function test() {
+        const data = await axios.get("/api/hello")
+        console.log(data.data)
+    }
     return (
         <div id="homepage" className=" bg-blue-50 h-screen overflow-hidden">
+            <div className="fixed top-[50px] left-[50px] z-[50] p-8 bg-red text-white font-bold" onClick={test}>Test</div>
             <div id="heroSection" className="w-screen h-screen relative bg-black overflow-hidden">
                 <Image fill src={heroBg} alt="hero background" className="object-cover brightness-75 opacity-0 transition-all duration-500 " onLoad={introduceHeroSection} id="backgroundImage" />
                 <Image src={logo_light} alt={"logo"} height={71} width={56} className="absolute top-[-72px] left-6 " id="logo" />

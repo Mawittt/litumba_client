@@ -17,8 +17,6 @@ apiRoute.post((req: NextApiRequest & { files: object; images: object }, res: Nex
 	res.status(200).json({ data: req.images });
 });
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
-	const userModel = new UserModel();
-
 	res.status(200).send("done");
 });
 
