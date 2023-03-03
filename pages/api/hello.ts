@@ -1,5 +1,6 @@
 import next, { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
+import { prisma } from "../../database/prismaClient";
 import UserModel from "../../database/UserModel";
 import { storageEngine } from "../../storage/storage";
 import { addMediaToRequestObject } from "../../utils/fn";
@@ -17,10 +18,11 @@ apiRoute.post((req: NextApiRequest & { files: object; images: object }, res: Nex
 	res.status(200).json({ data: req.images });
 });
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
-	const user = {
-		name: "joe",
-	};
-
+	const user = await prisma.users.findFirst({
+		where: {
+			email: "jackheaven023@gmail.com",
+		},
+	});
 	res.status(200).json(user);
 });
 
