@@ -17,9 +17,14 @@ apiRoute.post((req: NextApiRequest & { files: object; images: object }, res: Nex
 	res.status(200).json({ data: req.images });
 });
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
-	const userModel = new UserModel();
-	const user = await userModel.getOneByEmail("jackheaven023@gmail.com");
-	res.status(200).send(user);
+	try {
+		const userModel = new UserModel();
+		const user = await userModel.getOneByEmail("jackheaven023@gmail.com");
+		res.status(200).send(user);
+	} catch (err) {
+		console.log(err);
+		res.status(200).send({ text: JSON.stringify(err), err });
+	}
 });
 
 export default apiRoute;
