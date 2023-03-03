@@ -18,11 +18,7 @@ apiRoute.post((req: NextApiRequest & { files: object; images: object }, res: Nex
 	res.status(200).json({ data: req.images });
 });
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
-	const user = await prisma.users.findFirst({
-		where: {
-			email: "jackheaven023@gmail.com",
-		},
-	});
+	const user = prisma;
 	res.status(200).json(user);
 });
 
