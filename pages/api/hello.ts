@@ -1,3 +1,4 @@
+import axios from "axios";
 import next, { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
 import { prisma } from "../../database/prismaClient";
@@ -18,8 +19,8 @@ apiRoute.post((req: NextApiRequest & { files: object; images: object }, res: Nex
 	res.status(200).json({ data: req.images });
 });
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
-	const user = prisma;
-	res.status(200).json("done");
+	const user = await axios.get("https://google.com");
+	res.status(200).json(user.data);
 });
 
 export default apiRoute;
