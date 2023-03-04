@@ -7,7 +7,8 @@ export default class ClientSocket {
 	queryClient: QueryClient | undefined;
 
 	constructor() {
-		fetch("http://localhost:3000/api/socket");
+		if (process.env.NODE_ENV === "development") fetch("http://localhost:3000/api/socket");
+		if (process.env.NODE_ENV === "production") fetch("http://litumba-client.vercel.app/api/socket");
 
 		this.socket = io("/", { transports: ["websocket", "polling"], autoConnect: false });
 		this.userId = "";
