@@ -9,18 +9,21 @@ import axios from "axios";
 
 
 export default function Home() {
-    const { closeAuth, openSignUp, openLogIn, auth, introduceHeroSection } = useLanding()
+    const { closeAuth, openSignUp, openLogIn, auth, introduceHeroSection, testApp } = useLanding()
     return (
         <div id="homepage" className=" bg-blue-50 h-screen overflow-hidden">
             <div id="heroSection" className="w-screen h-screen relative bg-black overflow-hidden">
-                <Image fill src={heroBg} alt="hero background" className="object-cover brightness-75 opacity-0 transition-all duration-500 " onLoad={introduceHeroSection} id="backgroundImage" />
-                <Image src={logo_light} alt={"logo"} height={71} width={56} className="absolute top-[-72px] left-6 " id="logo" />
+                <Image fill src={heroBg} alt="hero background" className="object-cover brightness-50 opacity-0 transition-all duration-500 " onLoad={introduceHeroSection} id="backgroundImage" />
+                <div className="absolute top-0 left-0 flex justify-between w-full p-2">
+                    <Image src={logo_light} alt={"logo"} height={71} width={56} id="logo" />
+                    <button onClick={testApp} className="px-[30px] py-[5px] max-[689px]:py-[5px] max-[689px]:px-[20px] my-[5px] text-white mx-2 rounded-lg bg-green-500  ">Preview app</button>
+                </div>
                 <div className=" text-white absolute m-auto top-0 left-0 bottom-0 right-0 w-fit h-fit flex flex-col items-center">
                     <h1 id="header" className=" opacity-0 ingrid-font-style text-[6rem] m-0 max-[595px]:text-[15vw] ">Litumba - we be family</h1>
                     <p id="lead" className=" opacity-0 w-fit max-w-[700px] text-[1.5rem] text-center max-[689px]:max-w-[90vw] max-[595px]:text-[1.3rem]">Welcome to Litumba, the online platform for Bakwerians to connect, network, and grow together socially and economically.</p>
-                    <div id="cta" className="opacity-0 mt-[75px] text-[2rem] max-[689px]:text-[1.5rem]">
-                        <button onClick={openSignUp} className="px-[30px] py-[5px] max-[689px]:py-[5px] max-[689px]:px-[20px] rounded-lg mr-[50px] bg-blue-500  ring-2 ring-blue-500">Join us</button>
-                        <button onClick={openLogIn} className="px-[30px] py-[5px] max-[689px]:py-[5px] max-[689px]:px-[20px] rounded-lg ring-blue-500 ring-2 ">log in</button>
+                    <div id="cta" className="opacity-0 mt-[75px] text-[1.5rem] max-[689px]:text-[1rem] flex justify-around w-[95vw] max-w-[350px] flex-wrap">
+                        <button onClick={openSignUp} className="px-[30px] py-[5px] max-[689px]:py-[5px] max-[689px]:px-[20px] my-[5px] bg-blue-500 mx-2 rounded-lg ring-2 ring-blue-500">Join us</button>
+                        <button onClick={openLogIn} className="px-[30px] py-[5px] max-[689px]:py-[5px] max-[689px]:px-[20px] my-[5px] mx-2 rounded-lg ring-blue-500 ring-2 ">log in</button>
                     </div>
                 </div>
                 <svg width="37" height="24" viewBox="0 0 57 44" fill="none" xmlns="http://www.w3.org/2000/svg" className=" absolute bottom-4 m-auto left-0 right-0">
@@ -123,10 +126,9 @@ export default function Home() {
                 </div>
             </div>
             <div className="h-[200px] bg-gray-900 py-8 flex flex-col justify-between items-center">
-                <button onClick={openSignUp} className="px-[50px] py-[10px] max-[689px]:py-[5px] max-[689px]:px-[20px] rounded-lg  bg-blue-500  ring-2 ring-blue-500 w-fit text-white text-[1.8rem]">Join us</button>
+                <button onClick={testApp} className="px-[30px] py-[5px] max-[689px]:py-[5px] max-[689px]:px-[20px] my-[5px] text-white mx-2 rounded-lg bg-green-500  ">Preview app</button>
                 <p className="text-sm text-gray-200">@copy write - Litumba v1.0.0</p>
             </div>
-
             <div>
                 {auth === "signUp" && <SignUp closeAuth={closeAuth} />}
                 {auth === "logIn" && <Login closeAuth={closeAuth} />}

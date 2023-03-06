@@ -1,6 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import { ROUTES } from "../assets/constant";
+import useStore from "../store/useStore";
+import { useNavigate } from "../utils/hooks";
 
 export default function () {
+    const { setUser } = useStore()
+    const { navigate } = useNavigate()
     const [auth, setAuth] = useState<null | string>(null)
     const animationDurations = 1000
 
@@ -122,7 +127,7 @@ export default function () {
 
     }, [])
 
-    return { auth, closeAuth, openSignUp, openLogIn, introduceHeroSection }
+    return { auth, closeAuth, openSignUp, openLogIn, introduceHeroSection, testApp }
 
     function closeAuth() {
         setAuth(null)
@@ -208,5 +213,9 @@ export default function () {
         setTimeout(() => {
             homepage.style.height = "fit-content"
         }, 2000);
+    }
+    function testApp() {
+        setUser({ id: "64032bfe5bb213df8afa4737" })
+        navigate(ROUTES.home)
     }
 }
