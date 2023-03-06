@@ -47,7 +47,7 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLa
                     <Component {...pageProps} />
                 </SessionProvider> :
                     <>
-                        <div id='app' className="bg-blue-50 flex flex-col h-screen overflow-hidden ">
+                        <div id='app' className="bg-blue-50 flex flex-col h-full overflow-hidden ">
                             <div className='h-[50px] relative overflow-hidden shadow-comp_lg flex items-center justify-center bg-white'><TopNavBar /></div>
                             <div className='flex justify-between max-w-[1148px] m-auto w-full h-1 grow '>
                                 <div className=' hidden min-[994px]:block h-full md:overflow-auto py-6 min-w-[260px]'><LeftSideBar /></div>
