@@ -7,7 +7,7 @@ import useMyBusiness from "./useMyBusiness";
 export default function MyBusiness(props: MyBusinessProps) {
     const { image, name, assets, openBusiness } = useMyBusiness(props)
     return (
-        <div className="h-fit w-full max-w-sm flex p-[5px] gap-3 ">
+        <div className="h-fit w-full flex p-[5px] gap-3 ">
             <Image src={image} alt="brand avatar one " width={64} height={64} onClick={openBusiness} className="rounded-lg h-[64px] cursor-pointer" />
             <div className="flex w-full justify-between items-center">
                 <div>
