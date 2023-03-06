@@ -15,7 +15,7 @@ const Create = () => {
             <p>please fill the below form and click the &quot;Create Service&quot; button to create a new job.</p>
             <CreateAs setAuthor={setAuthor} />
             <div className="flex flex-col gap-2">
-                <div className="font-bold">Name</div>
+                <div className="font-bold">Title</div>
                 <input type="text" className="text-input" {...register("name", { required: "The name is required" })} />
                 <ErrorMessage name='name' errors={errors} />
             </div>

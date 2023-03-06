@@ -11,8 +11,8 @@ export default function Review(props: ReviewProps) {
 
     return (
         <div className="shadow-comp_lg rounded-sm py-4 px-2">
-            <div  className="flex gap-2">
-                <div><Image src={review.avatar} alt="reviewer avatar" width={64} height={64} className="h-[64px] rounded-full" /></div>
+            <div className="flex gap-2">
+                <div><Image src={review.avatar} alt="reviewer avatar" width={64} height={64} className="h-[64px] rounded-full object-cover" /></div>
                 <div>
                     <strong>{review.name}</strong>
                     <div>{review.time}</div>

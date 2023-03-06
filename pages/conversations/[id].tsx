@@ -19,7 +19,7 @@ export default function Messages() {
                 <>
                     <div className="flex font-bold text-blue-500 py-2 px-2 shadow-comp_lg items-center justify-between bg-white rounded-lg">
                         <div className="flex items-center">
-                            <Image src={user.avatar} alt="peer avatar" width={52} height={52} className="h-[52px] rounded-full cursor-pointer" onClick={gotoProfile} />
+                            <Image src={user.avatar} alt="peer avatar" width={52} height={52} className="h-[52px] rounded-full cursor-pointer object-cover" onClick={gotoProfile} />
                             <div onClick={gotoProfile} className={"cursor-pointer ml-2"}>{user.name}</div>
                         </div>
                         <BackIcon onClick={goBack} />

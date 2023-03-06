@@ -26,7 +26,7 @@ export default function JobDetails() {
                     <div className="w-full px-4 flex flex-col gap-6">
                         <div className='flex justify-between w-full flex-wrap'>
                             <div className="flex gap-2 items-center flex-wrap">
-                                <div><Image src={details?.avatar || ""} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", details?.isBrand ? "rounded-lg" : "rounded-full")} onClick={gotoBrand} /></div>
+                                <div><Image src={details?.avatar || ""} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer object-cover", details?.isBrand ? "rounded-lg" : "rounded-full")} onClick={gotoBrand} /></div>
                                 <div >
                                     <h3 className="font-bold text-blue-500 cursor-pointer" onClick={gotoBrand}>{details?.author}</h3>
                                     <div>{details?.email}</div>

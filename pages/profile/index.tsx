@@ -23,7 +23,7 @@ export default function Profile() {
             <div className="flex flex-col gap-4 py-4 px-2 pb-6">
                 <div className='flex justify-between w-full flex-wrap'>
                     <div className="flex gap-2 items-center flex-wrap">
-                        <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] rounded-full"} /></div>
+                        <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={"h-[64px] rounded-full object-cover"} /></div>
                         <div >
                             <h3 className="font-bold text-blue-500">{details.name}</h3>
                             <div>{details.email}</div>
@@ -66,24 +66,24 @@ export default function Profile() {
                         }></div>
                     </div>
                 </div>
-                <div>
+                {!!businesses.length && <div>
                     <h2 className="font-bold text-2xl">Businesses</h2>
                     <div>
                         {businesses.map(business => <Business key={business._id} {...business} self />)}
                     </div>
-                </div>
-                <div className="flex flex-col gap-4">
+                </div>}
+                {!!products.length && <div className="flex flex-col gap-4">
                     <h2 className="font-bold text-2xl">Products</h2>
                     <div className="flex flex-col gap-4">
                         {products.map(product => <Product key={product._id} {...product} self />)}
                     </div>
-                </div>
-                <div className="flex flex-col gap-4">
+                </div>}
+                {!!jobs.length && <div className="flex flex-col gap-4">
                     <h2 className="font-bold text-2xl">Jobs</h2>
                     <div className="flex flex-col gap-4">
                         {jobs.map(job => <Job key={job._id} {...job} self />)}
                     </div>
-                </div>
+                </div>}
                 <Button label="Go back" />
 
             </div>

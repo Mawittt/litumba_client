@@ -14,14 +14,14 @@ export default function CreateAs(props: CreateAsProps) {
                 <h3 className="font-bold">Create as</h3>
                 {isLoading ? <div><Loader /></div> : currentAuthor &&
                     <div className="flex items-center mt-1" onClick={toggleViewOthers}>
-                        <Image src={currentAuthor.avatar} width={35} height={35} alt="current author" className={cn(currentAuthor.isBusiness ? "rounded-lg" : "rounded-full")} />
+                        <Image src={currentAuthor.avatar} width={35} height={35} alt="current author" className={cn(currentAuthor.isBusiness ? "rounded-lg" : "rounded-full", "w-[35px] h-[35px] object-cover")} />
                         <SelectionArrowIcon className="ml-2" />
                     </div>}
             </div>
             {viewOthers &&
-                <div className=" w-full bg-white rounded-lg shadow-comp_lg mx-2 my-2 flex flex-col justify-end overflow-hidden">
-                    {otherAuthors.current.map((Author, index) => <div key={Author.id} className="flex items-center my-1" onClick={() => updateCurrentAuthor(index)}>
-                        <Image src={Author.avatar} width={35} height={35} alt="current author" className={cn(Author.isBusiness ? "rounded-lg" : "rounded-full")} />
+                <div className=" w-fit px-2 bg-white rounded-lg shadow-comp_lg mx-2 my-2 flex flex-col justify-end overflow-hidden">
+                    {otherAuthors.current.map((Author, index) => <div key={Author.id} className="flex items-center my-1 cursor-pointer" onClick={() => updateCurrentAuthor(index)}>
+                        <Image src={Author.avatar} width={35} height={35} alt="current author" className={cn(Author.isBusiness ? "rounded-lg" : "rounded-full", "w-[35px] h-[35px] object-cover")} />
                         <p className="ml-2">{Author.name}</p>
                     </div>)}
                 </div>}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ROUTES } from "../../assets/constant";
 import { authApiReturn, LogInProps, SignUpProps } from "../../types/types";
-import { useNavigate } from "../../utils/hooks";
+import { useNavigate, useNotifiers } from "../../utils/hooks";
 import jwt_decode from "jwt-decode"
 import { useMutation } from "react-query";
 import axios from "axios";
@@ -12,6 +12,7 @@ import { setCookie } from "cookies-next"
 export default function useLogin({ closeAuth }: LogInProps) {
     const { setUser, user } = useStore()
     const { navigate } = useNavigate()
+    const { setWarning } = useNotifiers()
     const isLoading = useRef(false)
     const mutator = useMutation<{ data: authApiReturn }, Error, any>("user", (data: any) => {
         return axios.post("/api/user/", data)
@@ -43,7 +44,7 @@ export default function useLogin({ closeAuth }: LogInProps) {
         if (mutator.isSuccess) handleSuccess()
     }, [mutator.data?.data, mutator.isSuccess])
 
-    if (mutator.isError) isLoading.current = false
+    if (mutator.isError) handleError()
     if (mutator.isLoading) isLoading.current = true
 
     return { closeAuth, goToHome, isLoading }
@@ -62,6 +63,11 @@ export default function useLogin({ closeAuth }: LogInProps) {
         setUser({ id: mutator.data.data.userId })
         setCookie("token", mutator.data.data.token)
         navigate(ROUTES.home)
+        mutator.reset()
+    }
+    function handleError() {
+        isLoading.current = false
+        setWarning({ content: "please Sign up with this email" })
         mutator.reset()
     }
 }

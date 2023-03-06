@@ -73,30 +73,30 @@ export default function BusinessDetails() {
                         </div>
                     </div>
                 </>}
-                <div className="px-4">
+                {!!services.length && <div className="px-4">
                     <h2 className="font-bold mb-4 ">Services</h2>
                     <div className="flex flex-col gap-2">
                         {
                             services.map(service => <Service key={service._id} {...service} />)
                         }
                     </div>
-                </div>
-                <div className="px-4">
+                </div>}
+                {!!products.length && <div className="px-4">
                     <h2 className="font-bold mb-4">Products</h2>
                     <div className="flex flex-col gap-2">
                         {
                             products.map(product => <Product key={product._id} {...product} />)
                         }
                     </div>
-                </div>
-                <div className="px-4">
+                </div>}
+                {!!jobs.length && <div className="px-4">
                     <h2 className="font-bold mb-4">Jobs</h2>
                     <div className="flex flex-col gap-2">
                         {
                             jobs.map(job => <Job key={job._id} {...job} />)
                         }
                     </div>
-                </div>
+                </div>}
                 <Button label="Go back" full onClick={goBack} />
             </>}
         </div>

@@ -22,6 +22,10 @@ apiRoutes.post(async (req: NextApiRequest & { media: { profileImage: string; cov
 	let userId: string = "";
 
 	if (!existentUser) {
+		if (!req.body.firstName) {
+			res.status(400).send("sorry you need to create an account");
+			return;
+		}
 		await create_user_and_set_user_id();
 	} else {
 		await set_new_token_and_set_user_id(existentUser);

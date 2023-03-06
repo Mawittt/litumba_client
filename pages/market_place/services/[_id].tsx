@@ -27,7 +27,7 @@ export default function ServiceDetails() {
                 <div className="flex flex-col px-4 gap-4">
                     <div className='flex justify-between w-full'>
                         <div className="flex gap-2 items-center flex-wrap">
-                            <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", details.isBrand ? "rounded-lg" : "rounded-full")} onClick={openBrand} /></div>
+                            <div><Image src={details.avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer object-cover", details.isBrand ? "rounded-lg" : "rounded-full")} onClick={openBrand} /></div>
                             <div >
                                 <h3 className="font-bold text-blue-500 cursor-pointer" onClick={openBrand}>{details.author}</h3>
                                 <div>{details.email}</div>
@@ -42,7 +42,7 @@ export default function ServiceDetails() {
                         <ReviewForm serviceId={details._id} />
                     </div>
                     <div className="flex flex-col gap-2">
-                        <h3 className="font-bold text-blue-500">{details.title}</h3>
+                        <h3 className="font-bold ">{details.title}</h3>
                         <p>{details.description}</p>
                         <div>
                             <div>Price</div>

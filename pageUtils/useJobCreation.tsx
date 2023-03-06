@@ -29,7 +29,7 @@ export default function useJobCreation() {
     }, {
         retry: 3
     })
-    const { setWarning, setAlert } = useNotifiers()
+    const { setWarning, setConfirmation } = useNotifiers()
     const { navigate } = useNavigate()
     const author = useRef<{ authorId: string, isBusiness: boolean }>()
 
@@ -56,7 +56,7 @@ export default function useJobCreation() {
         reset()
         mutator.reset()
         navigate(-1)
-        setAlert({ content: "Job saved" })
+        setConfirmation({ content: "Job saved" })
     }
     function handleError() {
         setWarning({ content: "sorry there was an error please try again" })

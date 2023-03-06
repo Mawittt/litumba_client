@@ -1,10 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import Smooth from "smooth-scrolling"
-
-
-
-
-
 
 export default function () {
     const [auth, setAuth] = useState<null | string>(null)
@@ -110,8 +104,6 @@ export default function () {
 
             missionObserver.observe(missionSection)
         }
-
-
         function getThresholdArr(numSteps: number) {
             let thresholds = [];
 
@@ -123,7 +115,6 @@ export default function () {
             thresholds.push(0);
             return thresholds;
         }
-
 
         return () => {
             observers.forEach(observer => observer.disconnect())

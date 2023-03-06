@@ -1,6 +1,3 @@
-
-
-
 import Image from 'next/image'
 import React from 'react'
 import { ContactIcon, LocationIcon } from '../../assets/icons'
@@ -14,7 +11,7 @@ const Product = (props: ProductProps) => {
         <div className=' py-4 px-2 shadow-comp_lg rounded-lg bg-white my-2'>
             <div className='flex justify-between w-full'>
                 <div className="flex gap-2 items-center flex-wrap">
-                    <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} onClick={openProduct} /></div>
+                    <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer object-cover", isBrand ? "rounded-lg" : "rounded-full")} onClick={openProduct} /></div>
                     <div >
                         <h3 className="font-bold text-blue-500  cursor-pointer" onClick={openProduct}>{name}</h3>
                         <div className='flex translate-x-[-5px]'>

@@ -14,7 +14,7 @@ export default function Post(props: PostProps) {
     return (
         <div className=" flex flex-col gap-2 shadow-comp_lg pt-[10px] rounded-lg bg-white">
             <div className="flex items-center gap-2 px-2" onClick={openProfile}>
-                <Image src={avatar} alt={' post author profile '} width="45" height={45} className={cn("h-[45px] w-auto cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} />
+                <Image src={avatar} alt={' post author profile '} width="45" height={45} className={cn("h-[45px] ratio-square object-cover cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} />
                 <div className="flex items-baseline">
                     <strong className="cursor-pointer text-blue-500">{name}</strong>
                     <p className="text-bc_5 text-[0.7rem] font-bold ml-2">{time}</p>

@@ -15,7 +15,7 @@ const RealEstate = (props: RealEstateProps) => {
         <div className=' py-4 px-2 shadow-comp_lg rounded-lg bg-white'>
             <div className='flex justify-between w-full'>
                 <div className="flex gap-2 items-center flex-wrap">
-                    <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer", isBrand ? "rounded-lg" : "rounded-full")} onClick={openRealEstate} /></div>
+                    <div><Image src={avatar} alt={"author avatar"} width={64} height={64} className={cn("h-[64px] cursor-pointer object-cover", isBrand ? "rounded-lg" : "rounded-full")} onClick={openRealEstate} /></div>
                     <div >
                         <h3 className="font-bold text-blue-500  cursor-pointer" onClick={openRealEstate}>{name}</h3>
                         <div className='flex translate-x-[-5px]'>

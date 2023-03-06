@@ -17,7 +17,7 @@ export default function ProfilePreview(props: ProfilePreviewProps) {
             <div className="absolute sm:hidden top-4 right-4 cursor-pointer">
                 <BackIcon onClick={closeMenu} />
             </div>
-            <Image src={image} width={124} height={124} onClick={openProfile} alt="profile image" className="cursor-pointer shadow-icon h-[124px] w-[124px] border-2 border-solid border-white drop-shadow-4xl rounded-full" />
+            <Image src={image} width={124} height={124} onClick={openProfile} alt="profile image" className="cursor-pointer object-cover shadow-icon h-[124px] w-[124px] border-2 border-solid border-white drop-shadow-4xl rounded-full" />
             <h3 className="font-bold text-blue-500 cursor-pointer" onClick={openProfile}>{name}</h3>
             <p className="text-center">{description}</p>
             <div className="flex max-w-[200px] justify-between my-[20px] w-full">
