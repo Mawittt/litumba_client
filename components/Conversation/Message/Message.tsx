@@ -13,11 +13,10 @@ export default function Message(props: MessageProps) {
             message.self ? "justify-end" : "justify-start"
         )}>
             <div className={cn(
-                "py-1 px-4 w-fit rounded-2xl",
+                "py-2 px-4 w-fit rounded-2xl",
                 message.self ? "bg-blue-500 text-white" : " bg-gray-200"
             )}>
                 <div className="font-semibold">{message.text}</div>
-                <div className="text-sm">{message.time}</div>
             </div>
         </div>
     )
